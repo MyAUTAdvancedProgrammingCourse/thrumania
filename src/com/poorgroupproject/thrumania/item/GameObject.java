@@ -7,9 +7,13 @@ import java.awt.*;
  * @version 1.0.0
  */
 public abstract class GameObject implements Runnable {
-    protected Image currentImage;
+    private Image currentImage;
 
-    public Image getImage(){
+    public Image getCurrentImage() {
         return currentImage;
+    }
+
+    public void setCurrentImage(Image currentImage) {
+        this.currentImage = currentImage;
     }
 }
