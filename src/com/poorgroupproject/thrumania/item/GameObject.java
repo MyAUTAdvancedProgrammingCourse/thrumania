@@ -7,6 +7,8 @@ import java.awt.*;
  * @version 1.0.0
  */
 public abstract class GameObject implements Runnable {
+    private int life;
+
     private Image currentImage;
 
     public Image getCurrentImage() {
