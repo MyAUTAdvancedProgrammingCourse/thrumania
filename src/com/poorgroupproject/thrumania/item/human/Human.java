@@ -8,5 +8,4 @@ import java.awt.*;
  * Created by ahmad on 5/30/16.
  */
 public abstract class Human extends GameObject {
-
 }

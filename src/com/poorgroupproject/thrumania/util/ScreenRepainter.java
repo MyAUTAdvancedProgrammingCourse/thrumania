@@ -1,12 +1,18 @@
 package com.poorgroupproject.thrumania.util;
 
+import com.poorgroupproject.thrumania.form.Game;
+
 /**
  * Created by ahmad on 5/30/16.
  */
 public class ScreenRepainter extends Thread {
     private boolean runnable;
-    public ScreenRepainter(){
+    private Game game;
+
+    public ScreenRepainter(Game game){
         runnable = true;
+        setDaemon(true);
+        this.game = game;
     }
     @Override
     public void run() {
