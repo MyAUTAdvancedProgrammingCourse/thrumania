@@ -1,7 +1,7 @@
 package com.poorgroupproject.thrumania.item.place;
 
 /**
- * Created by ahmad on 5/31/16.
+ * Created by Amin on 6/21/2016.
  */
 public class Palace {
 }
