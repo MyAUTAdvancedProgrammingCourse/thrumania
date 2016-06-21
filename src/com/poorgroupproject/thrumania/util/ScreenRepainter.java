@@ -4,7 +4,8 @@ import com.poorgroupproject.thrumania.form.Game;
 import com.poorgroupproject.thrumania.panel.GamePanel;
 
 /**
- * Created by ahmad on 5/30/16.
+ * @author ahmad
+ * @version 1.0.0
  */
 public class ScreenRepainter extends Thread {
     private boolean runnable;
