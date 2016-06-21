@@ -29,7 +29,7 @@ public class Frame extends JFrame{
     private void setUpGraphicFullscreen(){
         screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
         device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
-        //setUndecorated(true);
+        setUndecorated(true);
         device.setFullScreenWindow(this);
     }
     private void setMouseCursor(){
