@@ -1,5 +1,8 @@
 package com.poorgroupproject.thrumania.form;
 
+import com.poorgroupproject.thrumania.panel.GamePanel;
+import com.poorgroupproject.thrumania.util.ScreenRepainter;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -9,11 +12,12 @@ import java.awt.event.KeyListener;
  * @author ahmad
  * @version 1.0.0
  */
-public abstract class Frame extends JFrame {
+public class Frame extends JFrame{
     private Dimension screenDimension;
     private Dimension mousePointerDimension;
 
     private GraphicsDevice device;
+
     public Frame(){
         setUpGraphicFullscreen();
         setLayout(null);
@@ -25,7 +29,7 @@ public abstract class Frame extends JFrame {
     private void setUpGraphicFullscreen(){
         screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
         device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
-        setUndecorated(true);
+        //setUndecorated(true);
         device.setFullScreenWindow(this);
     }
     private void setMouseCursor(){
@@ -45,15 +49,15 @@ public abstract class Frame extends JFrame {
         addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent keyEvent) {
-                if (keyEvent.getKeyCode() == keyEvent.VK_ESCAPE) {
-                    System.exit(0);
-                    System.out.println("some text");
-                }
+
             }
 
             @Override
             public void keyPressed(KeyEvent keyEvent) {
-
+                if (keyEvent.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    System.exit(0);
+                    System.out.println("some text");
+                }
             }
 
             @Override
@@ -67,7 +71,7 @@ public abstract class Frame extends JFrame {
         setVisible(true);
     }
 
-    public abstract void putElements();
+    //public abstract void putElements();
 
     public Dimension getScreenDimension(){
         return screenDimension;
