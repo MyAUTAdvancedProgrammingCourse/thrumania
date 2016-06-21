@@ -1,7 +1,10 @@
 package com.poorgroupproject.thrumania.item.human;
 
+import com.poorgroupproject.thrumania.events.Event;
+
 /**
- * Created by ahmad on 5/30/16.
+ * @author saman
+ * @version 1.0.0
  */
 public class Soldier extends Human {
 
@@ -11,6 +14,11 @@ public class Soldier extends Human {
 
     @Override
     public void run() {
+
+    }
+
+    @Override
+    public void processEvent(Event event) {
 
     }
 }

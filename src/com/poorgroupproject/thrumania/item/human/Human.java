@@ -5,7 +5,8 @@ import com.poorgroupproject.thrumania.item.GameObject;
 import java.awt.*;
 
 /**
- * Created by ahmad on 5/30/16.
+ * @author saman
+ * @version 1.0.0
  */
 public abstract class Human extends GameObject implements Runnable{
     private final int HUMAN_WIDTH = 250;
