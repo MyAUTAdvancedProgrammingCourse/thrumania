@@ -46,4 +46,6 @@ public abstract class GameObject{
     public void setCurrentImage(Image currentImage) {
         this.currentImage = currentImage;
     }
+
+    public abstract void processEvent(com.poorgroupproject.thrumania.events.Event event);
 }
