@@ -1,9 +1,10 @@
 package com.poorgroupproject.thrumania.item.human;
 
+import com.poorgroupproject.thrumania.events.ClickEvent;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -58,6 +59,13 @@ public class Citizen extends Human {
     public void nextImage(){
         imageIndex = (imageIndex + 1) % images.length;
         setCurrentImage(images[imageIndex]);
+    }
+
+    @Override
+    public void processEvent(com.poorgroupproject.thrumania.events.Event event) {
+        if (event instanceof ClickEvent){
+            System.out.println("player clicked");
+        }
     }
 }
 

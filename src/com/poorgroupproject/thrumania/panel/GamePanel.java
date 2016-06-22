@@ -1,5 +1,6 @@
 package com.poorgroupproject.thrumania.panel;
 
+import com.poorgroupproject.thrumania.events.ClickEvent;
 import com.poorgroupproject.thrumania.item.GameObject;
 import com.poorgroupproject.thrumania.item.human.Citizen;
 import com.poorgroupproject.thrumania.util.GameConfig;
@@ -7,12 +8,16 @@ import com.poorgroupproject.thrumania.util.GameConfig;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.TimerTask;
 
 /**
- * Created by ahmad on 6/3/16.
+ * @author ahmad
+ * @version 1.0.0
  */
 public class GamePanel extends Canvas {
     private BufferedImage frame;
@@ -57,6 +62,40 @@ public class GamePanel extends Canvas {
 
             }
         });
+
+        addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent mouseEvent) {
+                Rectangle r = new Rectangle();
+                r.setLocation(mouseEvent.getLocationOnScreen());
+                r.setSize(new Dimension(1,1));
+                for (GameObject g :
+                        gameObjects) {
+                    if (g.getBoundry().intersects(r))
+                        g.processEvent(new ClickEvent());
+                }
+            }
+
+            @Override
+            public void mousePressed(MouseEvent mouseEvent) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent mouseEvent) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent mouseEvent) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent mouseEvent) {
+
+            }
+        });
     }
 
     @Override
@@ -74,13 +113,5 @@ public class GamePanel extends Canvas {
         }
 
         graphics.drawImage(offScreen, 0, 0, null);
-    }
-}
-
-class RefreshTask extends TimerTask{
-
-    @Override
-    public void run() {
-
     }
 }

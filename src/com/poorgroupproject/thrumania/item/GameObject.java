@@ -38,7 +38,7 @@ public abstract class GameObject{
     public synchronized int getY() {
         return ((int) boundry.getY());
     }
-
+    public abstract void loadResoure();
     public Image getCurrentImage() {
         return currentImage;
     }
@@ -46,4 +46,6 @@ public abstract class GameObject{
     public void setCurrentImage(Image currentImage) {
         this.currentImage = currentImage;
     }
+
+    public abstract void processEvent(com.poorgroupproject.thrumania.events.Event event);
 }
