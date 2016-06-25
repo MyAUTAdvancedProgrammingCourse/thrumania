@@ -1,6 +1,7 @@
 package com.poorgroupproject.thrumania.item.place;
 
 import com.poorgroupproject.thrumania.events.Event;
+import com.poorgroupproject.thrumania.util.ResourcePath;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -15,17 +16,17 @@ public class Farm extends Place {
 
     private Image[] farmImage;
 
-    public Farm(int x, int y, int toughness) {
-        super(x, y, toughness);
+    public Farm(int x, int y) {
+        super(x, y);
         farmImage = new Image[4];
     }
 
     @Override
     public void loadResoure() {
         try {
-            farmImage[0]= ImageIO.read(new File(ConstantPlaceVariables.resourceItemPath+"farm\\farm_1.png"));
-            farmImage[1]= ImageIO.read(new File(ConstantPlaceVariables.resourceItemPath+"farm\\farm_2.png"));
-            farmImage[2]= ImageIO.read(new File(ConstantPlaceVariables.resourceItemPath+"farm\\farm_3.png"));
+            farmImage[0]= ImageIO.read(new File(ResourcePath.itemImagePath +"farm\\farm_1.png"));
+            farmImage[1]= ImageIO.read(new File(ResourcePath.itemImagePath+"farm\\farm_2.png"));
+            farmImage[2]= ImageIO.read(new File(ResourcePath.itemImagePath+"farm\\farm_3.png"));
         } catch (IOException e) {
             System.err.println("FILE NOT FOUND");
             e.printStackTrace();

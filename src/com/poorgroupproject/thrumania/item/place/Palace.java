@@ -2,6 +2,7 @@ package com.poorgroupproject.thrumania.item.place;
 
 import com.poorgroupproject.thrumania.events.Event;
 import com.poorgroupproject.thrumania.item.human.Human;
+import com.poorgroupproject.thrumania.util.ResourcePath;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -23,29 +24,21 @@ public class Palace extends Place{
     private ArrayList<Human> humanArrayList = new ArrayList<>();
 
     public Palace(int x, int y) {
-        super(x,y)
+        super(x,y);
         loadResoure();
 
         for (int i = 0; i < 10; i++){
-            getHumanArrayList().add(new Human() {
-                @Override
-                public void run() {
-                    //inja bayad moshakhasate humane sakhte shode tarif beshe
-                }
-            });
+            //10 nafar avalie bayad dashte bashad
         }
     }
 
-    Palace(int x, int y, int toughness) {
-        super(x, y, toughness);
-    }
 
     @Override
     public void loadResoure() {
         try {
-            palaceImages[0]= ImageIO.read(new File(ConstantPlaceVariables.resourceItemPath+"palace\\palace_1.png"));
-            palaceImages[1]= ImageIO.read(new File(ConstantPlaceVariables.resourceItemPath+"palace\\palace_2.png"));
-            palaceImages[2]= ImageIO.read(new File(ConstantPlaceVariables.resourceItemPath+"palace\\palace_3.png"));
+            palaceImages[0]= ImageIO.read(new File(ResourcePath.itemImagePath+"palace\\palace_1.png"));
+            palaceImages[1]= ImageIO.read(new File(ResourcePath.itemImagePath+"palace\\palace_2.png"));
+            palaceImages[2]= ImageIO.read(new File(ResourcePath.itemImagePath+"palace\\palace_3.png"));
         } catch (IOException e) {
             System.err.println("FILE NOT FOUND");
             e.printStackTrace();
@@ -67,12 +60,7 @@ public class Palace extends Place{
     }
 
     private void makeHuman(){
-        setHumanArrayList(getHumanArrayList().add(new Human() {
-            @Override
-            public void run() {
-                //inja bayad moshakhasate humane sakhte shode tarif beshe
-            }
-        }));
+
     }
 
     public ArrayList<Human> getHumanArrayList() {

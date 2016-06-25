@@ -12,12 +12,13 @@ import java.util.ArrayList;
 public abstract class Place extends GameObject {
     private int toughness;
     private int numberOfWorkingHuman;
+    static final int RATE_OF_BUILDING_PORT = 10;
 
-    Place(int x, int y) {
+    protected Place(int x, int y) {
         super(x, y, 100,100);
     }
 
-    public int getToughness() {
+    int getToughness() {
         return toughness;
     }
 
