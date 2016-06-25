@@ -3,11 +3,10 @@ package com.poorgroupproject.thrumania.events;
 import com.poorgroupproject.thrumania.item.GameObject;
 
 /**
- * @author ahmad
- * @version 1.0.0
+ * Created by ahmad on 6/22/16.
  */
-public class ClickEvent extends Event {
-    public ClickEvent(GameObject sender) {
+public class CitizenAttackEvent extends Event {
+    public CitizenAttackEvent(GameObject sender) {
         super(sender);
     }
 }
