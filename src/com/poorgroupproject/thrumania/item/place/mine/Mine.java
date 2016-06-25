@@ -1,7 +1,26 @@
 package com.poorgroupproject.thrumania.item.place.mine;
 
+import com.poorgroupproject.thrumania.events.Event;
+import com.poorgroupproject.thrumania.item.place.Place;
+
 /**
- * Created by Amin on 6/21/2016.
+ * @author amin
+ * @version 1.0.0
  */
-public class Mine {
+class Mine extends Place {
+
+    Mine(int x, int y) {
+        super(x, y);
+
+    }
+
+    @Override
+    public void loadResoure() {
+
+    }
+
+    @Override
+    public void processEvent(Event event) {
+
+    }
 }

@@ -21,6 +21,7 @@ public class Frame extends JFrame{
     public Frame(){
         setUpGraphicFullscreen();
         setLayout(null);
+        setDefaultLookAndFeelDecorated(false);
         setTitle("Thrumania");
         setMouseCursor();
         keyListener();
