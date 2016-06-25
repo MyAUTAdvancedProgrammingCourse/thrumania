@@ -1,9 +1,13 @@
 package com.poorgroupproject.thrumania.item.place;
 
+import com.poorgroupproject.thrumania.events.*;
+import com.poorgroupproject.thrumania.events.Event;
 import com.poorgroupproject.thrumania.item.human.Human;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 
 /**
  * Created by Amin on 6/21/2016.
@@ -30,19 +34,29 @@ public class Palace extends Place{
         this.width = width;
 
 
-        thirtyPercentPalace = new Image("resource\\image\\item\\palace\\palace_1.png");
-        sixtyPercentPalace = new Image("resource\\image\\item\\palace\\palace_2.png");;
-        oneHundredPercentPalace = new Image("resource\\image\\item\\palace\\palace_3.png");;
 
 
-        for (int i = 0, i < 10; i++){
+
+        for (int i = 0; i < 10; i++){
             getHumanArrayList().add(new Human() {
                 @Override
                 public void run() {
                     //inja bayad moshakhasate humane sakhte shode tarif beshe
                 }
-            })
+            });
         }
+
+    }
+
+    @Override
+    public void loadResoure() {
+        thirtyPercentPalace = ImageIO.read(new File("resource\\image\\item\\palace\\palace_1.png"));
+        sixtyPercentPalace = ImageIO.read(new File("resource\\image\\item\\palace\\palace_2.png"));
+        oneHundredPercentPalace = ImageIO.read(new File("resource\\image\\item\\palace\\palace_3.png"));
+    }
+
+    @Override
+    public void processEvent(Event event) {
 
     }
 
