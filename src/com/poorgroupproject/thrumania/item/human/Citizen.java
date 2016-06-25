@@ -19,9 +19,11 @@ public class Citizen extends Human {
 
  //   public int life;
     private int speed;
+    public boolean isCollectingResource;
     public Citizen(int x, int y) {
         super(x, y);
         this.life = 300;
+        this.Capacity = 0;
     }
     public int getSpeed(){
         switch(Season.getInstance().getCurrentSeason()){
