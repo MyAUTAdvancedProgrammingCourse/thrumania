@@ -10,7 +10,6 @@ import java.awt.geom.Rectangle2D;
  * @version 1.0.0
  */
 public abstract class GameObject{
-    private int life;
     private Rectangle boundry;
     private Image currentImage;
 
