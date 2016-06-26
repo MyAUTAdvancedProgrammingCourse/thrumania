@@ -20,7 +20,6 @@ public class ScreenRepainter extends Thread {
     public void run() {
         while (runnable){
             game.repaint();
-
             try {
                 Thread.sleep(GameConfig.frameDelayTime);
             } catch (InterruptedException e) {
