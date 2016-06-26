@@ -16,14 +16,22 @@ import java.io.IOException;
 public class GoldMine extends Mine {
 
     private Image[] goldMineImages;
-    private int toughness;
+    private int toughness; // the toughness of place and the rang is 0 to 100
 
+    /**
+     * Constructor
+     * @param x
+     * @param y
+     */
     GoldMine(int x, int y) {
         super(x, y);
         goldMineImages = new Image[4];
         toughness = 100;
     }
 
+    /**
+     * loading images of gold mine that first element of array is incompleted gold mine and the last one is completed gold mine.
+     */
     @Override
     public void loadResoure() {
         try {

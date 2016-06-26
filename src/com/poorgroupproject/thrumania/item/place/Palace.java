@@ -23,6 +23,11 @@ public class Palace extends Place{
     private Image[] palaceImages = new Image[3];
     private ArrayList<Human> humanArrayList = new ArrayList<>();
 
+    /**
+     * Constructor
+     * @param x
+     * @param y
+     */
     public Palace(int x, int y) {
         super(x,y);
         loadResoure();
@@ -33,6 +38,9 @@ public class Palace extends Place{
     }
 
 
+    /**
+     * loading images of palaces that first element of array is incompleted palace and the last one is completed palace.
+     */
     @Override
     public void loadResoure() {
         try {

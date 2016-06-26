@@ -19,6 +19,11 @@ public class Barrack extends Place {
     private Image[] barrackImages;
     private ArrayList<Soldier> soldierArrayList;
 
+    /**
+     * Constructor
+     * @param x
+     * @param y
+     */
     public Barrack(int x, int y) {
         super(x, y);
         loadResoure();
@@ -27,6 +32,9 @@ public class Barrack extends Place {
     }
 
 
+    /**
+     * loading images of barracks that first element of array is incompleted barrack and the last one is completed barrack.
+     */
     @Override
     public void loadResoure() {
         try {
