@@ -3,6 +3,7 @@ package com.poorgroupproject.thrumania.land;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 /**
  * @author ahmad
@@ -17,6 +18,10 @@ public class Land {
 
     private Cell [][]cells;
 
+    public Cell getCellContent(int row,int col){
+        return cells[row][col];
+    }
+
     public void loadMap(File file) throws FileNotFoundException {
         Scanner scanner = new Scanner(file);
         int rows = scanner.nextInt();
@@ -24,7 +29,9 @@ public class Land {
         cells = new Cell[rows][cols];
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                String cellContent = scanner.nextLine();
+
+                //String cellContent = (new StringTokenizer(str)).nextToken();
+                String cellContent = scanner.next();
                 if ("WATER".equals(cellContent))
                     cells[i][j] = Cell.WATER;
                 else if ("LAND".equals(cellContent))
