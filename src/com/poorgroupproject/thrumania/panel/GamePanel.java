@@ -4,6 +4,7 @@ import com.poorgroupproject.thrumania.events.ClickEvent;
 import com.poorgroupproject.thrumania.item.GameObject;
 import com.poorgroupproject.thrumania.item.human.Citizen;
 import com.poorgroupproject.thrumania.util.GameConfig;
+import com.poorgroupproject.thrumania.util.GameEngine;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -12,6 +13,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
+import java.awt.image.VolatileImage;
 import java.util.ArrayList;
 import java.util.TimerTask;
 
@@ -19,24 +21,19 @@ import java.util.TimerTask;
  * @author ahmad
  * @version 1.0.0
  */
-public class GamePanel extends Canvas {
-    private BufferedImage frame;
+public class GamePanel extends GameEngine {
 
     private ArrayList<GameObject> gameObjects;
 
     public GamePanel(int width, int height){
-        setSize(width,height);
-        setLocation(0,0);
+        initialize(width,height);
         gameObjects = new ArrayList<>();
-        gameObjects.add(new Citizen());
-        GameConfig.setFrameDelayTime();
-        System.out.println(GameConfig.frameDelayTime);
+        gameObjects.add(new Citizen(0,0));
         (new Thread(new Runnable() {
             @Override
             public void run() {
                 while (true){
                     repaint();
-
                     try {
                         Thread.sleep(GameConfig.frameDelayTime);
                     } catch (InterruptedException e) {
@@ -46,6 +43,16 @@ public class GamePanel extends Canvas {
             }
         })).start();
 
+        addEventListener();
+
+    }
+
+    private void initialize(int width, int height){
+        setSize(width,height);
+        setLocation(0,0);
+    }
+
+    private void addEventListener(){
         addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent keyEvent) {
@@ -69,11 +76,6 @@ public class GamePanel extends Canvas {
                 Rectangle r = new Rectangle();
                 r.setLocation(mouseEvent.getLocationOnScreen());
                 r.setSize(new Dimension(1,1));
-                for (GameObject g :
-                        gameObjects) {
-                    if (g.getBoundry().intersects(r))
-                        g.processEvent(new ClickEvent());
-                }
             }
 
             @Override
@@ -99,19 +101,30 @@ public class GamePanel extends Canvas {
     }
 
     @Override
-    public void paint(Graphics graphics) {
-        update(graphics);
-    }
-
-    public void update(Graphics graphics){
-        Graphics2D offScreenGraphic;
-        BufferedImage offScreen = ((BufferedImage) createImage(getWidth(), getHeight()));
-        offScreenGraphic = ((Graphics2D) offScreen.getGraphics());
-        for (GameObject gameObject :
+    public void render() {
+        for (GameObject gameObj :
                 gameObjects) {
-            offScreenGraphic.drawImage(gameObject.getCurrentImage(), gameObject.getX(), gameObject.getY(), null);
+            drawOnFrame(gameObj.getCurrentImage(), gameObj.getBoundry());
         }
-
-        graphics.drawImage(offScreen, 0, 0, null);
     }
+
+//    @Override
+//    public void paint(Graphics graphics) {
+//        update(graphics);
+//    }
+//
+//    public void update(Graphics graphics){
+//        Graphics2D offScreenGraphic;
+//        BufferedImage offScreen = ((BufferedImage) createImage(getWidth(), getHeight()));
+//        offScreenGraphic = ((Graphics2D) offScreen.getGraphics());
+//        for (GameObject gameObject :
+//                gameObjects) {
+//            offScreenGraphic.drawImage(gameObject.getCurrentImage(), gameObject.getX(), gameObject.getY(), null);
+//        }
+//
+//        graphics.drawImage(offScreen, 0, 0, null);
+//    }
+
+
+
 }
