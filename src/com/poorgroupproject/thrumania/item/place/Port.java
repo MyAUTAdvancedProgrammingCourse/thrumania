@@ -31,7 +31,7 @@ public class Port extends Place {
         loadResoure();
         humanQueue = new LinkedList<>();
         portImages = new Image[3];
-        toughness = Place.RATE_OF_BUILDING_PORT * numberOfWorkers;
+        toughness = 0;
     }
 
     /**
