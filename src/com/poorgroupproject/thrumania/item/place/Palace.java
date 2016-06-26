@@ -36,6 +36,20 @@ public class Palace extends Place{
         for (int i = 0; i < 10; i++){
             //10 nafar avalie bayad dashte bashad
         }
+
+        (new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    setX(getX() + 2);
+                    try {
+                        Thread.sleep(40);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        })).start();
     }
 
 
@@ -45,9 +59,9 @@ public class Palace extends Place{
     @Override
     public void loadResoure() {
         try {
-            palaceImages[0]= ImageIO.read(new File(ResourcePath.itemImagePath+"palace\\palace_1.png"));
-            palaceImages[1]= ImageIO.read(new File(ResourcePath.itemImagePath+"palace\\palace_2.png"));
-            palaceImages[2]= ImageIO.read(new File(ResourcePath.itemImagePath+"palace\\palace_3.png"));
+            palaceImages[0]= ImageIO.read(new File(ResourcePath.itemImagePath+"palace/palace_1.png"));
+            palaceImages[1]= ImageIO.read(new File(ResourcePath.itemImagePath+"palace/palace_2.png"));
+            palaceImages[2]= ImageIO.read(new File(ResourcePath.itemImagePath+"palace/palace_3.png"));
         } catch (IOException e) {
             System.err.println("FILE NOT FOUND");
             e.printStackTrace();
