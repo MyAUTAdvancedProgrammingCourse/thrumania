@@ -3,6 +3,7 @@ package com.poorgroupproject.thrumania.panel;
 import com.poorgroupproject.thrumania.events.ClickEvent;
 import com.poorgroupproject.thrumania.item.GameObject;
 import com.poorgroupproject.thrumania.item.human.Citizen;
+import com.poorgroupproject.thrumania.item.place.Palace;
 import com.poorgroupproject.thrumania.util.GameConfig;
 import com.poorgroupproject.thrumania.util.GameEngine;
 
@@ -28,7 +29,7 @@ public class GamePanel extends GameEngine {
     public GamePanel(int width, int height){
         initialize(width,height);
         gameObjects = new ArrayList<>();
-        gameObjects.add(new Citizen(0,0));
+        gameObjects.add(new Palace(0,0));
         (new Thread(new Runnable() {
             @Override
             public void run() {
