@@ -21,6 +21,9 @@ public class Farm extends Place {
         farmImage = new Image[4];
     }
 
+    /**
+     * loading images of farms that first element of array is incompleted farm and the last one is completed farm.
+     */
     @Override
     public void loadResoure() {
         try {

@@ -24,6 +24,9 @@ public class GoldMine extends Mine {
         toughness = 100;
     }
 
+    /**
+     * loading images of gold mine that first element of array is incompleted gold mine and the last one is completed gold mine.
+     */
     @Override
     public void loadResoure() {
         try {
