@@ -27,6 +27,9 @@ public class Barrack extends Place {
     }
 
 
+    /**
+     * loading images of barracks that first element of array is incompleted barrack and the last one is completed barrack.
+     */
     @Override
     public void loadResoure() {
         try {

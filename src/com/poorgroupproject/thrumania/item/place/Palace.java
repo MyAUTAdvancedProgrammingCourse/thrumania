@@ -33,6 +33,9 @@ public class Palace extends Place{
     }
 
 
+    /**
+     * loading images of palaces that first element of array is incompleted palace and the last one is completed palace.
+     */
     @Override
     public void loadResoure() {
         try {

@@ -26,6 +26,9 @@ public class Port extends Place {
         toughness = Place.RATE_OF_BUILDING_PORT * numberOfWorkers;
     }
 
+    /**
+     * loading images of ports that first element of array is incompleted port and the last one is completed port.
+     */
     @Override
     public void loadResoure() {
         try {
