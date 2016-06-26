@@ -32,6 +32,7 @@ public class Palace extends Place{
         super(x,y);
         loadResoure();
 
+        setCurrentImage(palaceImages[2]);
         for (int i = 0; i < 10; i++){
             //10 nafar avalie bayad dashte bashad
         }
