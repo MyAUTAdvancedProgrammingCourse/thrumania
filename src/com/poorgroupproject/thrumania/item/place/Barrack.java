@@ -19,6 +19,11 @@ public class Barrack extends Place {
     private Image[] barrackImages;
     private ArrayList<Soldier> soldierArrayList;
 
+    /**
+     * Constructor
+     * @param x
+     * @param y
+     */
     public Barrack(int x, int y) {
         super(x, y);
         loadResoure();

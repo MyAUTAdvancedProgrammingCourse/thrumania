@@ -18,10 +18,14 @@ import java.util.*;
 public class Port extends Place {
 
     private Image[] portImages;
-    private int numberOfWorkers;
-    private int toughness;
+    private int toughness; // the toughness of place and the rang is 0 to 100
     private Queue<Human> humanQueue;
 
+    /**
+     * Constructor
+     * @param x
+     * @param y
+     */
     public Port(int x, int y) {
         super(x, y);
         loadResoure();

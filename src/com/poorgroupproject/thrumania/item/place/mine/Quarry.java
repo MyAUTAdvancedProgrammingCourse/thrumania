@@ -12,6 +12,11 @@ public class Quarry extends Mine {
     private int toughness;
     private Image[] quarry;
 
+    /**
+     * Constructor
+     * @param x
+     * @param y
+     */
     public Quarry(int x, int y) {
         super(x,y);
         availabeResource = 0;

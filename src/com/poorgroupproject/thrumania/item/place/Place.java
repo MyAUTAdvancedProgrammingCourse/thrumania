@@ -14,6 +14,11 @@ public abstract class Place extends GameObject {
     private int numberOfWorkingHuman;
     static final int RATE_OF_BUILDING_PORT = 10;
 
+    /**
+     * Constructor
+     * @param x
+     * @param y
+     */
     protected Place(int x, int y) {
         super(x, y, 100,100);
     }
