@@ -17,6 +17,11 @@ public class FisherMan extends Human {
     }
 
     @Override
+    public void loadResoure() {
+
+    }
+
+    @Override
     public void processEvent(Event event) {
 
     }

@@ -18,6 +18,11 @@ public class Soldier extends Human {
     }
 
     @Override
+    public void loadResoure() {
+
+    }
+
+    @Override
     public void processEvent(Event event) {
 
     }
