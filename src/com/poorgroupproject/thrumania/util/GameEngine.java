@@ -31,6 +31,17 @@ public abstract class GameEngine extends Canvas {
     public void drawOnFrame(Image img, Rectangle boundry){
         offscreenGraphics.drawImage(img, ((int) boundry.getX()), ((int) boundry.getY()), ((int) boundry.getWidth()), ((int) boundry.getHeight()),null);
     }
+
+    public void drawRectOnFrame(Rectangle boundry){
+        offscreenGraphics.setColor(Color.black);
+        if (boundry.getWidth() < 0){
+            boundry.setLocation(((int) (boundry.getX() + boundry.getWidth())), ((int) boundry.getY()));
+        }
+        if (boundry.getHeight() < 0){
+            boundry.setLocation((int) (boundry.getX()), ((int) (boundry.getY()  + boundry.getHeight())));
+        }
+        offscreenGraphics.drawRect(((int) boundry.getX()), ((int) boundry.getY()), Math.abs((int) boundry.getWidth()), Math.abs((int) boundry.getHeight()));
+    }
     @Override
     public void paint(Graphics g) {
         // create the hardware accelerated image.
