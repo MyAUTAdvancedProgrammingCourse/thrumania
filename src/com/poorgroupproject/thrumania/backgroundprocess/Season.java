@@ -1,5 +1,7 @@
 package com.poorgroupproject.thrumania.backgroundprocess;
 
+import com.poorgroupproject.thrumania.land.Land;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -30,7 +32,7 @@ public class Season extends TimerTask {
      * A separate method is considered because it can be loaded from a setting file
      */
     private void setSeasonChangerInterval(){
-        seasonChangerInterval = 6000;
+        seasonChangerInterval = 60;
     }
     @Override
     public void run() {
@@ -38,6 +40,7 @@ public class Season extends TimerTask {
         if (seasonChangerIntervalCounter % 30 == 0){
             currentSeasonId ++;
             currentSeasonId %= 4;
+            Land.getInstance().seasonChanged();
             seasonChangerIntervalCounter = 0;
         }
     }
