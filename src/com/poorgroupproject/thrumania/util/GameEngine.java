@@ -9,7 +9,7 @@ import java.awt.image.VolatileImage;
  */
 public abstract class GameEngine extends Canvas {
     private VolatileImage offscreenFrame;
-    private Dimension screenDimension;
+    private static Dimension screenDimension;
     private Graphics offscreenGraphics;
 
     public GameEngine(){
@@ -19,7 +19,8 @@ public abstract class GameEngine extends Canvas {
 
     public abstract void render();
 
-    public Dimension getScreenDimension(){
+    public static Dimension getScreenDimension(){
+        screenDimension = Toolkit.getDefaultToolkit().getScreenSize();
         return screenDimension;
     }
 
