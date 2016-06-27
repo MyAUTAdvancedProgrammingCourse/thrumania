@@ -5,6 +5,7 @@ import com.poorgroupproject.thrumania.form.*;
 import com.poorgroupproject.thrumania.form.Frame;
 import com.poorgroupproject.thrumania.land.Land;
 import com.poorgroupproject.thrumania.panel.GamePanel;
+import com.poorgroupproject.thrumania.panel.PlayerPanel;
 import com.poorgroupproject.thrumania.util.GameConfig;
 import com.poorgroupproject.thrumania.util.ScreenRepainter;
 
@@ -37,7 +38,7 @@ public class Thrumania {
             }
         });
 
-
+        Land.getInstance().loadMapImageFile();
         try {
             Land.getInstance().loadMap(new File("resource/map/map1.tmf"));
         } catch (FileNotFoundException e) {
