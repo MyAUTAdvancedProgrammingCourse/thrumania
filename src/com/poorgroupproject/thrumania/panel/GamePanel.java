@@ -4,6 +4,7 @@ import com.poorgroupproject.thrumania.events.ClickEvent;
 import com.poorgroupproject.thrumania.item.GameObject;
 import com.poorgroupproject.thrumania.item.human.Citizen;
 import com.poorgroupproject.thrumania.item.place.Palace;
+import com.poorgroupproject.thrumania.land.Land;
 import com.poorgroupproject.thrumania.util.GameConfig;
 import com.poorgroupproject.thrumania.util.GameEngine;
 
@@ -26,13 +27,20 @@ public class GamePanel extends GameEngine {
 
     private Rectangle mouseRectangleSelector;
 
-    private enum MouseButtonMode{DRAG}
+    private enum MousePointerMode{NONE, PLAYER_PANEL_DRAGGING}
 
+    private MousePointerMode mousePointerMode;
+    private Point deltaMousePointerPositionToPlayerPanelForDraging;
+    private Rectangle mousePosition;
     public GamePanel(int width, int height){
         initialize(width,height);
         gameObjects = new ArrayList<>();
         playerPanel = new PlayerPanel();
         mouseRectangleSelector = new Rectangle(0,0,0,0);
+        mousePosition = new Rectangle(0,0,1,1);
+
+        mousePointerMode = MousePointerMode.NONE;
+
         for (int i = 0; i < 18; i++) {
             gameObjects.add(new Palace(0,i * 100));
         }
@@ -80,18 +88,25 @@ public class GamePanel extends GameEngine {
         addMouseMotionListener(new MouseMotionListener() {
             @Override
             public void mouseDragged(MouseEvent e) {
-                mouseRectangleSelector.setSize(e.getX() - ((int) mouseRectangleSelector.getX()),
-                        e.getY() - ((int) mouseRectangleSelector.getY()));
+                System.out.println("GamePanel.mouseDragged");
+                if (mousePointerMode == MousePointerMode.NONE) {
+                    mouseRectangleSelector.setSize(e.getX() - ((int) mouseRectangleSelector.getX()),
+                            e.getY() - ((int) mouseRectangleSelector.getY()));
+                }else if(mousePointerMode == MousePointerMode.PLAYER_PANEL_DRAGGING){
+                    playerPanel.setLocation(new Point(((int) (e.getX() - deltaMousePointerPositionToPlayerPanelForDraging.getX())),
+                            ((int) (e.getY() - deltaMousePointerPositionToPlayerPanelForDraging.getY()))));
+                }
             }
 
             @Override
             public void mouseMoved(MouseEvent e) {
-
+                mousePosition.setLocation(e.getLocationOnScreen());
             }
         });
         addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
+                System.out.println("GamePanel.mouseClicked");
                 Rectangle r = new Rectangle();
                 r.setLocation(mouseEvent.getLocationOnScreen());
                 r.setSize(new Dimension(1,1));
@@ -99,12 +114,19 @@ public class GamePanel extends GameEngine {
 
             @Override
             public void mousePressed(MouseEvent mouseEvent) {
+                if (mousePosition.intersects(playerPanel.getBoundry())) {
+                    mousePointerMode = MousePointerMode.PLAYER_PANEL_DRAGGING;
+                    deltaMousePointerPositionToPlayerPanelForDraging = new Point(((int) (mouseEvent.getX() - playerPanel.getLocation().getX()))
+                            , ((int) (mouseEvent.getY() - playerPanel.getLocation().getY())));
+                }
                 mouseRectangleSelector.setLocation(mouseEvent.getLocationOnScreen());
             }
 
             @Override
             public void mouseReleased(MouseEvent mouseEvent) {
+                System.out.println("GamePanel.mouseReleased");
                 mouseRectangleSelector.setSize(0,0);
+                mousePointerMode = MousePointerMode.NONE;
             }
 
             @Override
@@ -121,6 +143,8 @@ public class GamePanel extends GameEngine {
 
     @Override
     public void render() {
+        Rectangle r = new Rectangle(0,0,1920,1080);
+        drawOnFrame(Land.getInstance().getMapInBoundry(r),r);
         for (GameObject gameObj :
                 gameObjects) {
             drawOnFrame(gameObj.getCurrentImage(), gameObj.getBoundry());
