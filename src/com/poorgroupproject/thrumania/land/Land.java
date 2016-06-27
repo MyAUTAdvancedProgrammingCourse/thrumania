@@ -1,6 +1,7 @@
 package com.poorgroupproject.thrumania.land;
 
 import com.poorgroupproject.thrumania.backgroundprocess.Season;
+import com.poorgroupproject.thrumania.util.GameEngine;
 import com.poorgroupproject.thrumania.util.ResourcePath;
 
 import javax.imageio.ImageIO;
@@ -79,8 +80,6 @@ public class Land {
                 }
             }
         }
-
-        loadMapImage();
     }
 
     public void loadMapImageFile(){
@@ -102,6 +101,7 @@ public class Land {
             springLandImages[13] = ImageIO.read(new File(path + "sr.png"));
             springLandImages[14] = ImageIO.read(new File(path + "su.png"));
             springLandImages[15] = ImageIO.read(new File(path + "cntr.png"));
+            springWaterImage     = ImageIO.read(new File(path + "water.png"));
 
             path = ResourcePath.imagePath + "/tile/summer/";
             summerLandImages[0] = ImageIO.read(new File(path + "no.png"));
@@ -120,6 +120,7 @@ public class Land {
             summerLandImages[13] = ImageIO.read(new File(path + "sr.png"));
             summerLandImages[14] = ImageIO.read(new File(path + "su.png"));
             summerLandImages[15] = ImageIO.read(new File(path + "cntr.png"));
+            summerWaterImage     = ImageIO.read(new File(path + "water.png"));
 
             path = ResourcePath.imagePath + "/tile/fall/";
             fallLandImages[0] = ImageIO.read(new File(path + "no.png"));
@@ -138,6 +139,7 @@ public class Land {
             fallLandImages[13] = ImageIO.read(new File(path + "sr.png"));
             fallLandImages[14] = ImageIO.read(new File(path + "su.png"));
             fallLandImages[15] = ImageIO.read(new File(path + "cntr.png"));
+            fallWaterImage     = ImageIO.read(new File(path + "water.png"));
 
             path = ResourcePath.imagePath + "/tile/winter/";
             winterLandImages[0] = ImageIO.read(new File(path + "no.png"));
@@ -156,7 +158,7 @@ public class Land {
             winterLandImages[13] = ImageIO.read(new File(path + "sr.png"));
             winterLandImages[14] = ImageIO.read(new File(path + "su.png"));
             winterLandImages[15] = ImageIO.read(new File(path + "cntr.png"));
-
+            winterWaterImage     = ImageIO.read(new File(path + "water.png"));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -164,62 +166,95 @@ public class Land {
 
     }
     public void redrawMap(){
-        mapImage = new BufferedImage(cols * CELL_WIDTH,rows * CELL_HEIGHT,BufferedImage.TYPE_INT_ARGB);
-        Graphics mapGraphic = mapImage.getGraphics();
+        BufferedImage tempMapImage = new BufferedImage(cols * CELL_WIDTH,rows * CELL_HEIGHT,BufferedImage.TYPE_INT_ARGB);
+        Graphics mapGraphic = tempMapImage.getGraphics();
         Season.SeasonName s = Season.getInstance().getCurrentSeason();
-        String imagePath = ResourcePath.imagePath + "/tile/";
-        switch (cells[0][0]){
-            case LAND:
-                int counter = 0;
-                if (cells[0][1] == Cell.LAND)
-                    counter += 2;
-                if (cells[1][0] == Cell.LAND)
-                    counter += 4;
-                switch (s){
-                    case Spring:
-                        mapGraphic.drawImage(springLandImages[counter],0,0,CELL_WIDTH,CELL_HEIGHT,null);
-                        break;
-                    case Summer:
-                        mapGraphic.drawImage(summerLandImages[counter],0,0,CELL_WIDTH,CELL_HEIGHT,null);
-                        break;
-                    case Fall:
-                        mapGraphic.drawImage(fallLandImages[counter],0,0,CELL_WIDTH,CELL_HEIGHT,null);
-                        break;
-                    case Winter:
-                        mapGraphic.drawImage(winterLandImages[counter],0,0,CELL_WIDTH,CELL_HEIGHT,null);
-                        break;
-                }
-                break;
-            case WATER:
-                switch (s){
-                    case Spring:
-                        mapGraphic.drawImage(springWaterImage,0,0,CELL_WIDTH,CELL_HEIGHT,null);
-                        break;
-                    case Summer:
-                        mapGraphic.drawImage(summerWaterImage,0,0,CELL_WIDTH,CELL_HEIGHT,null);
-                        break;
-                    case Fall:
-                        mapGraphic.drawImage(fallWaterImage,0,0,CELL_WIDTH,CELL_HEIGHT,null);
-                        break;
-                    case Winter:
-                        mapGraphic.drawImage(winterWaterImage,0,0,CELL_WIDTH,CELL_HEIGHT,null);
-                        break;
-                }
-                break;
-            case MOUNTAIN:
-                // Todo add the needed code
-                break;
-        }
 
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
+
                 switch (cells[i][j]){
+                    case LAND:
+                        int counter = 0;
+                        if (j > 0)
+                            if (cells[i][j - 1] == Cell.LAND)
+                                counter += 8;
+                        if (i > 0)
+                            if (cells[i - 1][j] == Cell.LAND)
+                                counter += 1;
+                        if (i < rows - 1)
+                            if (cells[i + 1][j] == Cell.LAND)
+                                counter += 4;
+                        if (j < cols - 1)
+                            if (cells[i][j + 1] == Cell.LAND)
+                                counter += 2;
+
+                        switch (s){
+                            case Spring:
+                                mapGraphic.drawImage(springLandImages[counter],j * CELL_WIDTH, i * CELL_HEIGHT,CELL_WIDTH,CELL_HEIGHT,null);
+                                break;
+                            case Summer:
+                                mapGraphic.drawImage(summerLandImages[counter],j * CELL_WIDTH, i * CELL_HEIGHT,CELL_WIDTH,CELL_HEIGHT,null);
+                                break;
+                            case Fall:
+                                mapGraphic.drawImage(fallLandImages[counter],j * CELL_WIDTH, i * CELL_HEIGHT,CELL_WIDTH,CELL_HEIGHT,null);
+                                break;
+                            case Winter:
+                                mapGraphic.drawImage(winterLandImages[counter],j * CELL_WIDTH, i * CELL_HEIGHT,CELL_WIDTH,CELL_HEIGHT,null);
+                                break;
+                        }
+                        break;
+                    case WATER:
+                        switch (s){
+                            case Spring:
+                                if (springWaterImage == null)
+                                    System.out.println("this is error");
+                                mapGraphic.drawImage(springWaterImage,j * CELL_WIDTH, i * CELL_HEIGHT,CELL_WIDTH,CELL_HEIGHT,null);
+                                break;
+                            case Summer:
+                                mapGraphic.drawImage(summerWaterImage,j * CELL_WIDTH, i * CELL_HEIGHT,CELL_WIDTH,CELL_HEIGHT,null);
+                                break;
+                            case Fall:
+                                mapGraphic.drawImage(fallWaterImage,j * CELL_WIDTH, i * CELL_HEIGHT,CELL_WIDTH,CELL_HEIGHT,null);
+                                break;
+                            case Winter:
+                                mapGraphic.drawImage(winterWaterImage,j * CELL_WIDTH, i * CELL_HEIGHT,CELL_WIDTH,CELL_HEIGHT,null);
+                                break;
+                        }
+                        break;
+                    case MOUNTAIN:
+                        // Todo add the needed code
+                        break;
+
+                    default:
+                        System.out.println("some error");
                 }
             }
         }
+        mapGraphic.dispose();
+
+        mapImage = tempMapImage;
+    }
+
+    public void seasonChanged(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                redrawMap();
+            }
+        }).start();
+    }
+    public BufferedImage getMapInBoundry(Rectangle boundry){
+        return mapImage.getSubimage(((int) boundry.getX()), ((int) boundry.getY()), ((int) boundry.getWidth()), ((int) boundry.getHeight()));
     }
     private void loadMapImage() {
-        redrawMap();
+        mapImage = new BufferedImage(((int) GameEngine.getScreenDimension().getWidth()), ((int) GameEngine.getScreenDimension().getHeight()),BufferedImage.TYPE_INT_ARGB);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                redrawMap();
+            }
+        }).start();
     }
 
     private Land(){
@@ -227,6 +262,7 @@ public class Land {
         summerLandImages = new Image[16];
         fallLandImages = new Image[16];
         winterLandImages = new Image[16];
+        mapImage = new BufferedImage(((int) GameEngine.getScreenDimension().getWidth()), ((int) GameEngine.getScreenDimension().getHeight()),BufferedImage.TYPE_INT_ARGB);
     }
 
     public static Land getInstance(){
