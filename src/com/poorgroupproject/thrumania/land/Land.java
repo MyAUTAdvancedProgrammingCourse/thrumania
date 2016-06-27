@@ -165,35 +165,55 @@ public class Land {
     }
     public void redrawMap(){
         mapImage = new BufferedImage(cols * CELL_WIDTH,rows * CELL_HEIGHT,BufferedImage.TYPE_INT_ARGB);
+        Graphics mapGraphic = mapImage.getGraphics();
         Season.SeasonName s = Season.getInstance().getCurrentSeason();
         String imagePath = ResourcePath.imagePath + "/tile/";
-        switch (s){
-            case Spring:
-                imagePath += "spring/";
-                break;
-            case Summer:
-                imagePath += "summer/";
-                break;
-            case Fall:
-                imagePath += "fall/";
-                break;
-            case Winter:
-                imagePath += "winter/";
-                break;
-        }
         switch (cells[0][0]){
             case LAND:
+                int counter = 0;
+                if (cells[0][1] == Cell.LAND)
+                    counter += 2;
+                if (cells[1][0] == Cell.LAND)
+                    counter += 4;
+                switch (s){
+                    case Spring:
+                        mapGraphic.drawImage(springLandImages[counter],0,0,CELL_WIDTH,CELL_HEIGHT,null);
+                        break;
+                    case Summer:
+                        mapGraphic.drawImage(summerLandImages[counter],0,0,CELL_WIDTH,CELL_HEIGHT,null);
+                        break;
+                    case Fall:
+                        mapGraphic.drawImage(fallLandImages[counter],0,0,CELL_WIDTH,CELL_HEIGHT,null);
+                        break;
+                    case Winter:
+                        mapGraphic.drawImage(winterLandImages[counter],0,0,CELL_WIDTH,CELL_HEIGHT,null);
+                        break;
+                }
                 break;
             case WATER:
+                switch (s){
+                    case Spring:
+                        mapGraphic.drawImage(springWaterImage,0,0,CELL_WIDTH,CELL_HEIGHT,null);
+                        break;
+                    case Summer:
+                        mapGraphic.drawImage(summerWaterImage,0,0,CELL_WIDTH,CELL_HEIGHT,null);
+                        break;
+                    case Fall:
+                        mapGraphic.drawImage(fallWaterImage,0,0,CELL_WIDTH,CELL_HEIGHT,null);
+                        break;
+                    case Winter:
+                        mapGraphic.drawImage(winterWaterImage,0,0,CELL_WIDTH,CELL_HEIGHT,null);
+                        break;
+                }
                 break;
             case MOUNTAIN:
+                // Todo add the needed code
                 break;
-
         }
+
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 switch (cells[i][j]){
-
                 }
             }
         }
