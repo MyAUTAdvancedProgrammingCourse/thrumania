@@ -8,10 +8,7 @@ import com.poorgroupproject.thrumania.util.GameConfig;
 import com.poorgroupproject.thrumania.util.GameEngine;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.awt.image.VolatileImage;
@@ -25,11 +22,21 @@ import java.util.TimerTask;
 public class GamePanel extends GameEngine {
 
     private ArrayList<GameObject> gameObjects;
+    private PlayerPanel playerPanel;
+
+    private Rectangle mouseRectangleSelector;
+
+    private enum MouseButtonMode{DRAG}
 
     public GamePanel(int width, int height){
         initialize(width,height);
         gameObjects = new ArrayList<>();
-        gameObjects.add(new Palace(0,0));
+        playerPanel = new PlayerPanel();
+        mouseRectangleSelector = new Rectangle(0,0,0,0);
+        for (int i = 0; i < 18; i++) {
+            gameObjects.add(new Palace(0,i * 100));
+        }
+
         (new Thread(new Runnable() {
             @Override
             public void run() {
@@ -70,7 +77,18 @@ public class GamePanel extends GameEngine {
 
             }
         });
+        addMouseMotionListener(new MouseMotionListener() {
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                mouseRectangleSelector.setSize(e.getX() - ((int) mouseRectangleSelector.getX()),
+                        e.getY() - ((int) mouseRectangleSelector.getY()));
+            }
 
+            @Override
+            public void mouseMoved(MouseEvent e) {
+
+            }
+        });
         addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
@@ -81,12 +99,12 @@ public class GamePanel extends GameEngine {
 
             @Override
             public void mousePressed(MouseEvent mouseEvent) {
-
+                mouseRectangleSelector.setLocation(mouseEvent.getLocationOnScreen());
             }
 
             @Override
             public void mouseReleased(MouseEvent mouseEvent) {
-
+                mouseRectangleSelector.setSize(0,0);
             }
 
             @Override
@@ -107,6 +125,8 @@ public class GamePanel extends GameEngine {
                 gameObjects) {
             drawOnFrame(gameObj.getCurrentImage(), gameObj.getBoundry());
         }
+        drawOnFrame(playerPanel.getView(),playerPanel.getBoundry());
+        drawRectOnFrame(mouseRectangleSelector);
     }
 
 //    @Override
