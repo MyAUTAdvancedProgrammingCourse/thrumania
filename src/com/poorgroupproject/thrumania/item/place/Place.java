@@ -11,19 +11,20 @@ import java.util.ArrayList;
  */
 public abstract class Place extends GameObject {
     private int toughness;
-    private int numberOfWorkingHuman;
-    static final int RATE_OF_BUILDING_PORT = 10;
 
+    /**
+     * Constructor
+     * @param x
+     * @param y
+     */
     protected Place(int x, int y) {
         super(x, y, 100,100);
     }
 
-    int getToughness() {
+    protected int getToughness() {
         return toughness;
     }
-
-    public int getNumberOfWorkingHuman() {
-        return numberOfWorkingHuman;
+    protected void setToughness(int toughness){
+        this.toughness = toughness;
     }
-
 }

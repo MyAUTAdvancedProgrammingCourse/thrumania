@@ -15,8 +15,13 @@ import java.io.IOException;
 public class IronMine extends Mine {
 
     private Image[] ironMineImages;
-    private int toughness;
+    private int toughness; // the toughness of place and the rang is 0 to 100
 
+    /**
+     * Constructor
+     * @param x
+     * @param y
+     */
     public IronMine(int x, int y) {
         super(x, y);
         ironMineImages = new Image[4];
