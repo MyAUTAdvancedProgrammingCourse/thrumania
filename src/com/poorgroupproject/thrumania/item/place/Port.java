@@ -18,7 +18,7 @@ import java.util.*;
 public class Port extends Place {
 
     private Image[] portImages;
-    private int toughness; // the toughness of place and the rang is 0 to 100
+    private int toughness; // the toughness of place and the range is 0 to 100
     private Queue<Human> humanQueue;
 
     /**
@@ -31,7 +31,7 @@ public class Port extends Place {
         loadResoure();
         humanQueue = new LinkedList<>();
         portImages = new Image[3];
-        toughness = 0;
+
     }
 
     /**
