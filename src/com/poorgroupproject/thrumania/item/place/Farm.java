@@ -17,6 +17,7 @@ import java.io.IOException;
 public class Farm extends Place {
 
     private Image[] farmImage;
+    private int farmAvailabeFood;
 
     /**
      * Constructor
@@ -26,6 +27,7 @@ public class Farm extends Place {
     public Farm(int x, int y) {
         super(x, y);
         farmImage = new Image[4];
+        farmAvailabeFood = 8000;
     }
 
     /**
