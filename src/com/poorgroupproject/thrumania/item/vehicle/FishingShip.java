@@ -32,7 +32,7 @@ public class FishingShip extends Ship  {
 
 
 
-    public FishingShip(Port port ,int x, int y, int width, int height) {
+    public FishingShip(Port port ,int x, int y) {
         super(x, y, 256, 256);
         this.port=port;
         fisherMan =new Human[7];
