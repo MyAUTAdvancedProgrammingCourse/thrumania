@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.xml.stream.Location;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
 
 /**
  * @author ahmad
@@ -48,4 +49,13 @@ public abstract class GameObject{
     }
 
     public abstract void processEvent(com.poorgroupproject.thrumania.events.Event event);
+
+    public void makeSelected(){
+        BufferedImage temp = new BufferedImage(((int) boundry.getWidth()), ((int) boundry.getHeight()),BufferedImage.TYPE_INT_ARGB);
+        Graphics graphics = temp.getGraphics();
+        graphics.drawImage(currentImage,0,0, ((int) boundry.getWidth()), ((int) boundry.getHeight()),null);
+        graphics.setColor(Color.blue);
+        graphics.fillRect(0,10,50,50);
+        currentImage = temp;
+    }
 }
