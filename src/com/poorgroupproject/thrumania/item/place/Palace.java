@@ -69,6 +69,11 @@ public class Palace extends Place{
         }
     }
 
+    @Override
+    public void processEvent(Event event) {
+        
+    }
+
     private void makeHuman(){
 
     }
