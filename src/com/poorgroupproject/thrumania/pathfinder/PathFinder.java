@@ -1,3 +1,7 @@
+package com.poorgroupproject.thrumania.pathfinder;
+import com.poorgroupproject.thrumania.item.GameObject;
+import com.poorgroupproject.thrumania.item.human.Human;
+
 import java.lang.annotation.Target;
 import java.nio.channels.Pipe;
 import java.util.Collections;
@@ -171,7 +175,7 @@ public class PathFinder implements MatrixMap{
                 {Cell.LAND,Cell.LAND,Cell.LAND,Cell.LAND}
         };
         //System.out.print(map[1][1]);
-        PathFinder pf = new PathFinder(map,0,1,3,3,new Human(0,0),4,4);
+        PathFinder pf = new PathFinder(map,0,1,3,3,null,4,4);
        // System.out.println(pf.closedSet.size());
         for(Pair p : pf.path.path){
             System.out.println(p.x +"  "+ p.y);
