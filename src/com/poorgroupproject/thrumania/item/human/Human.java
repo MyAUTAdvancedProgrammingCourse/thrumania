@@ -1,6 +1,7 @@
 package com.poorgroupproject.thrumania.item.human;
 
 import com.poorgroupproject.thrumania.item.GameObject;
+import com.poorgroupproject.thrumania.land.Land;
 
 import java.awt.*;
 
@@ -12,7 +13,11 @@ public abstract class Human extends GameObject implements Runnable{
     private final int HUMAN_WIDTH = 250;
     private final int HUMAN_HEIGHT = 250;
     public int life;
+    public Land.Cell CurrentCell;
     public int Capacity;
+    int amount_of_gold;
+    int amount_of_iron;
+    int amount_of_wood;
     public boolean isMoving;
     public enum MovingSyle{
         WALKING, RUNNING
