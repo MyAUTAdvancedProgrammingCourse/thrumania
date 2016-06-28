@@ -7,14 +7,19 @@ import com.poorgroupproject.thrumania.item.GameObject;
 import com.poorgroupproject.thrumania.item.human.Citizen;
 import com.poorgroupproject.thrumania.item.human.Human;
 import com.poorgroupproject.thrumania.item.place.Port;
+import com.poorgroupproject.thrumania.util.ResourcePath;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
  *@author yahya
  * @version 1.0.0
  */
-public class FishingShip extends Ship {
+public class FishingShip extends Ship  {
 
     Port port;
     int peopleNum;
@@ -23,11 +28,12 @@ public class FishingShip extends Ship {
 
     int shipCapacity;
     Human []fisherMan;
+    Image fishingShip;
 
 
 
     public FishingShip(Port port ,int x, int y, int width, int height) {
-        super(x, y, width, height);
+        super(x, y, 256, 256);
         this.port=port;
         fisherMan =new Human[7];
     }
@@ -54,6 +60,11 @@ public class FishingShip extends Ship {
 
     @Override
     public void loadResoure() {
+        try {
+            fishingShip = ImageIO.read(new File(ResourcePath.fishingFishPath));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 

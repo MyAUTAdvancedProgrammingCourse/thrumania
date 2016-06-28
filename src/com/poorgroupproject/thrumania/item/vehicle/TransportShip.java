@@ -1,10 +1,14 @@
 package com.poorgroupproject.thrumania.item.vehicle;
 
+import com.poorgroupproject.thrumania.events.Event;
+import com.poorgroupproject.thrumania.events.GoTargetEvent;
+
 /**
  * @author yahay
  * @version 1.0.0
  */
 public class TransportShip  extends Ship {
+    int targetX,targetY;
     public TransportShip(int x, int y) {
         super(x, y, 256, 256);
         (new Thread(new Runnable() {
@@ -20,4 +24,16 @@ public class TransportShip  extends Ship {
     }
 
 
+    @Override
+    public void loadResoure() {
+
+    }
+
+    @Override
+    public void processEvent(Event event) {
+        if (event instanceof GoTargetEvent){
+            targetX=getX();
+            targetY=getY();
+        }
+    }
 }
