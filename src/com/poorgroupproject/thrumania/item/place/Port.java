@@ -2,12 +2,14 @@ package com.poorgroupproject.thrumania.item.place;
 
 import com.poorgroupproject.thrumania.events.*;
 import com.poorgroupproject.thrumania.events.Event;
+import com.poorgroupproject.thrumania.item.human.Human;
 import com.poorgroupproject.thrumania.util.ResourcePath;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.*;
 
 /**
  * @author amin
@@ -16,16 +18,44 @@ import java.io.IOException;
 public class Port extends Place {
 
     private Image[] portImages;
-    private int numberOfWorkers;
-    private int toughness;
+    private int toughness; // the toughness of place and the range is 0 to 100
+    private Queue<Human> humanQueue;
 
+    /**
+     * Constructor
+     * @param x
+     * @param y
+     */
     public Port(int x, int y) {
         super(x, y);
         loadResoure();
+        humanQueue = new LinkedList<>();
         portImages = new Image[3];
-        toughness = Place.RATE_OF_BUILDING_PORT * numberOfWorkers;
+
     }
 
+    /**
+     * Adding human to queue
+     * @param humanQueue
+     * @param human
+     */
+    public void addingToHumanQueue(Queue<Human> humanQueue, Human human){
+        humanQueue.add(human);
+    }
+
+    /**
+     * Removing human from queue
+     * @param humanQueue
+     * @return
+     */
+    public Human removingFromHumanQueue(Queue<Human> humanQueue){
+        return humanQueue.poll();
+    }
+
+
+    /**
+     * loading images of ports that first element of array is incompleted port and the last one is completed port.
+     */
     @Override
     public void loadResoure() {
         try {

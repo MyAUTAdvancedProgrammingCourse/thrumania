@@ -9,6 +9,11 @@ import com.poorgroupproject.thrumania.item.place.Place;
  */
 class Mine extends Place {
 
+    /**
+     * Constructor
+     * @param x
+     * @param y
+     */
     Mine(int x, int y) {
         super(x, y);
 
