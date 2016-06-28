@@ -16,6 +16,10 @@ import java.util.ArrayList;
  */
 public class Palace extends Place{
 
+    private int availabeGold;
+    private int availabeIron;
+    private int availabeFood;
+    private int availabeWood;
     private Image[] palaceImages = new Image[3];
     private ArrayList<Human> humanArrayList = new ArrayList<>();
 
@@ -27,6 +31,10 @@ public class Palace extends Place{
     public Palace(int x, int y) {
         super(x,y);
         loadResoure();
+        availabeGold = 0;
+        availabeIron = 0;
+        availabeFood = 0;
+        availabeWood = 0;
         setCurrentImage(palaceImages[2]);
         for (int i = 0; i < 10; i++){
             //10 nafar avalie bayad dashte bashad
@@ -53,7 +61,6 @@ public class Palace extends Place{
      */
     @Override
     public void loadResoure() {
-        palaceImages = new Image[3];
         try {
             palaceImages[0] = ImageIO.read(new File(ResourcePath.itemImagePath + "palace/palace_1.png"));
         } catch (IOException e) {
@@ -79,5 +86,36 @@ public class Palace extends Place{
         this.humanArrayList = humanArrayList;
     }
 
+    public int getAvailabeWood() {
+        return availabeWood;
+    }
+
+    public void setAvailabeWood(int availabeWood) {
+        this.availabeWood = availabeWood;
+    }
+
+    public int getAvailabeGold() {
+        return availabeGold;
+    }
+
+    public void setAvailabeGold(int availabeGold) {
+        this.availabeGold = availabeGold;
+    }
+
+    public int getAvailabeIron() {
+        return availabeIron;
+    }
+
+    public void setAvailabeIron(int availabeIron) {
+        this.availabeIron = availabeIron;
+    }
+
+    public int getAvailabeFood() {
+        return availabeFood;
+    }
+
+    public void setAvailabeFood(int availabeFood) {
+        this.availabeFood = availabeFood;
+    }
 
 }
