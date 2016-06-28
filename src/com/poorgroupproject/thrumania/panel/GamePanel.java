@@ -24,18 +24,21 @@ public class GamePanel extends GameEngine {
 
     private ArrayList<GameObject> gameObjects;
     private PlayerPanel playerPanel;
+    private MiniMapPanel miniMapPanel;
 
     private Rectangle mouseRectangleSelector;
 
-    private enum MousePointerMode{NONE, PLAYER_PANEL_DRAGGING}
+    private enum MousePointerMode{NONE, PLAYER_PANEL_DRAGGING, MINIMAP_PANEL_DRAGGING}
 
     private MousePointerMode mousePointerMode;
-    private Point deltaMousePointerPositionToPlayerPanelForDraging;
+    private Point deltaMousePointerPositionToPanelForDraging;
     private Rectangle mousePosition;
     public GamePanel(int width, int height){
         initialize(width,height);
         gameObjects = new ArrayList<>();
         playerPanel = new PlayerPanel();
+        miniMapPanel = new MiniMapPanel();
+
         mouseRectangleSelector = new Rectangle(0,0,0,0);
         mousePosition = new Rectangle(0,0,1,1);
 
@@ -88,13 +91,16 @@ public class GamePanel extends GameEngine {
         addMouseMotionListener(new MouseMotionListener() {
             @Override
             public void mouseDragged(MouseEvent e) {
-                System.out.println("GamePanel.mouseDragged");
+                System.out.println(miniMapPanel.getLocation());
                 if (mousePointerMode == MousePointerMode.NONE) {
                     mouseRectangleSelector.setSize(e.getX() - ((int) mouseRectangleSelector.getX()),
                             e.getY() - ((int) mouseRectangleSelector.getY()));
+                }else if (mousePointerMode == MousePointerMode.MINIMAP_PANEL_DRAGGING){
+                    miniMapPanel.setLocation(new Point(((int) (e.getX() - deltaMousePointerPositionToPanelForDraging.getX())),
+                            ((int) (e.getY() - deltaMousePointerPositionToPanelForDraging.getY()))));
                 }else if(mousePointerMode == MousePointerMode.PLAYER_PANEL_DRAGGING){
-                    playerPanel.setLocation(new Point(((int) (e.getX() - deltaMousePointerPositionToPlayerPanelForDraging.getX())),
-                            ((int) (e.getY() - deltaMousePointerPositionToPlayerPanelForDraging.getY()))));
+                    playerPanel.setLocation(new Point(((int) (e.getX() - deltaMousePointerPositionToPanelForDraging.getX())),
+                            ((int) (e.getY() - deltaMousePointerPositionToPanelForDraging.getY()))));
                 }
             }
 
@@ -106,7 +112,6 @@ public class GamePanel extends GameEngine {
         addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
-                System.out.println("GamePanel.mouseClicked");
                 Rectangle r = new Rectangle();
                 r.setLocation(mouseEvent.getLocationOnScreen());
                 r.setSize(new Dimension(1,1));
@@ -116,17 +121,21 @@ public class GamePanel extends GameEngine {
             public void mousePressed(MouseEvent mouseEvent) {
                 if (mousePosition.intersects(playerPanel.getBoundry())) {
                     mousePointerMode = MousePointerMode.PLAYER_PANEL_DRAGGING;
-                    deltaMousePointerPositionToPlayerPanelForDraging = new Point(((int) (mouseEvent.getX() - playerPanel.getLocation().getX()))
+                    deltaMousePointerPositionToPanelForDraging = new Point(((int) (mouseEvent.getX() - playerPanel.getLocation().getX()))
                             , ((int) (mouseEvent.getY() - playerPanel.getLocation().getY())));
-                }
-                mouseRectangleSelector.setLocation(mouseEvent.getLocationOnScreen());
+                }else if (mousePosition.intersects(miniMapPanel.getBoundry())){
+                    mousePointerMode = MousePointerMode.MINIMAP_PANEL_DRAGGING;
+                    deltaMousePointerPositionToPanelForDraging = new Point(((int) (mouseEvent.getX() - miniMapPanel.getLocation().getX()))
+                            , ((int) (mouseEvent.getY() - miniMapPanel.getLocation().getY())));
+                }else if (mousePointerMode == MousePointerMode.NONE)
+                    mouseRectangleSelector.setLocation(mouseEvent.getLocationOnScreen());
             }
 
             @Override
             public void mouseReleased(MouseEvent mouseEvent) {
-                System.out.println("GamePanel.mouseReleased");
                 mouseRectangleSelector.setSize(0,0);
                 mousePointerMode = MousePointerMode.NONE;
+                deltaMousePointerPositionToPanelForDraging.setLocation(0,0);
             }
 
             @Override
@@ -143,13 +152,14 @@ public class GamePanel extends GameEngine {
 
     @Override
     public void render() {
-        Rectangle r = new Rectangle(0,0,1920,1080);
+        Rectangle r = new Rectangle(0,0, ((int) getScreenDimension().getWidth()), ((int) getScreenDimension().getHeight()));
         drawOnFrame(Land.getInstance().getMapInBoundry(r),r);
         for (GameObject gameObj :
                 gameObjects) {
             drawOnFrame(gameObj.getCurrentImage(), gameObj.getBoundry());
         }
         drawOnFrame(playerPanel.getView(),playerPanel.getBoundry());
+        drawOnFrame(miniMapPanel.getView(),miniMapPanel.getBoundry());
         drawRectOnFrame(mouseRectangleSelector);
     }
 
