@@ -68,8 +68,38 @@ public class Port extends Place {
         }
     }
 
+
     @Override
     public void processEvent(Event event) {
-
+        if (event instanceof ConstructPlaceEvent && getToughness() <= 100) contruct();
+        else if(event instanceof DestroyPlaceEvent && getToughness() >= 0) destroy();
     }
+
+    /**
+     * For each sent image, increase the toughness mount.
+     */
+    private void contruct(){
+        setToughness(getToughness() + 2);
+        imageChooser(getToughness());
+    }
+
+    /**
+     * For each sent event, reduce the toughness amount.
+     */
+    private void destroy(){
+        setToughness(getToughness() - 2);
+        imageChooser(getToughness());
+    }
+
+    /**
+     * Choose image for port for each amount of toughness.
+     * @param toughness the amount of toughness that range is 0 to 100.
+     */
+    public void imageChooser(int toughness){
+        if(toughness < 33) setCurrentImage(portImages[0]);
+        else if(toughness > 33 && toughness < 66) setCurrentImage(portImages[1]);
+        else if(toughness > 66 && toughness < 99) setCurrentImage(portImages[2]);
+        else{ setCurrentImage(portImages[3]);}
+    }
+
 }
