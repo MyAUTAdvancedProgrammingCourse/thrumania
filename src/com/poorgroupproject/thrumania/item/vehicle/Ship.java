@@ -12,13 +12,4 @@ public abstract class Ship extends GameObject {
         super(x, y, width, height);
     }
 
-    @Override
-    public void loadResoure() {
-
-    }
-
-    @Override
-    public void processEvent(Event event) {
-
-    }
 }
