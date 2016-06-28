@@ -1,5 +1,6 @@
 package com.poorgroupproject.thrumania.item.place;
 
+import com.poorgroupproject.thrumania.events.ConstructPlaceEvent;
 import com.poorgroupproject.thrumania.events.Event;
 import com.poorgroupproject.thrumania.item.human.Soldier;
 import com.poorgroupproject.thrumania.util.ResourcePath;
@@ -49,6 +50,12 @@ public class Barrack extends Place {
 
     @Override
     public void processEvent(Event event) {
+        if (event instanceof ConstructPlaceEvent){
+            contruct();
+        }
+    }
+
+    private void contruct(){
 
     }
 
