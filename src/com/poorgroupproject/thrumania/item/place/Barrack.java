@@ -75,14 +75,14 @@ public class Barrack extends Place {
     }
 
     /**
-     * Choose image for barrack for each amount of toughness
-     * @param toughness
+     * Choose image for barrack for each amount of toughness.
+     * @param toughness the amount of toughness that range is 0 to 100.
      */
     public void imageChooser(int toughness){
         if(toughness < 33) setCurrentImage(barrackImages[0]);
-        if(toughness > 33 && toughness < 66) setCurrentImage(barrackImages[1]);
-        if(toughness > 66 && toughness < 99) setCurrentImage(barrackImages[2]);
-        if(toughness >= 100) setCurrentImage(barrackImages[3]);
+        else if(toughness > 33 && toughness < 66) setCurrentImage(barrackImages[1]);
+        else if(toughness > 66 && toughness < 99) setCurrentImage(barrackImages[2]);
+        else setCurrentImage(barrackImages[3]);
     }
 
     public void makeSoldier(ArrayList<Soldier> ms){

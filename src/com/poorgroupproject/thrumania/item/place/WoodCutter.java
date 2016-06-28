@@ -70,14 +70,22 @@ public class WoodCutter extends Place {
     }
 
     /**
-     * Choose image for woodcutter for each amount of toughness
-     * @param toughness
+     * Choose image for woodcutter for each amount of toughness.
+     * @param toughness the amount of toughness that range is 0 to 100.
      */
-    public void imageChooser(int toughness){
-        if(toughness < 33) setCurrentImage(woodCutterImage[0]);
-        if(toughness > 33 && toughness < 66) setCurrentImage(woodCutterImage[1]);
-        if(toughness > 66 && toughness < 99) setCurrentImage(woodCutterImage[2]);
-        if(toughness >= 100) setCurrentImage(woodCutterImage[3]);
+    private void imageChooser(int toughness){
+        if(toughness < 33) {
+            setCurrentImage(woodCutterImage[0]);
+        }
+        else if(toughness > 33 && toughness < 66){
+                setCurrentImage(woodCutterImage[1]);
+        }
+        else if(toughness > 66 && toughness < 99){
+                setCurrentImage(woodCutterImage[2]);
+        }
+        else{
+            setCurrentImage(woodCutterImage[3]);
+        }
     }
 
 }
