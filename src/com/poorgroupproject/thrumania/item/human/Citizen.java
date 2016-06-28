@@ -19,9 +19,11 @@ public class Citizen extends Human {
 
  //   public int life;
     private int speed;
+    public boolean isCollectingResource;
     public Citizen(int x, int y) {
         super(x, y);
         this.life = 300;
+        this.Capacity = 0;
     }
     public int getSpeed(){
         switch(Season.getInstance().getCurrentSeason()){
@@ -43,7 +45,27 @@ public class Citizen extends Human {
 
     @Override
     public void processEvent(Event event) {
+        if(event instanceof CitizenAttackEvent){
+            this.life -= 20;
+        }
+        else if(event instanceof  SoldierAttackEvent){
+            this.life -= 70;
+        }
 
+    }
+
+    @Override
+    public void run() {
+
+    }
+}
+class CAttack extends TimerTask{
+    Citizen citizen;
+    Human target;
+
+    public CAttack(Citizen citizen,Human target) {
+        this.citizen = citizen;
+        this.target = target;
     }
 
     @Override
@@ -63,7 +85,7 @@ public class Citizen extends Human {
 //    public void run() {
 //        citizen.nextImage();
 //    }
-//}
+//
 //    private Image[] images;
 //
 //    private int imageIndex;

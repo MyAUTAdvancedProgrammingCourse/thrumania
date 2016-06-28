@@ -1,20 +1,16 @@
 package com.poorgroupproject.thrumania.panel;
 
-import com.poorgroupproject.thrumania.events.ClickEvent;
 import com.poorgroupproject.thrumania.item.GameObject;
-import com.poorgroupproject.thrumania.item.human.Citizen;
 import com.poorgroupproject.thrumania.item.place.Palace;
+import com.poorgroupproject.thrumania.item.place.Port;
+import com.poorgroupproject.thrumania.item.vehicle.FishingShip;
 import com.poorgroupproject.thrumania.land.Land;
 import com.poorgroupproject.thrumania.util.GameConfig;
 import com.poorgroupproject.thrumania.util.GameEngine;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.geom.Rectangle2D;
-import java.awt.image.BufferedImage;
-import java.awt.image.VolatileImage;
 import java.util.ArrayList;
-import java.util.TimerTask;
 
 /**
  * @author ahmad
@@ -28,14 +24,19 @@ public class GamePanel extends GameEngine {
 
     private Rectangle mouseRectangleSelector;
 
+    private ArrayList<GameObject> selectedObject;
     private enum MousePointerMode{NONE, PLAYER_PANEL_DRAGGING, MINIMAP_PANEL_DRAGGING}
 
     private MousePointerMode mousePointerMode;
     private Point deltaMousePointerPositionToPanelForDraging;
     private Rectangle mousePosition;
+
+
     public GamePanel(int width, int height){
         initialize(width,height);
         gameObjects = new ArrayList<>();
+        selectedObject = new ArrayList<>();
+
         playerPanel = new PlayerPanel();
         miniMapPanel = new MiniMapPanel();
 
@@ -44,6 +45,9 @@ public class GamePanel extends GameEngine {
 
         mousePointerMode = MousePointerMode.NONE;
 
+        Port p = new Port(100,100);
+        gameObjects.add(p);
+        gameObjects.add(new FishingShip(40,40));
         for (int i = 0; i < 18; i++) {
             gameObjects.add(new Palace(0,i * 100));
         }
@@ -91,7 +95,6 @@ public class GamePanel extends GameEngine {
         addMouseMotionListener(new MouseMotionListener() {
             @Override
             public void mouseDragged(MouseEvent e) {
-                System.out.println(miniMapPanel.getLocation());
                 if (mousePointerMode == MousePointerMode.NONE) {
                     mouseRectangleSelector.setSize(e.getX() - ((int) mouseRectangleSelector.getX()),
                             e.getY() - ((int) mouseRectangleSelector.getY()));
@@ -133,7 +136,16 @@ public class GamePanel extends GameEngine {
 
             @Override
             public void mouseReleased(MouseEvent mouseEvent) {
-                mouseRectangleSelector.setSize(0,0);
+                if (mousePointerMode == MousePointerMode.NONE) {
+                    for (GameObject go :
+                            gameObjects) {
+                        if (mouseRectangleSelector.intersects(go.getBoundry())) {
+                            selectedObject.add(go);
+                            go.makeSelected();
+                        }
+                    }
+                    mouseRectangleSelector.setSize(0, 0);
+                }
                 mousePointerMode = MousePointerMode.NONE;
                 deltaMousePointerPositionToPanelForDraging.setLocation(0,0);
             }
@@ -162,24 +174,4 @@ public class GamePanel extends GameEngine {
         drawOnFrame(miniMapPanel.getView(),miniMapPanel.getBoundry());
         drawRectOnFrame(mouseRectangleSelector);
     }
-
-//    @Override
-//    public void paint(Graphics graphics) {
-//        update(graphics);
-//    }
-//
-//    public void update(Graphics graphics){
-//        Graphics2D offScreenGraphic;
-//        BufferedImage offScreen = ((BufferedImage) createImage(getWidth(), getHeight()));
-//        offScreenGraphic = ((Graphics2D) offScreen.getGraphics());
-//        for (GameObject gameObject :
-//                gameObjects) {
-//            offScreenGraphic.drawImage(gameObject.getCurrentImage(), gameObject.getX(), gameObject.getY(), null);
-//        }
-//
-//        graphics.drawImage(offScreen, 0, 0, null);
-//    }
-
-
-
 }

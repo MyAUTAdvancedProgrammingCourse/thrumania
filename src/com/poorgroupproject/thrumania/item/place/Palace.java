@@ -20,7 +20,7 @@ public class Palace extends Place{
     private int availabeIron;
     private int availabeFood;
     private int availabeWood;
-    private Image[] palaceImages = new Image[3];
+    private Image[] palaceImages;
     private ArrayList<Human> humanArrayList = new ArrayList<>();
 
     /**
@@ -61,12 +61,18 @@ public class Palace extends Place{
      */
     @Override
     public void loadResoure() {
+        palaceImages = new Image[3];
         try {
             palaceImages[0] = ImageIO.read(new File(ResourcePath.itemImagePath + "palace/palace_1.png"));
         } catch (IOException e) {
             System.err.println("FILE NOT FOUND");
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void processEvent(Event event) {
+
     }
 
     private void makeHuman(){

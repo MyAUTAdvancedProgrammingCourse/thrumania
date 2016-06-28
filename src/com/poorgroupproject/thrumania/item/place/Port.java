@@ -28,9 +28,7 @@ public class Port extends Place {
      */
     public Port(int x, int y) {
         super(x, y);
-        loadResoure();
         humanQueue = new LinkedList<>();
-        portImages = new Image[3];
 
     }
 
@@ -58,10 +56,11 @@ public class Port extends Place {
      */
     @Override
     public void loadResoure() {
+        portImages = new Image[3];
         try {
-            portImages[0]= ImageIO.read(new File(ResourcePath.itemImagePath+"port\\port_1.png"));
-            portImages[1]= ImageIO.read(new File(ResourcePath.itemImagePath+"port\\port_2.png"));
-            portImages[2]= ImageIO.read(new File(ResourcePath.itemImagePath+"port\\port_3.png"));
+            portImages[0]= ImageIO.read(new File(ResourcePath.itemImagePath + "port/port_1.png"));
+            portImages[1]= ImageIO.read(new File(ResourcePath.itemImagePath+"port/port_2.png"));
+            portImages[2]= ImageIO.read(new File(ResourcePath.itemImagePath+"port/port_3.png"));
         } catch (IOException e) {
             System.err.println("FILE NOT FOUND");
             e.printStackTrace();
