@@ -1,3 +1,5 @@
+package com.poorgroupproject.thrumania.pathfinder;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 

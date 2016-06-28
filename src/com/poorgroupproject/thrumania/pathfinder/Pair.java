@@ -1,3 +1,7 @@
+package com.poorgroupproject.thrumania.pathfinder;
+
+import com.poorgroupproject.thrumania.pathfinder.Cell;
+
 /**
  * Created by Saman A.Mirhoseini on 26/06/2016.
  */

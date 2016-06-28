@@ -1,3 +1,5 @@
+package com.poorgroupproject.thrumania.pathfinder;
+
 /*
 Saman
  */

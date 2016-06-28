@@ -1,3 +1,7 @@
+package com.poorgroupproject.thrumania.pathfinder;
+import  com.*;
+import com.poorgroupproject.thrumania.item.GameObject;
+
 /**
  * Created by Saman A.Mirhoseini on 26/06/2016.
  */
