@@ -15,6 +15,7 @@ public abstract class GameObject{
 
     public GameObject(int x, int y, int width, int height){
         boundry = new Rectangle(x, y, width, height);
+        loadResoure();
     }
     public Rectangle getBoundry() {
         return boundry;
