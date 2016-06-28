@@ -1,5 +1,6 @@
 package com.poorgroupproject.thrumania.item.human;
 
+import java.util.Timer;
 import java.util.TimerTask;
 
 /**
@@ -8,7 +9,9 @@ import java.util.TimerTask;
 public class ResourceCollocting extends TimerTask {
     Citizen citizen;
 
+
     public ResourceCollocting(Citizen citizen) {
+
         this.citizen = citizen;
     }
 
