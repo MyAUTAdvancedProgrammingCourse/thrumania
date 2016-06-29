@@ -25,8 +25,8 @@ public class Land {
     private int rows;
     private int cols;
 
-    public static final int CELL_WIDTH = 150;
-    public static final int CELL_HEIGHT = 150;
+    public static final int CELL_WIDTH = 120;
+    public static final int CELL_HEIGHT = 120;
 
     private Image[] springLandImages;
     private Image[] summerLandImages;
@@ -41,7 +41,7 @@ public class Land {
 
 
     public enum Cell {
-        WATER, LAND, MOUNTAIN, TREE, FARM, GOLD_MINE, IRON_MINE,
+        WATER, LAND, MOUNTAIN, TREE, FARM, G cOLD_MINE, IRON_MINE,
     };
 
     private Cell [][]cells;

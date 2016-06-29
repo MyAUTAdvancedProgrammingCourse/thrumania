@@ -2,14 +2,14 @@ package com.poorgroupproject.thrumania.item.human;
 import com.poorgroupproject.thrumania.pathfinder.Pair;
 import com.poorgroupproject.thrumania.item.GameObject;
 import com.poorgroupproject.thrumania.land.Land;
-
+import com.poorgroupproject.thrumania.pathfinder.Path;
 import java.awt.*;
 
 /**
  * @author saman
  * @version 1.0.0
  */
-public abstract class Human extends GameObject implements Runnable{
+public abstract class Human extends GameObject implements Runnable,Constants{
     private final int HUMAN_WIDTH = 250;
     private final int HUMAN_HEIGHT = 250;
     public int life;
@@ -31,16 +31,16 @@ public abstract class Human extends GameObject implements Runnable{
         movingSyle = MovingSyle.WALKING;
     }
     public void moveUp(){
-        this.setY(this.getY()-20);
+        this.setY(this.getY()-SpeedCord);
     }
     public void moveDown(){
-        this.setY(this.getY()+20);
+        this.setY(this.getY()+SpeedCord);
     }
     public void moveRight(){
-        this.setX(this.getX()+20);
+        this.setX(this.getX()+SpeedCord);
     }
     public void moveLeft(){
-        this.setX(this.getX()-20);
+        this.setX(this.getX()-SpeedCord);
     }
     public void moveUpRight(){
         moveUp();
@@ -101,5 +101,10 @@ public abstract class Human extends GameObject implements Runnable{
         if(xDif == -1 && yDif == -1)
             return Oriention.UpLeft;
         return null;
+    }
+    public void pathSolver(Path path){
+        while(!path.ReachedthePath()){
+
+        }
     }
 }
