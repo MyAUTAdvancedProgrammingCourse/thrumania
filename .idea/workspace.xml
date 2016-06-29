@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="027286b7-9283-4dfe-8cd1-b3c7ef3fd4b3" name="Default" comment="">
+    <list default="true" id="027286b7-9283-4dfe-8cd1-b3c7ef3fd4b3" name="Default" comment="in human classes&#10;">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/human/CurrentTask.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/pathfinder/PathFinder.java" afterPath="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/pathfinder/PathFinder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/human/Human.java" afterPath="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/human/Human.java" />
     </list>
     <ignored path="Thrumania.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,59 +27,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="GameObject.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/GameObject.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
-              <folding>
-                <element signature="e#355#356#0" expanded="false" />
-                <element signature="e#415#416#0" expanded="false" />
-                <element signature="e#451#452#0" expanded="false" />
-                <element signature="e#481#482#0" expanded="false" />
-                <element signature="e#529#530#0" expanded="false" />
-                <element signature="e#567#568#0" expanded="false" />
-                <element signature="e#850#851#0" expanded="false" />
-                <element signature="e#895#896#0" expanded="false" />
-                <element signature="e#932#933#0" expanded="false" />
-                <element signature="e#977#978#0" expanded="false" />
-                <element signature="e#1054#1055#0" expanded="false" />
-                <element signature="e#1089#1090#0" expanded="false" />
-                <element signature="e#1144#1145#0" expanded="false" />
-                <element signature="e#1192#1193#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Land.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/land/Land.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="31" column="37" selection-start-line="31" selection-start-column="37" selection-end-line="31" selection-end-column="37" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1244#1245#0" expanded="true" />
-                <element signature="e#1282#1283#0" expanded="true" />
-                <element signature="e#11763#11764#0" expanded="true" />
-                <element signature="e#11806#11807#0" expanded="true" />
-                <element signature="e#12336#12337#0" expanded="true" />
-                <element signature="e#12379#12380#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Path.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/pathfinder/Path.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Cell.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/pathfinder/Cell.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -89,28 +37,84 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PathFinder.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PathFinder.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/pathfinder/PathFinder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="175" column="10" selection-start-line="175" selection-start-column="10" selection-end-line="175" selection-end-column="10" />
+            <state relative-caret-position="219">
+              <caret line="178" column="28" selection-start-line="178" selection-start-column="28" selection-end-line="178" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#587#593#0" expanded="true" />
-                <element signature="e#644#650#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MatrixMap.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/pathfinder/MatrixMap.java">
+      <file leaf-file-name="ConstructPlaceEvent.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/events/ConstructPlaceEvent.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="176">
-              <caret line="8" column="40" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="40" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Citizen.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/human/Citizen.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="26" column="3" selection-start-line="26" selection-start-column="3" selection-end-line="26" selection-end-column="3" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Human.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/human/Human.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="478">
+              <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HumanisAlive.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/human/HumanisAlive.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="220">
+              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HumanMover.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/human/HumanMover.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="154">
+              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CurrentTask.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/human/CurrentTask.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="154">
+              <caret line="7" column="85" selection-start-line="7" selection-start-column="85" selection-end-line="7" selection-end-column="85" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DestroyPlaceEvent.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/events/DestroyPlaceEvent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="176">
+              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -120,7 +124,10 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="49" selection-start-line="0" selection-start-column="49" selection-end-line="0" selection-end-column="49" />
-              <folding />
+              <folding>
+                <element signature="e#501#502#0" expanded="false" />
+                <element signature="e#531#532#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -130,8 +137,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -151,7 +158,6 @@
         <option value="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/human/HumanMover.java" />
         <option value="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/human/HumanisAlive.java" />
         <option value="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/human/Soldier.java" />
-        <option value="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/human/Human.java" />
         <option value="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/events/CitizenAttackEvent.java" />
         <option value="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/events/SoldierAttackEvent.java" />
         <option value="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/events/Event.java" />
@@ -163,6 +169,8 @@
         <option value="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/pathfinder/Pair.java" />
         <option value="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/pathfinder/MatrixMap.java" />
         <option value="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/pathfinder/PathFinder.java" />
+        <option value="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/human/CurrentTask.java" />
+        <option value="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/human/Human.java" />
       </list>
     </option>
   </component>
@@ -203,8 +211,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -273,12 +279,8 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="pathfinder" />
+              <option name="myItemId" value="item" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PathFinder.java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -299,63 +301,13 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="pathfinder" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="thrumania" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="thrumania" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resource" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="thrumania" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="thrumania" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resource" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="image" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="thrumania" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="thrumania" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resource" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="image" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="item" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="place" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -367,11 +319,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="resource" />
+              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="image" />
+              <option name="myItemId" value="thrumania" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -383,217 +335,31 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="thrumania" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="thrumania" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resource" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/Compressed/PathFinding" />
-  </component>
-  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
-    <UpdatedFiles>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Updated from server" />
-        <option name="myStatusName" value="Changed on server" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="CHANGED_ON_SERVER" />
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Updated" />
-          <option name="myStatusName" value="Changed" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/poorgroupproject/thrumania/Thrumania.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/poorgroupproject/thrumania/backgroundprocess/Season.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/place/Barrack.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/place/Farm.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/place/Palace.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/place/Place.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/place/Port.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/place/mine/GoldMine.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/place/mine/IronMine.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/place/mine/Mine.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/place/mine/Quarry.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/poorgroupproject/thrumania/land/Land.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/poorgroupproject/thrumania/panel/GamePanel.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/poorgroupproject/thrumania/util/GameEngine.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/poorgroupproject/thrumania/util/ScreenRepainter.java</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Created" />
-          <option name="myStatusName" value="Created" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/fall/cntr.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/fall/no.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/fall/ocntrlr.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/fall/ocntrud.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/fall/od.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/fall/ol.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/fall/or.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/fall/ou.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/fall/rd.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/fall/sd.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/fall/sl.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/fall/sld.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/fall/slu.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/fall/sr.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/fall/srd.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/fall/sru.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/fall/su.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/fall/water.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/spring/cntr.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/spring/no.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/spring/ocntrlr.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/spring/ocntrud.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/spring/od.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/spring/ol.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/spring/or.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/spring/ou.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/spring/rd.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/spring/sd.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/spring/sl.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/spring/sld.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/spring/slu.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/spring/sr.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/spring/srd.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/spring/sru.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/spring/su.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/spring/water.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/summer/cntr.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/summer/no.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/summer/ocntrlr.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/summer/ocntrud.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/summer/od.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/summer/ol.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/summer/or.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/summer/ou.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/summer/rd.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/summer/sd.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/summer/sl.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/summer/sld.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/summer/slu.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/summer/sr.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/summer/srd.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/summer/sru.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/summer/su.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/summer/water.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/winter/cntr.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/winter/no.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/winter/ocntrlr.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/winter/ocntrud.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/winter/od.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/winter/ol.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/winter/or.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/winter/ou.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/winter/rd.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/winter/sd.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/winter/sl.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/winter/sld.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/winter/slu.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/winter/sr.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/winter/srd.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/winter/sru.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/winter/su.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/image/tile/winter/water.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/resource/map/map1.tmf</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/poorgroupproject/thrumania/events/ConstructPlaceEvent.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/poorgroupproject/thrumania/events/DestroyPlaceEvent.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/place/WoodCutter.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/poorgroupproject/thrumania/panel/MiniMapPanel.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/poorgroupproject/thrumania/panel/PlayerPanel.java</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Deleted" />
-          <option name="myStatusName" value="Deleted" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="true" />
-          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Restored" />
-          <option name="myStatusName" value="Will be restored" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="RESTORED" />
-        </FILE-GROUP>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Modified" />
-        <option name="myStatusName" value="Modified" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MODIFIED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Skipped" />
-        <option name="myStatusName" value="Skipped" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SKIPPED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with conflicts" />
-        <option name="myStatusName" value="Will be merged with conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_CONFLICTS" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with tree conflicts" />
-        <option name="myStatusName" value="Merged with tree conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with property conflicts" />
-        <option name="myStatusName" value="Will be merged with property conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged" />
-        <option name="myStatusName" value="Will be merged" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Not in repository" />
-        <option name="myStatusName" value="Not in repository" />
-        <option name="mySupportsDeletion" value="true" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="UNKNOWN" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally added" />
-        <option name="myStatusName" value="Locally added" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_ADDED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally removed" />
-        <option name="myStatusName" value="Locally removed" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_REMOVED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Switched" />
-        <option name="myStatusName" value="Switched" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SWITCHED" />
-      </FILE-GROUP>
-    </UpdatedFiles>
   </component>
   <component name="RunManager" selected="Application.TimerDemo">
     <configuration default="false" name="Thrumania" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -933,7 +699,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -944,7 +710,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27736053" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31545064" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1003,10 +769,13 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Making some changes in human classes" />
     <MESSAGE value="Making a pathfider package" />
-    <option name="LAST_COMMIT_MESSAGE" value="Making a pathfider package" />
+    <MESSAGE value="in human classes&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="in human classes&#10;" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="antWorkspaceConfiguration">
@@ -1014,46 +783,24 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/events/Event.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/events/CitizenAttackEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="8" column="40" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/Thrumania.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="27" column="25" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/GameObject.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
           <caret line="16" column="53" selection-start-line="16" selection-start-column="53" selection-end-line="16" selection-end-column="53" />
           <folding>
-            <element signature="e#355#356#0" expanded="false" />
-            <element signature="e#415#416#0" expanded="false" />
-            <element signature="e#451#452#0" expanded="false" />
-            <element signature="e#481#482#0" expanded="false" />
-            <element signature="e#529#530#0" expanded="false" />
-            <element signature="e#567#568#0" expanded="false" />
-            <element signature="e#850#851#0" expanded="false" />
-            <element signature="e#895#896#0" expanded="false" />
-            <element signature="e#932#933#0" expanded="false" />
-            <element signature="e#977#978#0" expanded="false" />
-            <element signature="e#1054#1055#0" expanded="false" />
-            <element signature="e#1089#1090#0" expanded="false" />
-            <element signature="e#1144#1145#0" expanded="false" />
-            <element signature="e#1192#1193#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#511#512#0" expanded="false" />
+            <element signature="e#541#542#0" expanded="false" />
+            <element signature="e#589#590#0" expanded="false" />
+            <element signature="e#627#628#0" expanded="false" />
+            <element signature="e#910#911#0" expanded="false" />
+            <element signature="e#955#956#0" expanded="false" />
+            <element signature="e#992#993#0" expanded="false" />
+            <element signature="e#1037#1038#0" expanded="false" />
+            <element signature="e#1114#1115#0" expanded="false" />
+            <element signature="e#1149#1150#0" expanded="false" />
+            <element signature="e#1204#1205#0" expanded="false" />
+            <element signature="e#1252#1253#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1062,9 +809,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1113,7 +857,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="22">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1128,20 +871,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="352">
           <caret line="18" column="9" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/human/HumanisAlive.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/human/HumanMover.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1220,7 +949,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
           <caret line="20" column="27" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1256,76 +984,32 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="30" column="37" selection-start-line="30" selection-start-column="37" selection-end-line="30" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/human/Human.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
-          <folding>
-            <element signature="e#832#833#0" expanded="false" />
-            <element signature="e#873#874#0" expanded="false" />
-            <element signature="e#901#902#0" expanded="false" />
-            <element signature="e#942#943#0" expanded="false" />
-            <element signature="e#971#972#0" expanded="false" />
-            <element signature="e#1012#1013#0" expanded="false" />
-            <element signature="e#1040#1041#0" expanded="false" />
-            <element signature="e#1081#1082#0" expanded="false" />
-            <element signature="e#1420#1421#0" expanded="false" />
-            <element signature="e#1451#1452#0" expanded="false" />
-            <element signature="e#1496#1497#0" expanded="false" />
-            <element signature="e#1531#1532#0" expanded="false" />
-            <element signature="e#1559#1560#0" expanded="false" />
-            <element signature="e#1586#1587#0" expanded="false" />
-            <element signature="e#1623#1624#0" expanded="false" />
-            <element signature="e#1655#1656#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/human/Citizen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="508">
-          <caret line="67" column="29" selection-start-line="67" selection-start-column="29" selection-end-line="67" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/GameObject.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+        <state relative-caret-position="154">
+          <caret line="11" column="3" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
           <folding>
-            <element signature="e#355#356#0" expanded="false" />
-            <element signature="e#415#416#0" expanded="false" />
-            <element signature="e#451#452#0" expanded="false" />
-            <element signature="e#481#482#0" expanded="false" />
-            <element signature="e#529#530#0" expanded="false" />
-            <element signature="e#567#568#0" expanded="false" />
-            <element signature="e#850#851#0" expanded="false" />
-            <element signature="e#895#896#0" expanded="false" />
-            <element signature="e#932#933#0" expanded="false" />
-            <element signature="e#977#978#0" expanded="false" />
-            <element signature="e#1054#1055#0" expanded="false" />
-            <element signature="e#1089#1090#0" expanded="false" />
-            <element signature="e#1144#1145#0" expanded="false" />
-            <element signature="e#1192#1193#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#511#512#0" expanded="false" />
+            <element signature="e#541#542#0" expanded="false" />
+            <element signature="e#589#590#0" expanded="false" />
+            <element signature="e#627#628#0" expanded="false" />
+            <element signature="e#910#911#0" expanded="false" />
+            <element signature="e#955#956#0" expanded="false" />
+            <element signature="e#992#993#0" expanded="false" />
+            <element signature="e#1037#1038#0" expanded="false" />
+            <element signature="e#1114#1115#0" expanded="false" />
+            <element signature="e#1149#1150#0" expanded="false" />
+            <element signature="e#1204#1205#0" expanded="false" />
+            <element signature="e#1252#1253#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resource/image/item/human/down.gif">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resource/image/item/human/down_right.gif">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
@@ -1362,26 +1046,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/land/Land.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
+        <state relative-caret-position="418">
           <caret line="31" column="37" selection-start-line="31" selection-start-column="37" selection-end-line="31" selection-end-column="37" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1244#1245#0" expanded="true" />
-            <element signature="e#1282#1283#0" expanded="true" />
-            <element signature="e#11763#11764#0" expanded="true" />
-            <element signature="e#11806#11807#0" expanded="true" />
-            <element signature="e#12336#12337#0" expanded="true" />
-            <element signature="e#12379#12380#0" expanded="true" />
+            <element signature="e#12808#12809#0" expanded="false" />
+            <element signature="e#12835#12836#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/pathfinder/MatrixMap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
+        <state relative-caret-position="154">
           <caret line="8" column="40" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="40" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1390,7 +1069,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
           <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#229#235#0" expanded="false" />
+            <element signature="e#286#287#0" expanded="false" />
+            <element signature="e#326#327#0" expanded="false" />
+            <element signature="e#368#369#0" expanded="false" />
+            <element signature="e#419#420#0" expanded="false" />
+            <element signature="e#451#452#0" expanded="false" />
+            <element signature="e#489#490#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1406,19 +1094,81 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="49" selection-start-line="0" selection-start-column="49" selection-end-line="0" selection-end-column="49" />
-          <folding />
+          <folding>
+            <element signature="e#501#502#0" expanded="false" />
+            <element signature="e#531#532#0" expanded="false" />
+          </folding>
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resource/image/item/human/down_right.gif">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/pathfinder/PathFinder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="175" column="10" selection-start-line="175" selection-start-column="10" selection-end-line="175" selection-end-column="10" />
+        <state relative-caret-position="219">
+          <caret line="178" column="28" selection-start-line="178" selection-start-column="28" selection-end-line="178" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#587#593#0" expanded="true" />
-            <element signature="e#644#650#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/events/DestroyPlaceEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/events/ConstructPlaceEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/human/Citizen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="26" column="3" selection-start-line="26" selection-start-column="3" selection-end-line="26" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/human/HumanisAlive.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/human/HumanMover.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/human/Human.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="478">
+          <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/human/CurrentTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="7" column="85" selection-start-line="7" selection-start-column="85" selection-end-line="7" selection-end-column="85" />
+          <folding />
         </state>
       </provider>
     </entry>

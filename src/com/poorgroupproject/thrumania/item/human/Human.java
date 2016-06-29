@@ -73,4 +73,5 @@ public abstract class Human extends GameObject implements Runnable{
     public void setLife(int life) {
         this.life = life;
     }
+
 }
