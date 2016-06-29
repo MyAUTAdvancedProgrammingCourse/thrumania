@@ -1,5 +1,8 @@
 package com.poorgroupproject.thrumania.item;
 
+import com.poorgroupproject.thrumania.land.Land;
+import com.poorgroupproject.thrumania.pathfinder.Pair;
+
 import javax.swing.*;
 import javax.xml.stream.Location;
 import java.awt.*;
@@ -57,5 +60,10 @@ public abstract class GameObject{
         graphics.setColor(Color.blue);
         graphics.fillRect(0,10,50,50);
         currentImage = temp;
+    }
+
+    public Pair getLocationOnMatrix(){
+        Pair pair = new Pair(((int) boundry.getX()) / Land.CELL_WIDTH, ((int) boundry.getY()) / Land.CELL_HEIGHT);
+        return pair;
     }
 }
