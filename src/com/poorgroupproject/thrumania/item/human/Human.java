@@ -1,5 +1,5 @@
 package com.poorgroupproject.thrumania.item.human;
-
+import com.poorgroupproject.thrumania.pathfinder.Pair;
 import com.poorgroupproject.thrumania.item.GameObject;
 import com.poorgroupproject.thrumania.land.Land;
 
@@ -73,5 +73,33 @@ public abstract class Human extends GameObject implements Runnable{
     public void setLife(int life) {
         this.life = life;
     }
-
+    public Oriention DefineOreintion(Pair first,Pair second){
+        int xDif = second.getX() - first.getX();
+        int yDif = second.getY() - first.getY();
+        if(second.getY() - first.getY() == 0){
+            if(second.getX() - first.getX() == -1){
+                return Oriention.Up;
+            }
+            if(second.getX() - first.getX() == 1){
+                return Oriention.Down;
+            }
+        }
+        if(second.getX() - first.getX() == 0){
+            if(second.getY() - first.getY() == 1){
+                return Oriention.Right;
+            }
+            if(second.getY() - first.getY() == -1){
+                return Oriention.Left;
+            }
+        }
+        if(xDif == 1 && yDif == 1)
+            return Oriention.DownRight;
+        if(xDif == 1 && yDif == -1)
+            return Oriention.DownLeft;
+        if(xDif == -1 && yDif == 1)
+            return Oriention.UpRight;
+        if(xDif == -1 && yDif == -1)
+            return Oriention.UpLeft;
+        return null;
+    }
 }
