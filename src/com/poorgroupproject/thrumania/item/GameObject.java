@@ -66,4 +66,5 @@ public abstract class GameObject{
         Pair pair = new Pair(((int) boundry.getX()) / Land.CELL_WIDTH, ((int) boundry.getY()) / Land.CELL_HEIGHT);
         return pair;
     }
+
 }
