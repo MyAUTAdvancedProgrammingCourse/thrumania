@@ -15,7 +15,9 @@ public class Path {
     public boolean contains(int x,int y){
         return path.contains(new Pair(x,y));
     }
-
+    public boolean ReachedthePath(){
+        return path.isEmpty();
+    }
     public Pair getNextMove(){
         return path.pollLast();
     }
