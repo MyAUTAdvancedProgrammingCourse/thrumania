@@ -47,6 +47,7 @@ public class Citizen extends Human {
 
     @Override
     public void processEvent(Event event) {
+        System.out.println(this.getLocationOnMatrix().getX() + "   " + this.getLocationOnMatrix().getY());
         System.out.println("here");
         if(event instanceof CitizenAttackEvent){
             this.life -= 20;
@@ -60,11 +61,12 @@ public class Citizen extends Human {
             PathFinder pf = new PathFinder(Land.getInstance().getCells(),this.getLocationOnMatrix().getX(),this.getLocationOnMatrix().getY(),gt.targetX,gt.targetY,new Citizen(0,0,Oriention.Down),
                      Land.getInstance().getRows(),Land.getInstance().getCols());
             PathfindingRunnable pfr = new PathfindingRunnable(pf);
-            (new Thread(pfr)).start();
+          //  (new Thread(pfr)).start();
             currentPath = pf.pathFinder();
             for(Pair p : currentPath.path)
                 System.out.println(p.getX() + "   " + p.getY());
             currentTask = CurrentTask.Moving;
+            System.out.println(DefineOreintion(this.getLocationOnMatrix(),currentPath.getNextMove()));
             oriention = DefineOreintion(this.getLocationOnMatrix(),currentPath.getNextMove());
             stepWise = 0;
             this.setCurrentImage(rightNow());
