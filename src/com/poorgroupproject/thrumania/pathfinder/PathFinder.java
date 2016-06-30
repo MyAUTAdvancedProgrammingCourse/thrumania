@@ -40,7 +40,7 @@ public class PathFinder implements MatrixMap{
                 Map[i][j] = new Pair(i,j,map[i][j]);
             }
         }
-        //path = this.pathFinder();
+        path = this.pathFinder();
     }
 
 

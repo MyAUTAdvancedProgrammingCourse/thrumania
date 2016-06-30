@@ -5,6 +5,7 @@ import com.poorgroupproject.thrumania.events.*;
 import com.poorgroupproject.thrumania.events.Event;
 import com.poorgroupproject.thrumania.item.GameObject;
 import com.poorgroupproject.thrumania.item.human.Citizen;
+import com.poorgroupproject.thrumania.item.human.Oriention;
 import com.poorgroupproject.thrumania.item.place.Palace;
 import com.poorgroupproject.thrumania.item.place.Port;
 import com.poorgroupproject.thrumania.item.vehicle.FishingShip;
@@ -35,6 +36,7 @@ public class GamePanel extends GameEngine {
     private Point deltaMousePointerPositionToPanelForDraging;
     private Rectangle mousePosition;
 
+
     private ThreadTicker ticker;
     public GamePanel(int width, int height){
         initialize(width,height);
@@ -49,9 +51,9 @@ public class GamePanel extends GameEngine {
 
         mousePointerMode = MousePointerMode.NONE;
 
-        Port p = new Port(100,100);
-        gameObjects.add(p);
-        gameObjects.add(new Citizen(130,130));
+//        Port p = new Port(100,100);
+//        gameObjects.add(p);
+        gameObjects.add(new Citizen(130,330, Oriention.Down));
 
 
         ticker = new ThreadTicker(gameObjects);
@@ -124,9 +126,11 @@ public class GamePanel extends GameEngine {
                 r.setLocation(mouseEvent.getLocationOnScreen());
                 r.setSize(new Dimension(1,1));
                 for (GameObject go :
-                        gameObjects) {
+                        selectedObject) {
                     go.processEvent(new GoThePlaceEvent(null,GameObject.getLocationOnMatrix(mouseEvent.getX(), mouseEvent.getY())));
                 }
+
+                selectedObject = new ArrayList<GameObject>();
             }
 
             @Override
@@ -139,8 +143,9 @@ public class GamePanel extends GameEngine {
                     mousePointerMode = MousePointerMode.MINIMAP_PANEL_DRAGGING;
                     deltaMousePointerPositionToPanelForDraging = new Point(((int) (mouseEvent.getX() - miniMapPanel.getLocation().getX()))
                             , ((int) (mouseEvent.getY() - miniMapPanel.getLocation().getY())));
-                }else if (mousePointerMode == MousePointerMode.NONE)
+                }else if (mousePointerMode == MousePointerMode.NONE) {
                     mouseRectangleSelector.setLocation(mouseEvent.getLocationOnScreen());
+                }
             }
 
             @Override
@@ -156,7 +161,8 @@ public class GamePanel extends GameEngine {
                     mouseRectangleSelector.setSize(0, 0);
                 }
                 mousePointerMode = MousePointerMode.NONE;
-                deltaMousePointerPositionToPanelForDraging.setLocation(0,0);
+                if (deltaMousePointerPositionToPanelForDraging != null)
+                    deltaMousePointerPositionToPanelForDraging.setLocation(0,0);
             }
 
             @Override

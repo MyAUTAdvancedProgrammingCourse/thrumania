@@ -52,6 +52,14 @@ public class Land {
 
     private Cell [][]cells;
 
+    public int getRows(){
+        return rows;
+    }
+
+    public int getCols(){
+        return cols;
+    }
+
     public Cell getCellContent(int row,int col){
         return cells[row][col];
     }
