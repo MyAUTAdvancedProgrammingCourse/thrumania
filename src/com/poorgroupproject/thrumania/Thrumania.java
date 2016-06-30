@@ -45,5 +45,7 @@ public class Thrumania {
             e.printStackTrace();
         }
 
+        Land.getInstance().redrawMap();
+
     }
 }

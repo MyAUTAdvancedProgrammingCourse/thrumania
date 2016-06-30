@@ -36,4 +36,9 @@ public class TransportShip  extends Ship {
             targetY=getY();
         }
     }
+
+    @Override
+    public void tik() {
+
+    }
 }
