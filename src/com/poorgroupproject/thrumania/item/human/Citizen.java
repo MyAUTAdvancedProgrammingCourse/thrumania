@@ -136,8 +136,10 @@ public class Citizen extends Human {
                 }
                 if(oriention == Oriention.Up || oriention == Oriention.Right|| oriention== Oriention.Down || oriention == Oriention.Left){
                     if(stepWise >= 120 && !currentPath.ReachedthePath()){
+                        System.out.println(currentPath.path.size());
                         this.Updateoriention();
                         stepWise = 0;
+                        System.out.println(stepWise);
                     }
                 }
                 else{
@@ -145,6 +147,7 @@ public class Citizen extends Human {
                         //ipdate////
                         ////////
                         ////
+                        System.out.println(currentPath.path.size());
                         this.Updateoriention();
                         stepWise = 0;
                     }
