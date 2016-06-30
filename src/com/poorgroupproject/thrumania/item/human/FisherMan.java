@@ -25,4 +25,9 @@ public class FisherMan extends Human {
     public void processEvent(Event event) {
 
     }
+
+    @Override
+    public void tik() {
+
+    }
 }

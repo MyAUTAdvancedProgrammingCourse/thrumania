@@ -32,10 +32,11 @@ public class FishingShip extends Ship  {
 
 
 
-    public FishingShip(Port port ,int x, int y) {
+    public FishingShip(int x, int y) {
         super(x, y, 256, 256);
-        this.port=port;
+        //this.port=port;
         fisherMan =new Human[7];
+        setCurrentImage(fishingShip);
     }
 
 
@@ -71,6 +72,11 @@ public class FishingShip extends Ship  {
     @Override
     public void processEvent(Event event) {
 
+
+    }
+
+    @Override
+    public void tik() {
 
     }
 

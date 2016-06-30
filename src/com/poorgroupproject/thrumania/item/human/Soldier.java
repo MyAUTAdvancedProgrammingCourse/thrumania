@@ -26,4 +26,9 @@ public class Soldier extends Human {
     public void processEvent(Event event) {
 
     }
+
+    @Override
+    public void tik() {
+
+    }
 }

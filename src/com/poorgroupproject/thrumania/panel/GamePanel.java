@@ -1,6 +1,10 @@
 package com.poorgroupproject.thrumania.panel;
 
+import com.poorgroupproject.thrumania.backgroundprocess.ThreadTicker;
+import com.poorgroupproject.thrumania.events.*;
+import com.poorgroupproject.thrumania.events.Event;
 import com.poorgroupproject.thrumania.item.GameObject;
+import com.poorgroupproject.thrumania.item.human.Citizen;
 import com.poorgroupproject.thrumania.item.place.Palace;
 import com.poorgroupproject.thrumania.item.place.Port;
 import com.poorgroupproject.thrumania.item.vehicle.FishingShip;
@@ -31,7 +35,7 @@ public class GamePanel extends GameEngine {
     private Point deltaMousePointerPositionToPanelForDraging;
     private Rectangle mousePosition;
 
-
+    private ThreadTicker ticker;
     public GamePanel(int width, int height){
         initialize(width,height);
         gameObjects = new ArrayList<>();
@@ -47,10 +51,11 @@ public class GamePanel extends GameEngine {
 
         Port p = new Port(100,100);
         gameObjects.add(p);
-        gameObjects.add(new FishingShip(40,40));
-        for (int i = 0; i < 18; i++) {
-            gameObjects.add(new Palace(0,i * 100));
-        }
+        gameObjects.add(new Citizen(130,130));
+
+
+        ticker = new ThreadTicker(gameObjects);
+        ticker.start();
 
         (new Thread(new Runnable() {
             @Override
@@ -118,6 +123,10 @@ public class GamePanel extends GameEngine {
                 Rectangle r = new Rectangle();
                 r.setLocation(mouseEvent.getLocationOnScreen());
                 r.setSize(new Dimension(1,1));
+                for (GameObject go :
+                        gameObjects) {
+                    go.processEvent(new GoThePlaceEvent(null,GameObject.getLocationOnMatrix(mouseEvent.getX(), mouseEvent.getY())));
+                }
             }
 
             @Override
