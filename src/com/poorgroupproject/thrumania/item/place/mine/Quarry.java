@@ -73,15 +73,15 @@ public class Quarry extends Mine {
      * @param toughness the amount of toughness that range is 0 to 100.
      */
     private void imageChooser(int toughness){
-        if(toughness < 33) setCurrentImage(quarry[0]);
+        if(toughness < 33) setCurrentImage(quarryImage[0]);
         else {
             if (toughness > 33 && toughness < 66) {
-                setCurrentImage(quarry[1]);
+                setCurrentImage(quarryImage[1]);
             } else {
                 if (toughness > 66 && toughness < 99) {
-                    setCurrentImage(quarry[2]);
+                    setCurrentImage(quarryImage[2]);
                 } else {
-                    setCurrentImage(quarry[3]);
+                    setCurrentImage(quarryImage[3]);
                 }
             }
         }
