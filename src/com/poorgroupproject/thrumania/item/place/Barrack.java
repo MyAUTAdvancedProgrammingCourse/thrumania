@@ -29,7 +29,6 @@ public class Barrack extends Place {
     public Barrack(int x, int y) {
         super(x, y);
         loadResoure();
-        barrackImages = new Image[4];
         soldierArrayList = new ArrayList<>();
         setToughness(0);
     }
@@ -41,6 +40,7 @@ public class Barrack extends Place {
      */
     @Override
     public void loadResoure() {
+        barrackImages = new Image[4];
         try {
             barrackImages[0]= ImageIO.read(new File(ResourcePath.itemImagePath+"barrack\\barrack_1.png"));
             barrackImages[1]= ImageIO.read(new File(ResourcePath.itemImagePath+"barrack\\barrack_2.png"));

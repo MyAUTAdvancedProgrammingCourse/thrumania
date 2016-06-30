@@ -26,8 +26,8 @@ public class WoodCutter extends Place {
      */
     public WoodCutter(int x, int y) {
         super(x, y);
+        loadResoure();
         toughness = 0;
-        woodCutterImage = new Image[4];
     }
 
 
@@ -36,6 +36,7 @@ public class WoodCutter extends Place {
      */
     @Override
     public void loadResoure() {
+        woodCutterImage = new Image[4];
         try {
             woodCutterImage[0]= ImageIO.read(new File(ResourcePath.itemImagePath+"woodcutter_1.png"));
             woodCutterImage[1]= ImageIO.read(new File(ResourcePath.itemImagePath+"woodcutter_2.png"));

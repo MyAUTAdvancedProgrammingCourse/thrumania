@@ -28,6 +28,7 @@ public class Port extends Place {
      */
     public Port(int x, int y) {
         super(x, y);
+        loadResoure();
         humanQueue = new LinkedList<>();
 
     }

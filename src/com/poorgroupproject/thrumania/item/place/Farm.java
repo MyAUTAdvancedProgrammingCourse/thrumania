@@ -26,7 +26,7 @@ public class Farm extends Place {
      */
     public Farm(int x, int y) {
         super(x, y);
-        farmImage = new Image[4];
+        loadResoure();
         farmAvailabeFood = 8000;
     }
 
@@ -35,6 +35,7 @@ public class Farm extends Place {
      */
     @Override
     public void loadResoure() {
+        farmImage = new Image[4];
         try {
             farmImage[0]= ImageIO.read(new File(ResourcePath.itemImagePath +"farm\\farm_1.png"));
             farmImage[1]= ImageIO.read(new File(ResourcePath.itemImagePath+"farm\\farm_2.png"));

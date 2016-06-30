@@ -16,7 +16,7 @@ public class Quarry extends Mine {
 
     private int availabeResource;
     private int toughness;
-    private Image[] quarry;
+    private Image[] quarryImage;
 
     /**
      * Constructor
@@ -25,20 +25,21 @@ public class Quarry extends Mine {
      */
     public Quarry(int x, int y) {
         super(x,y);
+        loadResoure();
         availabeResource = 0;
         toughness = 100;
-        quarry = new Image[4];
     }
     /**
      * loading images of barracks that first element of array is incompleted quarry and the last one is completed barrack.
      */
     @Override
     public void loadResoure() {
+        quarryImage = new Image[4];
         try {
-            quarry[0]= ImageIO.read(new File(ResourcePath.itemImagePath+"quarry/quarry_1.png"));
-            quarry[1]= ImageIO.read(new File(ResourcePath.itemImagePath+"quarry/quarry_2.png"));
-            quarry[2]= ImageIO.read(new File(ResourcePath.itemImagePath+"quarry/quarry_3.png"));
-            quarry[3]= ImageIO.read(new File(ResourcePath.itemImagePath+"quarry/quarry_4.png"));
+            quarryImage[0]= ImageIO.read(new File(ResourcePath.itemImagePath+"quarry/quarry_1.png"));
+            quarryImage[1]= ImageIO.read(new File(ResourcePath.itemImagePath+"quarry/quarry_2.png"));
+            quarryImage[2]= ImageIO.read(new File(ResourcePath.itemImagePath+"quarry/quarry_3.png"));
+            quarryImage[3]= ImageIO.read(new File(ResourcePath.itemImagePath+"quarry/quarry_4.png"));
         } catch (IOException e) {
             System.err.println("FILE NOT FOUND");
             e.printStackTrace();
