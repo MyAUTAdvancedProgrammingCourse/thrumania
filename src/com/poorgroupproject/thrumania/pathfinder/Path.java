@@ -7,7 +7,7 @@ import java.util.LinkedList;
  * Created by Saman A.Mirhoseini on 26/06/2016.
  */
 public class Path {
-     LinkedList<Pair> path = new LinkedList<Pair>();
+    public LinkedList<Pair> path = new LinkedList<Pair>();
 
     public void add_to_the_path(int x, int y) {
         path.add(new Pair(x, y));
@@ -19,6 +19,8 @@ public class Path {
         return path.isEmpty();
     }
     public Pair getNextMove(){
-        return path.pollLast();
+        Pair temp = path.get(0);
+        path.remove(0);
+        return temp;
     }
 }

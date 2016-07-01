@@ -6,6 +6,7 @@ import com.poorgroupproject.thrumania.events.StopFishingEvent;
 import com.poorgroupproject.thrumania.item.GameObject;
 import com.poorgroupproject.thrumania.item.human.Citizen;
 import com.poorgroupproject.thrumania.item.human.Human;
+import com.poorgroupproject.thrumania.item.human.Oriention;
 import com.poorgroupproject.thrumania.item.place.Port;
 import com.poorgroupproject.thrumania.util.ResourcePath;
 
@@ -52,7 +53,7 @@ public class FishingShip extends Ship  {
         if(foodNum==shipCapacity){
             //send event to people stop fishing
             //chang the image
-            Human h =new Citizen(0,0);
+            Human h =new Citizen(0,0, Oriention.Down);
             h.processEvent(new StopFishingEvent(this));
 
 

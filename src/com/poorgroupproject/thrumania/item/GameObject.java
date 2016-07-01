@@ -63,12 +63,12 @@ public abstract class GameObject{
     }
 
     public Pair getLocationOnMatrix(){
-        Pair pair = new Pair(((int) boundry.getX()) / Land.CELL_WIDTH, ((int) boundry.getY()) / Land.CELL_HEIGHT);
+        Pair pair = new Pair(((int) boundry.getY()) / Land.CELL_HEIGHT,((int) boundry.getX()) / Land.CELL_WIDTH);
         return pair;
     }
 
     public static Pair getLocationOnMatrix(int x, int y){
-        Pair pair = new Pair(x / Land.CELL_WIDTH, y / Land.CELL_HEIGHT);
+        Pair pair = new Pair(y / Land.CELL_HEIGHT, x / Land.CELL_WIDTH);
         return pair;
     }
     public abstract void tik();

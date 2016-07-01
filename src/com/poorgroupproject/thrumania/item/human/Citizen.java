@@ -4,6 +4,7 @@ import com.poorgroupproject.thrumania.backgroundprocess.Season;
 import com.poorgroupproject.thrumania.events.*;
 import com.poorgroupproject.thrumania.events.Event;
 import com.poorgroupproject.thrumania.land.Land;
+import com.poorgroupproject.thrumania.pathfinder.Pair;
 import com.poorgroupproject.thrumania.pathfinder.PathFinder;
 import com.poorgroupproject.thrumania.util.ResourcePath;
 
@@ -23,10 +24,12 @@ public class Citizen extends Human {
  //   public int life;
     private int speed;
     public boolean isCollectingResource;
-    public Citizen(int x, int y) {
+    public Citizen(int x, int y,Oriention oriention) {
         super(x, y);
         this.life = 300;
         this.Capacity = 0;
+        this.oriention = oriention;
+        this.setCurrentImage(rightNow());
     }
 
     @Override
@@ -44,6 +47,8 @@ public class Citizen extends Human {
 
     @Override
     public void processEvent(Event event) {
+        System.out.println(this.getLocationOnMatrix().getX() + "   " + this.getLocationOnMatrix().getY());
+        System.out.println("here");
         if(event instanceof CitizenAttackEvent){
             this.life -= 20;
         }
@@ -51,12 +56,17 @@ public class Citizen extends Human {
             this.life -= 70;
         }
         else if(event instanceof GoThePlaceEvent){
+            System.out.println("hereeeeeeeeeee");
             GoThePlaceEvent gt = (GoThePlaceEvent) event;
-            PathFinder pf = new PathFinder(Land.getInstance().getCells(),this.getLocationOnMatrix().getX(),this.getLocationOnMatrix().getY(),gt.targetX,gt.targetY,new Citizen(0,0),100,100);
+            PathFinder pf = new PathFinder(Land.getInstance().getCells(),this.getLocationOnMatrix().getX(),this.getLocationOnMatrix().getY(),gt.targetX,gt.targetY,new Citizen(0,0,Oriention.Down),
+                     Land.getInstance().getRows(),Land.getInstance().getCols());
             PathfindingRunnable pfr = new PathfindingRunnable(pf);
-            (new Thread(pfr)).start();
-            currentPath = pfr.path;
+          //  (new Thread(pfr)).start();
+            currentPath = pf.pathFinder();
+            for(Pair p : currentPath.path)
+                System.out.println(p.getX() + "   " + p.getY());
             currentTask = CurrentTask.Moving;
+            System.out.println(DefineOreintion(this.getLocationOnMatrix(),currentPath.getNextMove()));
             oriention = DefineOreintion(this.getLocationOnMatrix(),currentPath.getNextMove());
             stepWise = 0;
             this.setCurrentImage(rightNow());
@@ -126,8 +136,10 @@ public class Citizen extends Human {
                 }
                 if(oriention == Oriention.Up || oriention == Oriention.Right|| oriention== Oriention.Down || oriention == Oriention.Left){
                     if(stepWise >= 120 && !currentPath.ReachedthePath()){
+                        System.out.println(currentPath.path.size());
                         this.Updateoriention();
                         stepWise = 0;
+                        System.out.println(stepWise);
                     }
                 }
                 else{
@@ -135,6 +147,7 @@ public class Citizen extends Human {
                         //ipdate////
                         ////////
                         ////
+                        System.out.println(currentPath.path.size());
                         this.Updateoriention();
                         stepWise = 0;
                     }
