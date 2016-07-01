@@ -17,7 +17,9 @@ public abstract class Human extends GameObject implements Runnable,Constants{
     private final int HUMAN_HEIGHT = 250;
     CurrentTask currentTask;
     Path currentPath;
+    Oriention upcomingOriention;
     public int life;
+    Pair save;
 //    public Land.Cell CurrentCell;
     public int Capacity;
     int amount_of_gold;
@@ -64,7 +66,14 @@ public abstract class Human extends GameObject implements Runnable,Constants{
         moveDown();
         moveLeft();
     }
+    public abstract Image rightNow();
     public void Updateoriention(){
+        System.out.println("path size   " + currentPath.path.size());
+        if(currentPath.path.size()== 0){
+            this.currentTask = CurrentTask.StandingDoinfNothing;
+            this.setCurrentImage(rightNow());
+        }
+        else
         oriention = DefineOreintion(this.getLocationOnMatrix(),currentPath.getNextMove());
     }
     public int getSpeed(){
@@ -98,30 +107,33 @@ public abstract class Human extends GameObject implements Runnable,Constants{
     public Oriention DefineOreintion(Pair first,Pair second){
         int xDif = second.getX() - first.getX();
         int yDif = second.getY() - first.getY();
-        if(second.getY() - first.getY() == 0){
-            if(second.getX() - first.getX() < 0){
-                return Oriention.Up;
-            }
-            if(second.getX() - first.getX() > 0){
-                return Oriention.Down;
-            }
-        }
-        if(second.getX() - first.getX() == 0){
-            if(second.getY() - first.getY() > 0){
+        if(yDif > 0){
+            if(xDif < 0)
+                return Oriention.UpRight;
+            if(xDif == 0)
                 return Oriention.Right;
-            }
-            if(second.getY() - first.getY() < 0){
-                return Oriention.Left;
-            }
+            if(xDif > 0)
+                return Oriention.DownRight;
         }
-        if(xDif > 0 && yDif > 0)
-            return Oriention.DownRight;
-        if(xDif > 0 && yDif < 0)
-            return Oriention.DownLeft;
-        if(xDif < 0 && yDif > 0)
-            return Oriention.UpRight;
-        if(xDif < 0 && yDif < 0)
-            return Oriention.UpLeft;
+        else if(yDif == 0){
+            if(xDif < 0)
+                return Oriention.Up;
+            if(xDif == 0) {
+                System.out.println("buggggggggg");
+                return this.oriention;
+            }
+            if(xDif > 0)
+                return Oriention.Down;
+        }
+        else{
+            if(xDif < 0)
+                return Oriention.UpLeft;
+            if(xDif == 0)
+                return Oriention.Left;
+            if(xDif > 0)
+                return Oriention.DownLeft;
+        }
+        System.out.println("Coldn't because " + xDif +"  " + yDif);
         return null;
     }
     public void pathSolver(Path path){

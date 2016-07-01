@@ -23,4 +23,7 @@ public class Path {
         path.remove(0);
         return temp;
     }
+    public Pair ViewNextMove(){
+        return path.get(0);
+    }
 }

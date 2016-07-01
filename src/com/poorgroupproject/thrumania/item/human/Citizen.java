@@ -34,7 +34,7 @@ public class Citizen extends Human {
 
     @Override
     public void loadResoure() {
-        images = new Image[8];
+        images = new Image[16];
         images[0] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "human/top.gif");
         images[1] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "human/top_right.gif");
         images[2] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "human/right.gif");
@@ -43,6 +43,14 @@ public class Citizen extends Human {
         images[5] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "human/down_left.gif");
         images[6] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "human/left.gif");
         images[7] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "human/top_left.gif");
+        images[8] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "human/topStand.gif");
+        images[9] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "human/top_rightStand.gif");
+        images[10] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "human/rightStand.gif");
+        images[11] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "human/down_rightStand.gif");
+        images[12] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "human/downStand.gif");
+        images[13] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "human/down_leftStand.gif");
+        images[14] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "human/leftStand.gif");
+        images[15] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "human/top_leftStand.gif");
     }
 
     @Override
@@ -63,34 +71,66 @@ public class Citizen extends Human {
             PathfindingRunnable pfr = new PathfindingRunnable(pf);
           //  (new Thread(pfr)).start();
             currentPath = pf.pathFinder();
-            for(Pair p : currentPath.path)
-                System.out.println(p.getX() + "   " + p.getY());
-            currentTask = CurrentTask.Moving;
-            System.out.println(DefineOreintion(this.getLocationOnMatrix(),currentPath.getNextMove()));
-            oriention = DefineOreintion(this.getLocationOnMatrix(),currentPath.getNextMove());
-            stepWise = 0;
-            this.setCurrentImage(rightNow());
+            if(currentPath != null) {
+                for (Pair p : currentPath.path)
+                    System.out.println(p.getX() + "   " + p.getY());
+                currentTask = CurrentTask.Moving;
+                 currentPath.path.remove(0);
+                System.out.println("Now here"+this.getLocationOnMatrix().getX() + "  " + this.getLocationOnMatrix().getY());
+                System.out.println("the path");
+                for (Pair p : currentPath.path)
+                    System.out.println(p.getX() + "   " + p.getY());
+                this.Updateoriention();
+                stepWise = 0;
+                this.setCurrentImage(rightNow());
+            }
         }
     }
-    private Image rightNow(){
-        switch(oriention){
-            case Up:
-                return images[0];
-            case UpRight:
-                return images[1];
-            case Right:
-                return images[2];
-            case DownRight:
-                return images[3];
-            case Down:
-                return images[4];
-            case DownLeft:
-                return images[5];
-            case Left:
-                return images[6];
-            case UpLeft:
-                return images[7];
+    @Override
+    public Image rightNow(){
+        switch(currentTask){
+            case StandingDoinfNothing:
+                switch(oriention){
+                    case Up:
+                        return images[8];
+                    case UpRight:
+                        return images[9];
+                    case Right:
+                        return images[10];
+                    case DownRight:
+                        return images[11];
+                    case Down:
+                        return images[12];
+                    case DownLeft:
+                        return images[13];
+                    case Left:
+                        return images[14];
+                    case UpLeft:
+                        return images[15];
+                }
+                break;
+            case Moving:
+                switch(oriention){
+                    case Up:
+                        return images[0];
+                    case UpRight:
+                        return images[1];
+                    case Right:
+                        return images[2];
+                    case DownRight:
+                        return images[3];
+                    case Down:
+                        return images[4];
+                    case DownLeft:
+                        return images[5];
+                    case Left:
+                        return images[6];
+                    case UpLeft:
+                        return images[7];
+                }
+                break;
         }
+
         return null;
     }
 ////////////////////////////////////////
@@ -100,6 +140,7 @@ public class Citizen extends Human {
     public void tik() {
         switch(currentTask){
             case Moving:
+
                 switch(oriention){
                     case Up:
                         moveUp();
@@ -134,24 +175,36 @@ public class Citizen extends Human {
                         stepWise += getSpeed();
                         break;
                 }
-                if(oriention == Oriention.Up || oriention == Oriention.Right|| oriention== Oriention.Down || oriention == Oriention.Left){
-                    if(stepWise >= 120 && !currentPath.ReachedthePath()){
+//                if(readyforReOriention(this.save)){
+//                    System.out.println("hell yeah");
+//                    System.out.println("size"+currentPath.path.size());
+//                    this.Updateoriention();
+//                    this.setCurrentImage(rightNow());
+//                }
+//                if(oriention == Oriention.Up || oriention == Oriention.Right|| oriention== Oriention.Down || oriention == Oriention.Left){
+                    if(stepWise >= 120 ){
                         System.out.println(currentPath.path.size());
                         this.Updateoriention();
+                        this.setCurrentImage(rightNow());
                         stepWise = 0;
                         System.out.println(stepWise);
+//                        if(currentPath.ReachedthePath())
+//                            currentTask = CurrentTask.StandingDoinfNothing;
                     }
-                }
-                else{
-                    if(stepWise >= 180 && !currentPath.ReachedthePath()){
-                        //ipdate////
-                        ////////
-                        ////
-                        System.out.println(currentPath.path.size());
-                        this.Updateoriention();
-                        stepWise = 0;
-                    }
-                }
+//                }
+//                else{
+//                    if(stepWise >= 170 ){
+//                        //ipdate////
+//                        ////////
+//                        ////
+//                        System.out.println(currentPath.path.size());
+//                        this.Updateoriention();
+//                        this.setCurrentImage(rightNow());
+//                        stepWise = 0;
+////                        if(currentPath.ReachedthePath())
+////                            currentTask = CurrentTask.StandingDoinfNothing;
+//                    }
+//                }
 
                 break;
         }
@@ -240,4 +293,7 @@ class CAttack extends TimerTask{
 //        if (event instanceof ClickEvent){
 //            System.out.println("player clicked");
 //        }
-//    }
+////    }
+
+/////////////////////
+
