@@ -38,6 +38,7 @@ public class FishingShip extends Ship  {
         //this.port=port;
         fisherMan =new Human[7];
         setCurrentImage(fishingShip);
+        shipSpeed = 6;
     }
 
 
