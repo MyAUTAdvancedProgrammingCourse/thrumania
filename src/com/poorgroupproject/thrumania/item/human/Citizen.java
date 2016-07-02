@@ -5,6 +5,7 @@ import com.poorgroupproject.thrumania.events.*;
 import com.poorgroupproject.thrumania.events.Event;
 import com.poorgroupproject.thrumania.land.Land;
 import com.poorgroupproject.thrumania.pathfinder.Pair;
+import com.poorgroupproject.thrumania.pathfinder.Path;
 import com.poorgroupproject.thrumania.pathfinder.PathFinder;
 import com.poorgroupproject.thrumania.util.ResourcePath;
 
@@ -26,7 +27,7 @@ public class Citizen extends Human {
     public boolean isCollectingResource;
     public Citizen(int x, int y,Oriention oriention) {
         super(x, y);
-        this.life = 300;
+        this.life = 500;
         this.Capacity = 0;
         this.oriention = oriention;
         this.setCurrentImage(rightNow());
@@ -64,6 +65,7 @@ public class Citizen extends Human {
             this.life -= 70;
         }
         else if(event instanceof GoThePlaceEvent){
+            AttackingTo = null;
             System.out.println("hereeeeeeeeeee");
             GoThePlaceEvent gt = (GoThePlaceEvent) event;
             PathFinder pf = new PathFinder(Land.getInstance().getCells(),this.getLocationOnMatrix().getX(),this.getLocationOnMatrix().getY(),gt.targetX,gt.targetY,new Citizen(0,0,Oriention.Down),
@@ -83,6 +85,25 @@ public class Citizen extends Human {
                 this.Updateoriention();
                 stepWise = 0;
                 this.setCurrentImage(rightNow());
+            }
+        }
+        else if(event instanceof  GoAndAttack){
+            GoAndAttack ga = (GoAndAttack) event;
+            currentTask = CurrentTask.AttackingToAHuman;
+            AttackingTo = ga.target;
+            PathFinder pf = new PathFinder(Land.getInstance().getCells(),this.getLocationOnMatrix().getX(),this.getLocationOnMatrix().getY(),AttackingTo.getLocationOnMatrix().getX(),AttackingTo.getLocationOnMatrix().getY(),new Citizen(0,0,Oriention.Down),
+                    Land.getInstance().getRows(),Land.getInstance().getCols());
+            PathfindingRunnable pfr = new PathfindingRunnable(pf);
+            //  (new Thread(pfr)).start();
+            currentPath = pf.pathFinder();
+            currentPath.path.remove(0);
+            if(currentPath != null && currentPath.path.size() != 0) {
+                this.Updateoriention();
+                stepWise = 0;
+                this.setCurrentImage(rightNow());
+            }
+            else {
+                currentPath = null;
             }
         }
     }
@@ -175,13 +196,7 @@ public class Citizen extends Human {
                         stepWise += getSpeed();
                         break;
                 }
-//                if(readyforReOriention(this.save)){
-//                    System.out.println("hell yeah");
-//                    System.out.println("size"+currentPath.path.size());
-//                    this.Updateoriention();
-//                    this.setCurrentImage(rightNow());
-//                }
-//                if(oriention == Oriention.Up || oriention == Oriention.Right|| oriention== Oriention.Down || oriention == Oriention.Left){
+
                     if(stepWise >= 120 ){
                         System.out.println(currentPath.path.size());
                         this.Updateoriention();
@@ -191,21 +206,71 @@ public class Citizen extends Human {
 //                        if(currentPath.ReachedthePath())
 //                            currentTask = CurrentTask.StandingDoinfNothing;
                     }
-//                }
-//                else{
-//                    if(stepWise >= 170 ){
-//                        //ipdate////
-//                        ////////
-//                        ////
-//                        System.out.println(currentPath.path.size());
-//                        this.Updateoriention();
-//                        this.setCurrentImage(rightNow());
-//                        stepWise = 0;
-////                        if(currentPath.ReachedthePath())
-////                            currentTask = CurrentTask.StandingDoinfNothing;
-//                    }
-//                }
 
+                break;
+            case AttackingToAHuman:
+                if(currentPath != null) {
+                    switch (oriention) {
+                        case Up:
+                            moveUp();
+                            stepWise += getSpeed();
+                            break;
+                        case UpRight:
+                            moveUpRight();
+                            stepWise += getSpeed();
+                            break;
+                        case Right:
+                            moveRight();
+                            stepWise += getSpeed();
+                            break;
+                        case DownRight:
+                            moveDownRight();
+                            stepWise += getSpeed();
+                            break;
+                        case Down:
+                            moveDown();
+                            stepWise += getSpeed();
+                            break;
+                        case DownLeft:
+                            moveDownLeft();
+                            stepWise += getSpeed();
+                            break;
+                        case Left:
+                            moveLeft();
+                            stepWise += getSpeed();
+                            break;
+                        case UpLeft:
+                            moveUpLeft();
+                            stepWise += getSpeed();
+                            break;
+                    }
+
+                    if (stepWise >= 120) {
+                        System.out.println(currentPath.path.size());
+                        this.Updateoriention();
+                        this.setCurrentImage(rightNow());
+                        stepWise = 0;
+                        System.out.println(stepWise);
+//                        if(currentPath.ReachedthePath())
+//                            currentTask = CurrentTask.StandingDoinfNothing;
+                    }
+                }
+                else{
+                    (new Thread(new CAttack(this))).start();
+                    PathFinder pf = new PathFinder(Land.getInstance().getCells(),this.getLocationOnMatrix().getX(),this.getLocationOnMatrix().getY(),AttackingTo.getLocationOnMatrix().getX(),AttackingTo.getLocationOnMatrix().getY(),new Citizen(0,0,Oriention.Down),
+                            Land.getInstance().getRows(),Land.getInstance().getCols());
+                    Path pt = pf.pathFinder();
+                    if(pt.path.size() > 1){
+                        AttackingTo = null;
+                    }
+                    ////////
+                    //
+                    //
+                    //
+                    //
+                }
+                break;
+            case AttackingToABuilding:
                 break;
         }
     }
@@ -215,20 +280,26 @@ public class Citizen extends Human {
 
     }
 }
-class CAttack extends TimerTask{
+class CAttack implements Runnable{
     Citizen citizen;
-    Human target;
 
-    public CAttack(Citizen citizen,Human target) {
+    public CAttack(Citizen citizen) {
         this.citizen = citizen;
-        this.target = target;
     }
 
     @Override
     public void run() {
-
+        while(citizen.AttackingTo != null){
+            citizen.AttackingTo.processEvent(new CitizenAttackEvent(null,null));
+        }
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
+
 
 //class CitizenWalker extends TimerTask{
 //
@@ -297,3 +368,24 @@ class CAttack extends TimerTask{
 
 /////////////////////
 
+//                }
+//                else{
+//                    if(stepWise >= 170 ){
+//                        //ipdate////
+//                        ////////
+//                        ////
+//                        System.out.println(currentPath.path.size());
+//                        this.Updateoriention();
+//                        this.setCurrentImage(rightNow());
+//                        stepWise = 0;
+////                        if(currentPath.ReachedthePath())
+////                            currentTask = CurrentTask.StandingDoinfNothing;
+//                    }
+//                }
+//                if(readyforReOriention(this.save)){
+//                    System.out.println("hell yeah");
+//                    System.out.println("size"+currentPath.path.size());
+//                    this.Updateoriention();
+//                    this.setCurrentImage(rightNow());
+//                }
+//                if(oriention == Oriention.Up || oriention == Oriention.Right|| oriention== Oriention.Down || oriention == Oriention.Left){

@@ -54,6 +54,7 @@ public class GamePanel extends GameEngine {
 //        Port p = new Port(100,100);
 //        gameObjects.add(p);
         gameObjects.add(new Citizen(1020,650, Oriention.Down));
+        gameObjects.add(new Citizen(1000,900,Oriention.Right));
 
 
         ticker = new ThreadTicker(gameObjects);

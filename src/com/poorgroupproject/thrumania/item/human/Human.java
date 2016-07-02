@@ -20,6 +20,7 @@ public abstract class Human extends GameObject implements Runnable,Constants{
     Oriention upcomingOriention;
     public int life;
     Pair save;
+    Human AttackingTo;
 //    public Land.Cell CurrentCell;
     public int Capacity;
     int amount_of_gold;
@@ -36,6 +37,7 @@ public abstract class Human extends GameObject implements Runnable,Constants{
         super(x, y, 30, 30);
         isMoving = false;
         movingSyle = MovingSyle.WALKING;
+        currentPath = null;
         this.currentTask = CurrentTask.StandingDoinfNothing;
     }
     public void moveUp(){
@@ -72,6 +74,7 @@ public abstract class Human extends GameObject implements Runnable,Constants{
         if(currentPath.path.size()== 0){
             this.currentTask = CurrentTask.StandingDoinfNothing;
             this.setCurrentImage(rightNow());
+            currentPath = null;
         }
         else
         oriention = DefineOreintion(this.getLocationOnMatrix(),currentPath.getNextMove());
