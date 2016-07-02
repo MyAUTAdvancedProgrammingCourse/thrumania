@@ -40,7 +40,7 @@ public class FishingShip extends Ship  {
 
 
 
-    public void getHumqn(){
+    public void getHuman(){
         for(int i=0;i<7;i++){
            // fisherMan[i]=pickUpHuman;
         }
