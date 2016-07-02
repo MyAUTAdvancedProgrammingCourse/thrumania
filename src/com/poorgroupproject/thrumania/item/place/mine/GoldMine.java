@@ -25,7 +25,7 @@ public class GoldMine extends Mine {
      */
     GoldMine(int x, int y) {
         super(x, y);
-        goldMineImages = new Image[4];
+        loadResoure();
         toughness = 100;
     }
 
@@ -34,6 +34,7 @@ public class GoldMine extends Mine {
      */
     @Override
     public void loadResoure() {
+        goldMineImages = new Image[4];
         try {
             goldMineImages[0]= ImageIO.read(new File(ResourcePath.itemImagePath + "mine\\goldMine\\goldMine_1.png"));
             goldMineImages[1]= ImageIO.read(new File(ResourcePath.itemImagePath + "mine\\goldMine\\goldMine_2.png"));
