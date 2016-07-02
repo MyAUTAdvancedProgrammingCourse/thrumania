@@ -58,6 +58,11 @@ public class Barrack extends Place {
         else if(event instanceof DestroyPlaceEvent && getToughness() >= 0) destroy();
     }
 
+    @Override
+    public void tik() {
+
+    }
+
     /**
      * For each sent image, increase the toughness mount.
      */

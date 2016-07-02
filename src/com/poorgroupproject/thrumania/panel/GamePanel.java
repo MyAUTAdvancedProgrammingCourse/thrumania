@@ -1,6 +1,11 @@
 package com.poorgroupproject.thrumania.panel;
 
+import com.poorgroupproject.thrumania.backgroundprocess.ThreadTicker;
+import com.poorgroupproject.thrumania.events.*;
+import com.poorgroupproject.thrumania.events.Event;
 import com.poorgroupproject.thrumania.item.GameObject;
+import com.poorgroupproject.thrumania.item.human.Citizen;
+import com.poorgroupproject.thrumania.item.human.Oriention;
 import com.poorgroupproject.thrumania.item.place.Palace;
 import com.poorgroupproject.thrumania.item.place.Port;
 import com.poorgroupproject.thrumania.item.vehicle.FishingShip;
@@ -32,6 +37,7 @@ public class GamePanel extends GameEngine {
     private Rectangle mousePosition;
 
 
+    private ThreadTicker ticker;
     public GamePanel(int width, int height){
         initialize(width,height);
         gameObjects = new ArrayList<>();
@@ -45,12 +51,14 @@ public class GamePanel extends GameEngine {
 
         mousePointerMode = MousePointerMode.NONE;
 
-        Port p = new Port(100,100);
-        gameObjects.add(p);
-        gameObjects.add(new FishingShip(40,40));
-        for (int i = 0; i < 18; i++) {
-            gameObjects.add(new Palace(0,i * 100));
-        }
+//        Port p = new Port(100,100);
+//        gameObjects.add(p);
+        gameObjects.add(new Citizen(1020,650, Oriention.Down));
+        gameObjects.add(new Citizen(1000,900,Oriention.Right));
+
+
+        ticker = new ThreadTicker(gameObjects);
+        ticker.start();
 
         (new Thread(new Runnable() {
             @Override
@@ -118,6 +126,12 @@ public class GamePanel extends GameEngine {
                 Rectangle r = new Rectangle();
                 r.setLocation(mouseEvent.getLocationOnScreen());
                 r.setSize(new Dimension(1,1));
+                for (GameObject go :
+                        selectedObject) {
+                    go.processEvent(new GoThePlaceEvent(null,GameObject.getLocationOnMatrix(mouseEvent.getX(), mouseEvent.getY())));
+                }
+
+                selectedObject = new ArrayList<GameObject>();
             }
 
             @Override
@@ -130,8 +144,9 @@ public class GamePanel extends GameEngine {
                     mousePointerMode = MousePointerMode.MINIMAP_PANEL_DRAGGING;
                     deltaMousePointerPositionToPanelForDraging = new Point(((int) (mouseEvent.getX() - miniMapPanel.getLocation().getX()))
                             , ((int) (mouseEvent.getY() - miniMapPanel.getLocation().getY())));
-                }else if (mousePointerMode == MousePointerMode.NONE)
+                }else if (mousePointerMode == MousePointerMode.NONE) {
                     mouseRectangleSelector.setLocation(mouseEvent.getLocationOnScreen());
+                }
             }
 
             @Override
@@ -147,7 +162,8 @@ public class GamePanel extends GameEngine {
                     mouseRectangleSelector.setSize(0, 0);
                 }
                 mousePointerMode = MousePointerMode.NONE;
-                deltaMousePointerPositionToPanelForDraging.setLocation(0,0);
+                if (deltaMousePointerPositionToPanelForDraging != null)
+                    deltaMousePointerPositionToPanelForDraging.setLocation(0,0);
             }
 
             @Override

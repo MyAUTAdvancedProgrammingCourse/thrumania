@@ -1,5 +1,6 @@
 package com.poorgroupproject.thrumania.land;
 
+
 import com.poorgroupproject.thrumania.backgroundprocess.Season;
 import com.poorgroupproject.thrumania.util.GameEngine;
 import com.poorgroupproject.thrumania.util.ResourcePath;
@@ -13,6 +14,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.StringTokenizer;
+import com.poorgroupproject.thrumania.pathfinder.*;
 
 /**
  * @author ahmad
@@ -40,11 +42,23 @@ public class Land {
 
 
 
-    public enum Cell {
-        WATER, LAND, MOUNTAIN, TREE, FARM, G cOLD_MINE, IRON_MINE,
-    };
+//    public enum Cell {
+//        WATER, LAND, MOUNTAIN, TREE, FARM,  GOLD_MINE, IRON_MINE,
+//    };
+
+    public Cell[][] getCells() {
+        return cells;
+    }
 
     private Cell [][]cells;
+
+    public int getRows(){
+        return rows;
+    }
+
+    public int getCols(){
+        return cols;
+    }
 
     public Cell getCellContent(int row,int col){
         return cells[row][col];

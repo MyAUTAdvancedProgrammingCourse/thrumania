@@ -1,6 +1,7 @@
 package com.poorgroupproject.thrumania.pathfinder;
 import com.poorgroupproject.thrumania.item.GameObject;
 import com.poorgroupproject.thrumania.item.human.Human;
+import com.poorgroupproject.thrumania.land.Land;
 
 import java.lang.annotation.Target;
 import java.nio.channels.Pipe;
@@ -41,6 +42,8 @@ public class PathFinder implements MatrixMap{
         }
         path = this.pathFinder();
     }
+
+
 
     @Override
     public boolean isbloacked(GameObject g, int x, int y) {

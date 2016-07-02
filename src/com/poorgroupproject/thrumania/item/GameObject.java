@@ -63,8 +63,30 @@ public abstract class GameObject{
     }
 
     public Pair getLocationOnMatrix(){
-        Pair pair = new Pair(((int) boundry.getX()) / Land.CELL_WIDTH, ((int) boundry.getY()) / Land.CELL_HEIGHT);
+        Pair pair = new Pair(((int) boundry.getY()) / Land.CELL_HEIGHT,((int) boundry.getX()) / Land.CELL_WIDTH);
         return pair;
     }
+
+
+    public static Pair getLocationOnMatrix(int x, int y){
+        Pair pair = new Pair(y / Land.CELL_HEIGHT, x / Land.CELL_WIDTH);
+        return pair;
+    }
+    public boolean readyforReOriention(Pair p){
+//        int x = p.getX() * Land.CELL_WIDTH + (Land.CELL_WIDTH/2);
+//        int y = p.getY() * Land.CELL_HEIGHT + (Land.CELL_HEIGHT/2);
+//        int heuX = Math.abs(this.getX() - x);
+//        int heuY = Math.abs(this.getY() - y);
+        try {
+            if (this.getLocationOnMatrix().getX() == p.getX() &&
+                    this.getLocationOnMatrix().getY() == p.getY())
+                return true;
+        }
+        catch(java.lang.NullPointerException e){
+            return false;
+        }
+        return false;
+    }
+    public abstract void tik();
 
 }

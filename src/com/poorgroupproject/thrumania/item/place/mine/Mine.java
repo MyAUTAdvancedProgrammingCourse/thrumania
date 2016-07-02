@@ -28,4 +28,9 @@ class Mine extends Place {
     public void processEvent(Event event) {
 
     }
+
+    @Override
+    public void tik() {
+
+    }
 }

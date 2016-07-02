@@ -1,8 +1,11 @@
 package com.poorgroupproject.thrumania.item.human;
+import com.poorgroupproject.thrumania.backgroundprocess.Season;
+import com.poorgroupproject.thrumania.events.GoThePlaceEvent;
 import com.poorgroupproject.thrumania.pathfinder.Pair;
 import com.poorgroupproject.thrumania.item.GameObject;
 import com.poorgroupproject.thrumania.land.Land;
-import com.poorgroupproject.thrumania.pathfinder.Path;
+import com.poorgroupproject.thrumania.pathfinder.*;
+import com.poorgroupproject.thrumania.*;
 import java.awt.*;
 
 /**
@@ -12,8 +15,13 @@ import java.awt.*;
 public abstract class Human extends GameObject implements Runnable,Constants{
     private final int HUMAN_WIDTH = 250;
     private final int HUMAN_HEIGHT = 250;
+    CurrentTask currentTask;
+    Path currentPath;
+    Oriention upcomingOriention;
     public int life;
-    public Land.Cell CurrentCell;
+    Pair save;
+    Human AttackingTo;
+//    public Land.Cell CurrentCell;
     public int Capacity;
     int amount_of_gold;
     int amount_of_iron;
@@ -24,23 +32,25 @@ public abstract class Human extends GameObject implements Runnable,Constants{
     };
     Oriention oriention;
     public MovingSyle movingSyle;
-
+    int stepWise;
     public Human(int x, int y){
-        super(x, y, 250, 250);
+        super(x, y, 30, 30);
         isMoving = false;
         movingSyle = MovingSyle.WALKING;
+        currentPath = null;
+        this.currentTask = CurrentTask.StandingDoinfNothing;
     }
     public void moveUp(){
-        this.setY(this.getY()-SpeedCord);
+        this.setY(this.getY()-getSpeed());
     }
     public void moveDown(){
-        this.setY(this.getY()+SpeedCord);
+        this.setY(this.getY()+getSpeed());
     }
     public void moveRight(){
-        this.setX(this.getX()+SpeedCord);
+        this.setX(this.getX()+getSpeed());
     }
     public void moveLeft(){
-        this.setX(this.getX()-SpeedCord);
+        this.setX(this.getX()-getSpeed());
     }
     public void moveUpRight(){
         moveUp();
@@ -57,6 +67,30 @@ public abstract class Human extends GameObject implements Runnable,Constants{
     public void moveDownLeft(){
         moveDown();
         moveLeft();
+    }
+    public abstract Image rightNow();
+    public void Updateoriention(){
+        System.out.println("path size   " + currentPath.path.size());
+        if(currentPath.path.size()== 0){
+            this.currentTask = CurrentTask.StandingDoinfNothing;
+            this.setCurrentImage(rightNow());
+            currentPath = null;
+        }
+        else
+        oriention = DefineOreintion(this.getLocationOnMatrix(),currentPath.getNextMove());
+    }
+    public int getSpeed(){
+        switch(Season.getInstance().getCurrentSeason()){
+            case Spring:
+                return SpringSpeed;
+            case Summer:
+                return SummerSpeed;
+            case Fall:
+                return FallSpeed;
+            case Winter:
+                return WinterSpeed;
+        }
+        return 0;
     }
     public int getCapacity() {
         return Capacity;
@@ -76,35 +110,68 @@ public abstract class Human extends GameObject implements Runnable,Constants{
     public Oriention DefineOreintion(Pair first,Pair second){
         int xDif = second.getX() - first.getX();
         int yDif = second.getY() - first.getY();
-        if(second.getY() - first.getY() == 0){
-            if(second.getX() - first.getX() == -1){
-                return Oriention.Up;
-            }
-            if(second.getX() - first.getX() == 1){
-                return Oriention.Down;
-            }
-        }
-        if(second.getX() - first.getX() == 0){
-            if(second.getY() - first.getY() == 1){
+        if(yDif > 0){
+            if(xDif < 0)
+                return Oriention.UpRight;
+            if(xDif == 0)
                 return Oriention.Right;
-            }
-            if(second.getY() - first.getY() == -1){
-                return Oriention.Left;
-            }
+            if(xDif > 0)
+                return Oriention.DownRight;
         }
-        if(xDif == 1 && yDif == 1)
-            return Oriention.DownRight;
-        if(xDif == 1 && yDif == -1)
-            return Oriention.DownLeft;
-        if(xDif == -1 && yDif == 1)
-            return Oriention.UpRight;
-        if(xDif == -1 && yDif == -1)
-            return Oriention.UpLeft;
+        else if(yDif == 0){
+            if(xDif < 0)
+                return Oriention.Up;
+            if(xDif == 0) {
+                System.out.println("buggggggggg");
+                return this.oriention;
+            }
+            if(xDif > 0)
+                return Oriention.Down;
+        }
+        else{
+            if(xDif < 0)
+                return Oriention.UpLeft;
+            if(xDif == 0)
+                return Oriention.Left;
+            if(xDif > 0)
+                return Oriention.DownLeft;
+        }
+        System.out.println("Coldn't because " + xDif +"  " + yDif);
         return null;
     }
     public void pathSolver(Path path){
         while(!path.ReachedthePath()){
 
         }
+    }
+
+
+
+    @Override
+    public void processEvent(com.poorgroupproject.thrumania.events.Event event) {
+        if(event instanceof GoThePlaceEvent){
+            GoThePlaceEvent gt = (GoThePlaceEvent) event;
+            PathFinder pf = new PathFinder(Land.getInstance().getCells(),this.getLocationOnMatrix().getX(),this.getLocationOnMatrix().getY(),gt.targetX,gt.targetY,new Citizen(0,0,Oriention.Down),100,100);
+            PathfindingRunnable pfr = new PathfindingRunnable(pf);
+            (new Thread(pfr)).start();
+            currentPath = pfr.path;
+            currentTask = CurrentTask.Moving;
+            oriention = DefineOreintion(this.getLocationOnMatrix(),currentPath.getNextMove());
+            stepWise = 0;
+            this.setCurrentImage(null);
+        }
+    }
+
+}
+class PathfindingRunnable implements Runnable{
+    PathFinder pf;
+    Path path;
+    public PathfindingRunnable(PathFinder pf) {
+        this.pf = pf;
+    }
+
+    @Override
+    public void run() {
+        path = pf.pathFinder();
     }
 }
