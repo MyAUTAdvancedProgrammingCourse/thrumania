@@ -104,6 +104,7 @@ public class Citizen extends Human {
             }
             else {
                 currentPath = null;
+                stepWise = 0;
             }
         }
     }
@@ -203,6 +204,7 @@ public class Citizen extends Human {
                         this.setCurrentImage(rightNow());
                         stepWise = 0;
                         System.out.println(stepWise);
+
 //                        if(currentPath.ReachedthePath())
 //                            currentTask = CurrentTask.StandingDoinfNothing;
                     }
@@ -251,6 +253,21 @@ public class Citizen extends Human {
                         this.setCurrentImage(rightNow());
                         stepWise = 0;
                         System.out.println(stepWise);
+                        PathFinder pf = new PathFinder(Land.getInstance().getCells(),this.getLocationOnMatrix().getX(),this.getLocationOnMatrix().getY(),AttackingTo.getLocationOnMatrix().getX(),AttackingTo.getLocationOnMatrix().getY(),new Citizen(0,0,Oriention.Down),
+                                Land.getInstance().getRows(),Land.getInstance().getCols());
+                        PathfindingRunnable pfr = new PathfindingRunnable(pf);
+                        //  (new Thread(pfr)).start();
+                        currentPath = pf.pathFinder();
+                        currentPath.path.remove(0);
+                        if(currentPath != null && currentPath.path.size() != 0) {
+                            this.Updateoriention();
+                            stepWise = 0;
+                            this.setCurrentImage(rightNow());
+                        }
+                        else {
+                            currentPath = null;
+                            stepWise = 0;
+                        }
 //                        if(currentPath.ReachedthePath())
 //                            currentTask = CurrentTask.StandingDoinfNothing;
                     }
