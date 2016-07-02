@@ -14,48 +14,41 @@ import java.io.IOException;
  * @author amin
  * @version 1.0.0
  */
-public class Farm extends Place {
+public class Tree extends Place {
 
-    private Image[] farmImage;
-    private int farmAvailabeFood;
+    private int treeAvailabeWood;
+    private Image[] treeImage;
+    private int toughness;
 
-    /**
-     * Constructor
-     * @param x
-     * @param y
-     */
-    public Farm(int x, int y) {
+    public Tree(int x, int y) {
         super(x, y);
-        loadResoure();
-        farmAvailabeFood = 8000;
+        treeAvailabeWood = 10000;
+        toughness = 100;
     }
 
-    /**
-     * loading images of farms that first element of array is incompleted farm and the last one is completed farm.
-     */
     @Override
     public void loadResoure() {
-        farmImage = new Image[4];
+        treeImage = new Image[4];
         try {
-            farmImage[0]= ImageIO.read(new File(ResourcePath.itemImagePath +"farm\\farm_1.png"));
-            farmImage[1]= ImageIO.read(new File(ResourcePath.itemImagePath+"farm\\farm_2.png"));
-            farmImage[2]= ImageIO.read(new File(ResourcePath.itemImagePath+"farm\\farm_3.png"));
+            treeImage[0] = ImageIO.read(new File(ResourcePath.itemImagePath + "tree\tree_1.png"));
+            treeImage[1] = ImageIO.read(new File(ResourcePath.itemImagePath + "tree\tree_2.png"));
+            treeImage[2] = ImageIO.read(new File(ResourcePath.itemImagePath + "tree\tree_3.png"));
+            treeImage[3] = ImageIO.read(new File(ResourcePath.itemImagePath + "tree\tree_4.png"));
         } catch (IOException e) {
             System.err.println("FILE NOT FOUND");
             e.printStackTrace();
         }
+
+
     }
 
+
     @Override
-    public void processEvent(com.poorgroupproject.thrumania.events.Event event) {
+    public void processEvent(Event event) {
         if (event instanceof ConstructPlaceEvent && getToughness() <= 100) contruct();
         else if(event instanceof DestroyPlaceEvent && getToughness() >= 0) destroy();
     }
 
-    @Override
-    public void tik() {
-
-    }
 
     /**
      * For each sent image, increase the toughness mount.
@@ -74,20 +67,14 @@ public class Farm extends Place {
     }
 
     /**
-     * Choose image for farm for each amount of toughness.
+     * Choose image for tree for each amount of toughness.
      * @param toughness the amount of toughness that range is 0 to 100.
      */
-    private void imageChooser(int toughness){
-        if(toughness < 33) setCurrentImage(farmImage[0]);
-        else if (toughness > 33 && toughness < 66) {
-            setCurrentImage(farmImage[1]);
-        }
-        else if (toughness > 66 && toughness < 99) {
-            setCurrentImage(farmImage[2]);
-        }
-        else
-            setCurrentImage(farmImage[3]);
+    public void imageChooser(int toughness){
+        if(toughness < 33) setCurrentImage(treeImage[0]);
+        else if(toughness > 33 && toughness < 66) setCurrentImage(treeImage[1]);
+        else if(toughness > 66 && toughness < 99) setCurrentImage(treeImage[2]);
+        else setCurrentImage(treeImage[3]);
     }
-
 
 }

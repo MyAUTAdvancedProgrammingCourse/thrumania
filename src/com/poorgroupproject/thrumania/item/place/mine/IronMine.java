@@ -25,7 +25,7 @@ public class IronMine extends Mine {
      */
     public IronMine(int x, int y) {
         super(x, y);
-        ironMineImages = new Image[4];
+        loadResoure();
         ironMineAvailabeIron = 20000;
         toughness = 100;
     }
@@ -35,6 +35,7 @@ public class IronMine extends Mine {
      */
     @Override
     public void loadResoure() {
+        ironMineImages = new Image[4];
         try {
             ironMineImages[0]= ImageIO.read(new File(ResourcePath.itemImagePath + "mine\\ironMine\\ironMine_1.png"));
             ironMineImages[1]= ImageIO.read(new File(ResourcePath.itemImagePath + "mine\\ironMine\\ironMine_2.png"));
