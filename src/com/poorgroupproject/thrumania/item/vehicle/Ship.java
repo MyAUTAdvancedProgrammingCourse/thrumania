@@ -93,7 +93,7 @@ public abstract class Ship extends GameObject {
         System.out.println("path size   " + currentPath.path.size());
         if(currentPath.path.size()== 0){
             this.currentTask = CurrentTask.StandingDoinfNothing;
-            this.setCurrentImage(rightNow());
+//            this.setCurrentImage(rightNow());
             currentPath = null;
         }
         else
