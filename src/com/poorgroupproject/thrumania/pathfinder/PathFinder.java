@@ -50,10 +50,18 @@ public class PathFinder implements MatrixMap{
   //      System.out.print(Map[0][0] == null);
         if (isValidTile(x,y)){
 //            if (g instanceof Ship) {
+            if(mover instanceof Human) {
                 if (Map[x][y].cellType == Cell.WATER) {
                     return true;
                 }
                 return false;
+            }
+            else{
+                if (Map[x][y].cellType == Cell.WATER) {
+                    return false;
+                }
+                return false;
+            }
 //            } else {
 //                if (Map[x][y].cellType == Cell.WATER || Map[x][y].cellType == Cell.TREE)
 //                    return true;

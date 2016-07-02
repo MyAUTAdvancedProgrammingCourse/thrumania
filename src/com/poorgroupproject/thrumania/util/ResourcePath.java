@@ -7,5 +7,5 @@ package com.poorgroupproject.thrumania.util;
 public class ResourcePath {
     public static String imagePath = "resource/image";
     public static String itemImagePath = imagePath + "/item/";
-
+    public static String fishingShipPath = itemImagePath + "ship/";
 }

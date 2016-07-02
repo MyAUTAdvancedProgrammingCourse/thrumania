@@ -23,7 +23,7 @@ import java.util.ArrayList;
  * @version 1.0.0
  */
 public class FishingShip extends Ship  {
-
+    Image [] images;
     Port port;
     int peopleNum;
     final int peopleCapacity=1200;
@@ -35,12 +35,14 @@ public class FishingShip extends Ship  {
 
 
 
-    public FishingShip(int x, int y) {
+    public FishingShip(int x, int y,Oriention o) {
         super(x, y, 256, 256);
         //this.port=port;
         fisherMan =new Human[7];
-        setCurrentImage(fishingShip);
         shipSpeed = 6;
+        this.oriention = o;
+        this.currentTask = CurrentTask.StandingDoinfNothing;
+        this.setCurrentImage(rightNow());
     }
 
 
@@ -63,27 +65,55 @@ public class FishingShip extends Ship  {
         }
     }
 
-    @Override
-    public void loadResoure() {
-        try {
-            fishingShip = ImageIO.read(new File(ResourcePath.fishingFishPath));
-        } catch (IOException e) {
-            e.printStackTrace();
+    public Image rightNow() {
+        /////////
+        switch(oriention){
+            case Up:
+                return images[0];
+            case UpRight:
+                return images[1];
+            case Right:
+                return images[2];
+            case DownRight:
+                return images[3];
+            case Down:
+                return images[4];
+            case DownLeft:
+                return images[5];
+            case Left:
+                return images[6];
+            case UpLeft:
+                return images[7];
         }
+        return null;
 
+    }
+
+        @Override
+    public void loadResoure() {
+        images = new Image[8];
+        images[0] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "ship/u.png");
+        images[1] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "ship/ur.png");
+        images[2] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "ship/r.png");
+        images[3] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "ship/dr.png");
+        images[4] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "ship/d.png");
+        images[5] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "ship/dl.png");
+        images[6] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "ship/l.png");
+        images[7] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "ship/ul.png");
     }
 
     @Override
     public void processEvent(Event event) {
         if(event instanceof GoThePlaceEvent){
          //   AttackingTo = null;
-            System.out.println("hereeeeeeeeeee");
             GoThePlaceEvent gt = (GoThePlaceEvent) event;
-            PathFinder pf = new PathFinder(Land.getInstance().getCells(),this.getLocationOnMatrix().getX(),this.getLocationOnMatrix().getY(),gt.targetX,gt.targetY,new Citizen(0,0,Oriention.Down),
+            PathFinder pf = new PathFinder(Land.getInstance().getCells(),this.getLocationOnMatrix().getX(),
+                    this.getLocationOnMatrix().getY(),gt.targetX,gt.targetY,this,
                     Land.getInstance().getRows(),Land.getInstance().getCols());
-           // PathfindingRunnable pfr = new PathfindingRunnable(pf);
+            // PathfindingRunnable pfr = new PathfindingRunnable(pf);
             //  (new Thread(pfr)).start();
             currentPath = pf.pathFinder();
+            System.out.print(currentPath.path.size());
             if(currentPath != null) {
                 for (Pair p : currentPath.path)
                     System.out.println(p.getX() + "   " + p.getY());
@@ -95,7 +125,7 @@ public class FishingShip extends Ship  {
                     System.out.println(p.getX() + "   " + p.getY());
                 this.Updateoriention();
                 stepWise = 0;
-//                this.setCurrentImage(rightNow());
+               this.setCurrentImage(rightNow());
             }
         }
 
@@ -144,7 +174,7 @@ public class FishingShip extends Ship  {
                 if (stepWise >= 120) {
                     System.out.println(currentPath.path.size());
                     this.Updateoriention();
-//                    this.setCurrentImage(rightNow());
+                   this.setCurrentImage(rightNow());
                     stepWise = 0;
                     System.out.println(stepWise);
 
