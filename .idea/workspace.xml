@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="027286b7-9283-4dfe-8cd1-b3c7ef3fd4b3" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/DefineCastlePlace/test.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/vehicle/FishingShip.java" afterPath="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/vehicle/FishingShip.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/vehicle/Ship.java" afterPath="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/vehicle/Ship.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/vehicle/TransportShip.java" afterPath="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/vehicle/TransportShip.java" />
     </list>
     <ignored path="Thrumania.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -94,8 +90,8 @@
       <file leaf-file-name="TransportShip.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/vehicle/TransportShip.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="506">
-              <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
+            <state relative-caret-position="535">
+              <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -104,8 +100,8 @@
       <file leaf-file-name="Ship.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/vehicle/Ship.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="491">
-              <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+            <state relative-caret-position="359">
+              <caret line="95" column="24" selection-start-line="95" selection-start-column="24" selection-end-line="95" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -114,8 +110,8 @@
       <file leaf-file-name="FishingShip.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/vehicle/FishingShip.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="40" column="22" selection-start-line="40" selection-start-column="22" selection-end-line="40" selection-end-column="22" />
+            <state relative-caret-position="535">
+              <caret line="88" column="0" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -754,7 +750,14 @@
       <option name="project" value="LOCAL" />
       <updated>1467426271961</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Fixing the human movement bug">
+      <created>1467454667905</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1467454667905</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1229,22 +1232,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/vehicle/TransportShip.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/vehicle/FishingShip.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="40" column="22" selection-start-line="40" selection-start-column="22" selection-end-line="40" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/human/Human.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="44">
@@ -1253,10 +1240,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/vehicle/TransportShip.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="535">
+          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/vehicle/FishingShip.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="535">
+          <caret line="88" column="0" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/vehicle/Ship.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="491">
-          <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+        <state relative-caret-position="359">
+          <caret line="95" column="24" selection-start-line="95" selection-start-column="24" selection-end-line="95" selection-end-column="24" />
           <folding />
         </state>
       </provider>
