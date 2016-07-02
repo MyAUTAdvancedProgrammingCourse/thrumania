@@ -2,6 +2,8 @@ package com.poorgroupproject.thrumania.item.human;
 
 import com.poorgroupproject.thrumania.events.Event;
 
+import java.awt.*;
+
 /**
  * @author saman
  * @version  1.0.0
@@ -9,6 +11,11 @@ import com.poorgroupproject.thrumania.events.Event;
 public class FisherMan extends Human {
     public FisherMan(int x, int y){
         super(x,y);
+    }
+
+    @Override
+    public Image rightNow() {
+        return null;
     }
 
     @Override
@@ -23,6 +30,11 @@ public class FisherMan extends Human {
 
     @Override
     public void processEvent(Event event) {
+
+    }
+
+    @Override
+    public void tik() {
 
     }
 }

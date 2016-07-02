@@ -9,6 +9,7 @@ import com.poorgroupproject.thrumania.events.GoTargetEvent;
  */
 public class TransportShip  extends Ship {
     int targetX,targetY;
+
     public TransportShip(int x, int y) {
         super(x, y, 256, 256);
         (new Thread(new Runnable() {
@@ -21,6 +22,7 @@ public class TransportShip  extends Ship {
 
             }
         })).start();
+        shipSpeed = 4;
     }
 
 
@@ -35,5 +37,10 @@ public class TransportShip  extends Ship {
             targetX=getX();
             targetY=getY();
         }
+    }
+
+    @Override
+    public void tik() {
+
     }
 }

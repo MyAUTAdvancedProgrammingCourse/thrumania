@@ -3,6 +3,10 @@ package com.poorgroupproject.thrumania.item.human;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static com.poorgroupproject.thrumania.pathfinder.Cell.GOLD_MINE;
+import static com.poorgroupproject.thrumania.pathfinder.Cell.IRON_MINE;
+import static com.poorgroupproject.thrumania.pathfinder.Cell.TREE;
+
 /**
  * Created by Saman A.Mirhoseini on 25/06/2016.
  */
@@ -17,19 +21,19 @@ public class ResourceCollocting extends TimerTask {
 
     @Override
     public void run() {
-        switch (citizen.CurrentCell){
-            case GOLD_MINE:
-                citizen.Capacity += 5;
-                citizen.amount_of_gold += 5;
-                break;
-            case IRON_MINE:
-                citizen.Capacity += 4;
-                citizen.amount_of_iron += 4;
-                break;
-            case TREE:
-                citizen.Capacity += 3;
-                citizen.amount_of_wood += 3;
-                break;
-        }
+//        switch (citizen.CurrentCell){
+//            case GOLD_MINE:
+//                citizen.Capacity += 5;
+//                citizen.amount_of_gold += 5;
+//                break;
+//            case IRON_MINE:
+//                citizen.Capacity += 4;
+//                citizen.amount_of_iron += 4;
+//                break;
+//            case TREE:
+//                citizen.Capacity += 3;
+//                citizen.amount_of_wood += 3;
+//                break;
+//        }
     }
 }

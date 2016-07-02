@@ -75,6 +75,11 @@ public class Palace extends Place{
 
     }
 
+    @Override
+    public void tik() {
+
+    }
+
     private void makeHuman(){
 
     }
