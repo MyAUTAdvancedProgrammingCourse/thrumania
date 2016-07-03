@@ -28,6 +28,7 @@ public class Farm extends Place {
         super(x, y);
         loadResoure();
         farmAvailabeFood = 8000;
+        setToughness(0);
     }
 
     /**
@@ -48,7 +49,7 @@ public class Farm extends Place {
 
     @Override
     public void processEvent(com.poorgroupproject.thrumania.events.Event event) {
-        if (event instanceof ConstructPlaceEvent && getToughness() <= 100) contruct();
+        if (event instanceof ConstructPlaceEvent && getToughness() <= 40) contruct();
         else if(event instanceof DestroyPlaceEvent && getToughness() >= 0) destroy();
     }
 
@@ -74,19 +75,14 @@ public class Farm extends Place {
     }
 
     /**
-     * Choose image for farm for each amount of toughness.
+     * Choose image for Farm for each amount of toughness.
      * @param toughness the amount of toughness that range is 0 to 100.
      */
     private void imageChooser(int toughness){
-        if(toughness < 33) setCurrentImage(farmImage[0]);
-        else if (toughness > 33 && toughness < 66) {
-            setCurrentImage(farmImage[1]);
-        }
-        else if (toughness > 66 && toughness < 99) {
-            setCurrentImage(farmImage[2]);
-        }
-        else
-            setCurrentImage(farmImage[3]);
+        if(toughness < 13) setCurrentImage(farmImage[0]);
+        else if (toughness > 13 && toughness < 26) setCurrentImage(farmImage[1]);
+        else if (toughness > 26 && toughness < 39) setCurrentImage(farmImage[2]);
+        else setCurrentImage(farmImage[3]);
     }
 
 
