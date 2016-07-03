@@ -61,11 +61,15 @@ public class Citizen extends Human {
         System.out.println("here");
         if(event instanceof CitizenAttackEvent){
             this.life -= 20;
-            if(life < 0){
+            if(life <= 0){
+                System.out.println(this.toString() + "   " + "dead");
             }
         }
         else if(event instanceof  SoldierAttackEvent){
             this.life -= 70;
+            if(life <= 0){
+                System.out.println(this.toString() + "   " + "dead");
+            }
         }
         else if(event instanceof GoThePlaceEvent){
             AttackingTo = null;
@@ -95,6 +99,29 @@ public class Citizen extends Human {
             currentTask = CurrentTask.AttackingToAHuman;
             AttackingTo = ga.target;
             PathFinder pf = new PathFinder(Land.getInstance().getCells(),this.getLocationOnMatrix().getX(),this.getLocationOnMatrix().getY(),AttackingTo.getLocationOnMatrix().getX(),AttackingTo.getLocationOnMatrix().getY(),new Citizen(0,0,Oriention.Down),
+                    Land.getInstance().getRows(),Land.getInstance().getCols());
+            PathfindingRunnable pfr = new PathfindingRunnable(pf);
+            //  (new Thread(pfr)).start();
+            currentPath = pf.pathFinder();
+            currentPath.path.remove(0);
+            if(currentPath != null && currentPath.path.size() != 0) {
+                this.Updateoriention();
+                stepWise = 0;
+                this.setCurrentImage(rightNow());
+            }
+            else {
+                currentPath = null;
+                stepWise = 0;
+            }
+        }
+        else if(event instanceof GoandBuildAPlace){
+            GoandBuildAPlace ga = (GoandBuildAPlace) event;
+            currentTask = CurrentTask.BuildingABarrack;
+            PathFinder pf = new PathFinder(Land.getInstance().getCells(),
+                    this.getLocationOnMatrix().getX(),
+                    this.getLocationOnMatrix().getY(),
+                    ga.target.getX(),ga.target.getY(),
+                    new Citizen(0,0,Oriention.Down),
                     Land.getInstance().getRows(),Land.getInstance().getCols());
             PathfindingRunnable pfr = new PathfindingRunnable(pf);
             //  (new Thread(pfr)).start();
@@ -291,6 +318,54 @@ public class Citizen extends Human {
                 }
                 break;
             case AttackingToABuilding:
+                break;
+            case BuildingABarrack:
+                if(currentPath != null) {
+                    switch (oriention) {
+                        case Up:
+                            moveUp();
+                            stepWise += getSpeed();
+                            break;
+                        case UpRight:
+                            moveUpRight();
+                            stepWise += getSpeed();
+                            break;
+                        case Right:
+                            moveRight();
+                            stepWise += getSpeed();
+                            break;
+                        case DownRight:
+                            moveDownRight();
+                            stepWise += getSpeed();
+                            break;
+                        case Down:
+                            moveDown();
+                            stepWise += getSpeed();
+                            break;
+                        case DownLeft:
+                            moveDownLeft();
+                            stepWise += getSpeed();
+                            break;
+                        case Left:
+                            moveLeft();
+                            stepWise += getSpeed();
+                            break;
+                        case UpLeft:
+                            moveUpLeft();
+                            stepWise += getSpeed();
+                            break;
+                    }
+
+                    if (stepWise >= 120) {
+                        System.out.println(currentPath.path.size());
+                        this.Updateoriention();
+                        this.setCurrentImage(rightNow());
+                        stepWise = 0;
+                        System.out.println(stepWise);
+//                        if(currentPath.ReachedthePath())
+//                            currentTask = CurrentTask.StandingDoinfNothing;
+                    }
+                }
                 break;
         }
     }

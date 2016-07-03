@@ -7,7 +7,7 @@ import com.poorgroupproject.thrumania.item.place.Place;
  * @author amin
  * @version 1.0.0
  */
-class Mine extends Place {
+public class Mine extends Place {
 
     /**
      * Constructor
