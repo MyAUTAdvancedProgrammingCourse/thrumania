@@ -37,10 +37,13 @@ public class GamePanel extends GameEngine {
     private Point deltaMousePointerPositionToPanelForDraging;
     private Rectangle mousePosition;
 
+    private GameObjectMenuPanel gameObjectMenuPanel;
 
     private ThreadTicker ticker;
     public GamePanel(int width, int height){
         initialize(width,height);
+
+        gameObjectMenuPanel = null;
         gameObjects = new ArrayList<>();
         selectedObject = new ArrayList<>();
 
@@ -95,6 +98,14 @@ public class GamePanel extends GameEngine {
             public void keyPressed(KeyEvent keyEvent) {
                 if (keyEvent.getKeyCode() == KeyEvent.VK_ESCAPE)
                     System.exit(0);
+
+                if (keyEvent.getKeyCode() == KeyEvent.VK_J){
+                    ArrayList<String> ch = new ArrayList<String>();
+                    ch.add("CH 1");
+                    ch.add("CH 2");
+                    ch.add("CH 3");
+                    gameObjectMenuPanel = new GameObjectMenuPanel(ch);
+                }
             }
 
             @Override
@@ -125,15 +136,20 @@ public class GamePanel extends GameEngine {
         addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
-                Rectangle r = new Rectangle();
-                r.setLocation(mouseEvent.getLocationOnScreen());
-                r.setSize(new Dimension(1,1));
-                for (GameObject go :
-                        selectedObject) {
-                    go.processEvent(new GoThePlaceEvent(null,GameObject.getLocationOnMatrix(mouseEvent.getX(), mouseEvent.getY())));
+                if (mouseEvent.getButton() == 1) {
+                    Rectangle r = new Rectangle();
+                    r.setLocation(mouseEvent.getLocationOnScreen());
+                    r.setSize(new Dimension(1, 1));
+                    for (GameObject go :
+                            selectedObject) {
+                        go.processEvent(new GoThePlaceEvent(null, GameObject.getLocationOnMatrix(mouseEvent.getX(), mouseEvent.getY())));
+                    }
+
+                    selectedObject = new ArrayList<GameObject>();
+                }else if (mouseEvent.getButton() == 3){
+
                 }
 
-                selectedObject = new ArrayList<GameObject>();
             }
 
             @Override
@@ -191,5 +207,16 @@ public class GamePanel extends GameEngine {
         drawOnFrame(playerPanel.getView(),playerPanel.getBoundry());
         drawOnFrame(miniMapPanel.getView(),miniMapPanel.getBoundry());
         drawRectOnFrame(mouseRectangleSelector);
+        if (gameObjectMenuPanel != null){
+            drawOnFrame(gameObjectMenuPanel.getView(),gameObjectMenuPanel.getBoundry());
+        }
+    }
+
+    public ArrayList<GameObject> getGameObjects(){
+        return gameObjects;
+    }
+
+    public void setGameObjects(ArrayList<GameObject> gameObjects){
+        this.gameObjects = gameObjects;
     }
 }
