@@ -63,7 +63,7 @@ public class Palace extends Place{
     public void loadResoure() {
         palaceImages = new Image[3];
         try {
-            palaceImages[0] = ImageIO.read(new File(ResourcePath.itemImagePath + "palace/palace_1.png"));
+            palaceImages[0] = ImageIO.read(new File(ResourcePath.itemImagePath + "palace/palace_3.png"));
         } catch (IOException e) {
             System.err.println("FILE NOT FOUND");
             e.printStackTrace();
