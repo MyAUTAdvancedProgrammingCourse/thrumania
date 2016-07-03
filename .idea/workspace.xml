@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="027286b7-9283-4dfe-8cd1-b3c7ef3fd4b3" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/events/GoandBuildAPlace.java" afterPath="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/events/GoandBuildAPlace.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/human/Citizen.java" afterPath="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/human/Citizen.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/human/Human.java" afterPath="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/human/Human.java" />
     </list>
     <ignored path="Thrumania.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -926,7 +923,14 @@
       <option name="project" value="LOCAL" />
       <updated>1467544129390</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Human">
+      <created>1467546570149</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1467546570149</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1021,9 +1025,9 @@
     <MESSAGE value="Trasnport ship" />
     <MESSAGE value="Adding human standing images" />
     <MESSAGE value="Ships" />
-    <MESSAGE value="Human" />
     <MESSAGE value="Player class" />
-    <option name="LAST_COMMIT_MESSAGE" value="Player class" />
+    <MESSAGE value="Human" />
+    <option name="LAST_COMMIT_MESSAGE" value="Human" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
