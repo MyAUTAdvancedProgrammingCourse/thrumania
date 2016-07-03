@@ -34,7 +34,7 @@ public class GamePanel extends GameEngine {
     private ArrayList<GameObject> selectedObject;
     private enum MousePointerMode{NONE, PLAYER_PANEL_DRAGGING, MINIMAP_PANEL_DRAGGING}
 
-    private enum MousePointerClickMode{NONE,ATTACK}
+    private enum MousePointerClickMode{NONE,ATTACK,BUILD_FARM}
 
     private MousePointerClickMode mousePointerClickMode;
     private MousePointerMode mousePointerMode;
