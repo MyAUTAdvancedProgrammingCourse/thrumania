@@ -18,7 +18,6 @@ import java.util.*;
 public class Port extends Place {
 
     private Image[] portImages;
-    private int toughness; // the toughness of place and the range is 0 to 100
     private Queue<Human> humanQueue;
 
     /**
@@ -30,7 +29,6 @@ public class Port extends Place {
         super(x, y);
         loadResoure();
         humanQueue = new LinkedList<>();
-
     }
 
     /**
@@ -72,7 +70,7 @@ public class Port extends Place {
 
     @Override
     public void processEvent(Event event) {
-        if (event instanceof ConstructPlaceEvent && getToughness() <= 100) contruct();
+        if (event instanceof ConstructPlaceEvent && getToughness() <= 60) contruct();
         else if(event instanceof DestroyPlaceEvent && getToughness() >= 0) destroy();
     }
 
@@ -102,10 +100,10 @@ public class Port extends Place {
      * @param toughness the amount of toughness that range is 0 to 100.
      */
     public void imageChooser(int toughness){
-        if(toughness < 33) setCurrentImage(portImages[0]);
-        else if(toughness > 33 && toughness < 66) setCurrentImage(portImages[1]);
-        else if(toughness > 66 && toughness < 99) setCurrentImage(portImages[2]);
-        else{ setCurrentImage(portImages[3]);}
+        if(toughness < 20) setCurrentImage(portImages[0]);
+        else if(toughness >= 20 && toughness < 40) setCurrentImage(portImages[1]);
+        else if(toughness >= 40 && toughness < 59) setCurrentImage(portImages[2]);
+        else setCurrentImage(portImages[3]);
     }
 
 }
