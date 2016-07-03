@@ -41,6 +41,7 @@ public class Farm extends Place {
             farmImage[0]= ImageIO.read(new File(ResourcePath.itemImagePath +"farm\\farm_1.png"));
             farmImage[1]= ImageIO.read(new File(ResourcePath.itemImagePath+"farm\\farm_2.png"));
             farmImage[2]= ImageIO.read(new File(ResourcePath.itemImagePath+"farm\\farm_3.png"));
+            farmImage[3]= ImageIO.read(new File(ResourcePath.itemImagePath+"farm\\farm_4.png"));
         } catch (IOException e) {
             System.err.println("FILE NOT FOUND");
             e.printStackTrace();
