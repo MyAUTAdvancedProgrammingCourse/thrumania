@@ -31,28 +31,14 @@ public class Palace extends Place{
     public Palace(int x, int y) {
         super(x,y);
         loadResoure();
-        availabeGold = 0;
-        availabeIron = 0;
-        availabeFood = 0;
-        availabeWood = 0;
+        availabeGold = 1000;
+        availabeIron = 1000;
+        availabeFood = 1000;
+        availabeWood = 1000;
         setCurrentImage(palaceImages[2]);
         for (int i = 0; i < 10; i++){
             //10 nafar avalie bayad dashte bashad
         }
-
-        (new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (true) {
-                    setX(getX() + 2);
-                    try {
-                        Thread.sleep(40);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        })).start();
     }
 
 
@@ -63,7 +49,7 @@ public class Palace extends Place{
     public void loadResoure() {
         palaceImages = new Image[3];
         try {
-            palaceImages[0] = ImageIO.read(new File(ResourcePath.itemImagePath + "palace/palace_1.png"));
+            palaceImages[2] = ImageIO.read(new File(ResourcePath.itemImagePath + "palace/palace_3.png"));
         } catch (IOException e) {
             System.err.println("FILE NOT FOUND");
             e.printStackTrace();
