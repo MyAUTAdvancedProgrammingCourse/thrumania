@@ -1,5 +1,6 @@
 package com.poorgroupproject.thrumania.panel;
 
+import com.poorgroupproject.thrumania.item.GameObject;
 import javafx.scene.paint.*;
 
 import java.awt.*;
@@ -18,6 +19,7 @@ public class GameObjectMenuPanel {
     private final int PANEL_CHOICE_HEIGHT = 30;
     private Rectangle boundry;
 
+    private GameObject owner;
 
     public GameObjectMenuPanel(ArrayList<String> choices, Point location){
         this.choices = choices;
@@ -38,8 +40,12 @@ public class GameObjectMenuPanel {
             graphics.fillRect(0 + 1 ,i * PANEL_CHOICE_HEIGHT + 1, PANEL_WIDTH - 1, PANEL_CHOICE_HEIGHT - 1);
             graphics.setColor(Color.WHITE);
             graphics.drawString(choices.get(i), 0, (i + 1) * PANEL_CHOICE_HEIGHT - 10);
-            System.out.println(choices.get(i));
         }
+    }
+
+    public String getItem(int j){
+        j /= PANEL_CHOICE_HEIGHT;
+        return choices.get(j);
     }
 
     public Rectangle getBoundry(){
@@ -48,6 +54,14 @@ public class GameObjectMenuPanel {
 
     public BufferedImage getView(){
         return view;
+    }
+
+    public void setOwner(GameObject gameObject){
+        this.owner = gameObject;
+    }
+
+    public GameObject getOwner(){
+        return owner;
     }
 }
 

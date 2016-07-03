@@ -2,13 +2,14 @@ package com.poorgroupproject.thrumania.panel;
 
 import com.poorgroupproject.thrumania.backgroundprocess.ThreadTicker;
 import com.poorgroupproject.thrumania.events.*;
-import com.poorgroupproject.thrumania.events.Event;
 import com.poorgroupproject.thrumania.item.GameObject;
 import com.poorgroupproject.thrumania.item.human.Citizen;
+import com.poorgroupproject.thrumania.item.human.Human;
 import com.poorgroupproject.thrumania.item.human.Oriention;
 import com.poorgroupproject.thrumania.item.place.Palace;
-import com.poorgroupproject.thrumania.item.place.Port;
+import com.poorgroupproject.thrumania.item.place.Place;
 import com.poorgroupproject.thrumania.item.vehicle.FishingShip;
+import com.poorgroupproject.thrumania.item.vehicle.Ship;
 import com.poorgroupproject.thrumania.item.vehicle.TransportShip;
 import com.poorgroupproject.thrumania.land.Land;
 import com.poorgroupproject.thrumania.util.GameConfig;
@@ -33,11 +34,16 @@ public class GamePanel extends GameEngine {
     private ArrayList<GameObject> selectedObject;
     private enum MousePointerMode{NONE, PLAYER_PANEL_DRAGGING, MINIMAP_PANEL_DRAGGING}
 
+    private enum MousePointerClickMode{NONE,ATTACK}
+
+    private MousePointerClickMode mousePointerClickMode;
     private MousePointerMode mousePointerMode;
-    private Point deltaMousePointerPositionToPanelForDraging;
+    private Point deltaMousePointerPositionToPanelForDragging;
     private Rectangle mousePosition;
 
     private GameObjectMenuPanel gameObjectMenuPanel;
+
+    private GameObject targetObject;
 
     private ThreadTicker ticker;
     public GamePanel(int width, int height){
@@ -54,6 +60,7 @@ public class GamePanel extends GameEngine {
         mousePosition = new Rectangle(0,0,1,1);
 
         mousePointerMode = MousePointerMode.NONE;
+        mousePointerClickMode = MousePointerClickMode.NONE;
 
 //        Port p = new Port(100,100);
 //        gameObjects.add(p);
@@ -100,13 +107,6 @@ public class GamePanel extends GameEngine {
                 if (keyEvent.getKeyCode() == KeyEvent.VK_ESCAPE)
                     System.exit(0);
 
-                if (keyEvent.getKeyCode() == KeyEvent.VK_J){
-                    ArrayList<String> ch = new ArrayList<String>();
-                    ch.add("CH 1");
-                    ch.add("CH 2");
-                    ch.add("CH 3");
-                    gameObjectMenuPanel = new GameObjectMenuPanel(ch);
-                }
             }
 
             @Override
@@ -121,11 +121,11 @@ public class GamePanel extends GameEngine {
                     mouseRectangleSelector.setSize(e.getX() - ((int) mouseRectangleSelector.getX()),
                             e.getY() - ((int) mouseRectangleSelector.getY()));
                 }else if (mousePointerMode == MousePointerMode.MINIMAP_PANEL_DRAGGING){
-                    miniMapPanel.setLocation(new Point(((int) (e.getX() - deltaMousePointerPositionToPanelForDraging.getX())),
-                            ((int) (e.getY() - deltaMousePointerPositionToPanelForDraging.getY()))));
+                    miniMapPanel.setLocation(new Point(((int) (e.getX() - deltaMousePointerPositionToPanelForDragging.getX())),
+                            ((int) (e.getY() - deltaMousePointerPositionToPanelForDragging.getY()))));
                 }else if(mousePointerMode == MousePointerMode.PLAYER_PANEL_DRAGGING){
-                    playerPanel.setLocation(new Point(((int) (e.getX() - deltaMousePointerPositionToPanelForDraging.getX())),
-                            ((int) (e.getY() - deltaMousePointerPositionToPanelForDraging.getY()))));
+                    playerPanel.setLocation(new Point(((int) (e.getX() - deltaMousePointerPositionToPanelForDragging.getX())),
+                            ((int) (e.getY() - deltaMousePointerPositionToPanelForDragging.getY()))));
                 }
             }
 
@@ -137,18 +137,69 @@ public class GamePanel extends GameEngine {
         addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
+                Rectangle r = new Rectangle(mouseEvent.getLocationOnScreen(),new Dimension(1, 1));
                 if (mouseEvent.getButton() == 1) {
-                    Rectangle r = new Rectangle();
-                    r.setLocation(mouseEvent.getLocationOnScreen());
-                    r.setSize(new Dimension(1, 1));
-                    for (GameObject go :
-                            selectedObject) {
-                        go.processEvent(new GoThePlaceEvent(null, GameObject.getLocationOnMatrix(mouseEvent.getX(), mouseEvent.getY())));
+                    if (gameObjectMenuPanel != null){
+                        if (gameObjectMenuPanel.getBoundry().intersects(r)){
+                            int j = ((int) (mouseEvent.getY() - gameObjectMenuPanel.getBoundry().getY()));
+                            String choice = gameObjectMenuPanel.getItem(j);
+                            switch (choice){
+                                case "Human - Attack":
+                                    targetObject = gameObjectMenuPanel.getOwner();
+                                    mousePointerClickMode = MousePointerClickMode.ATTACK;
+                                    break;
+                                case "Human - Build Barrack":
+                                    break;
+
+
+                            }
+                            gameObjectMenuPanel = null;
+                        }else {
+                            int size = gameObjects.size();
+                            for (int i = 0; i < size; i++) {
+                                GameObject g = gameObjects.get(i);
+                                if (g.getBoundry().intersects(r)) {
+                                    switch (mousePointerClickMode) {
+                                        case ATTACK:
+                                            if (g instanceof Human) {
+                                                targetObject.processEvent(new GoAndAttack(null, (Human) g));
+                                            }
+                                            break;
+
+                                    }
+                                }
+                            }
+                            gameObjectMenuPanel = null;
+                        }
+                    }else {
+                        for (GameObject go :
+                                selectedObject) {
+                            go.processEvent(new GoThePlaceEvent(null, GameObject.getLocationOnMatrix(mouseEvent.getX(), mouseEvent.getY())));
+                        }
+
+                        selectedObject = new ArrayList<GameObject>();
                     }
-
-                    selectedObject = new ArrayList<GameObject>();
                 }else if (mouseEvent.getButton() == 3){
+                    int size = gameObjects.size();
+                    for (int i = 0; i < size; i++) {
+                        GameObject g = gameObjects.get(i);
+                        if (g.getBoundry().intersects(r)) {
+                            ArrayList<String> menuChoices = new ArrayList<String>();
+                            if (g instanceof Human) {
+                                menuChoices.add("Human - Attack");
+                                menuChoices.add("Human - Build Barrack");
+                                menuChoices.add("Human - Build Port");
+                                menuChoices.add("Human - Build Farm");
+                                gameObjectMenuPanel = new GameObjectMenuPanel(menuChoices,mouseEvent.getLocationOnScreen());
+                                gameObjectMenuPanel.setOwner(g);
+                            }else if (g instanceof Place){
 
+                            }else if (g instanceof Ship){
+
+                            }
+                            break;
+                        }
+                    }
                 }
 
             }
@@ -157,11 +208,11 @@ public class GamePanel extends GameEngine {
             public void mousePressed(MouseEvent mouseEvent) {
                 if (mousePosition.intersects(playerPanel.getBoundry())) {
                     mousePointerMode = MousePointerMode.PLAYER_PANEL_DRAGGING;
-                    deltaMousePointerPositionToPanelForDraging = new Point(((int) (mouseEvent.getX() - playerPanel.getLocation().getX()))
+                    deltaMousePointerPositionToPanelForDragging = new Point(((int) (mouseEvent.getX() - playerPanel.getLocation().getX()))
                             , ((int) (mouseEvent.getY() - playerPanel.getLocation().getY())));
                 }else if (mousePosition.intersects(miniMapPanel.getBoundry())){
                     mousePointerMode = MousePointerMode.MINIMAP_PANEL_DRAGGING;
-                    deltaMousePointerPositionToPanelForDraging = new Point(((int) (mouseEvent.getX() - miniMapPanel.getLocation().getX()))
+                    deltaMousePointerPositionToPanelForDragging = new Point(((int) (mouseEvent.getX() - miniMapPanel.getLocation().getX()))
                             , ((int) (mouseEvent.getY() - miniMapPanel.getLocation().getY())));
                 }else if (mousePointerMode == MousePointerMode.NONE) {
                     mouseRectangleSelector.setLocation(mouseEvent.getLocationOnScreen());
@@ -181,8 +232,8 @@ public class GamePanel extends GameEngine {
                     mouseRectangleSelector.setSize(0, 0);
                 }
                 mousePointerMode = MousePointerMode.NONE;
-                if (deltaMousePointerPositionToPanelForDraging != null)
-                    deltaMousePointerPositionToPanelForDraging.setLocation(0,0);
+                if (deltaMousePointerPositionToPanelForDragging != null)
+                    deltaMousePointerPositionToPanelForDragging.setLocation(0,0);
             }
 
             @Override
