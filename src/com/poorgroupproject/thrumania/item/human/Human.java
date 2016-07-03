@@ -1,13 +1,14 @@
 package com.poorgroupproject.thrumania.item.human;
 import com.poorgroupproject.thrumania.backgroundprocess.Season;
 import com.poorgroupproject.thrumania.events.GoThePlaceEvent;
+import com.poorgroupproject.thrumania.item.place.Place;
 import com.poorgroupproject.thrumania.pathfinder.Pair;
 import com.poorgroupproject.thrumania.item.GameObject;
 import com.poorgroupproject.thrumania.land.Land;
 import com.poorgroupproject.thrumania.pathfinder.*;
 import com.poorgroupproject.thrumania.*;
 import java.awt.*;
-
+import com.poorgroupproject.thrumania.item.place.mine.*;
 /**
  * @author saman
  * @version 1.0.0
@@ -20,6 +21,8 @@ public abstract class Human extends GameObject implements Runnable,Constants{
     Oriention upcomingOriention;
     public int life;
     Pair save;
+    Place currentBuilding;
+    Mine currentMine;
     Human AttackingTo;
 //    public Land.Cell CurrentCell;
     public int Capacity;
@@ -76,7 +79,7 @@ public abstract class Human extends GameObject implements Runnable,Constants{
             this.setCurrentImage(rightNow());
             currentPath = null;
         }
-        if(currentPath.path.size()== 0){
+        if(currentPath.path.size()== 0 && currentTask != CurrentTask.Moving){
 //            this.currentTask = CurrentTask.StandingDoinfNothing;
             this.setCurrentImage(rightNow());
             currentPath = null;
