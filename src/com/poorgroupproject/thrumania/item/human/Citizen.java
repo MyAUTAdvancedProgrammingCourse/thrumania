@@ -250,7 +250,7 @@ public class Citizen extends Human {
 
                 break;
             case AttackingToAHuman:
-                if(currentPath != null) {
+                if(currentPath.path.size() != 0) {
                     switch (oriention) {
                         case Up:
                             moveUp();
@@ -291,34 +291,35 @@ public class Citizen extends Human {
                         this.Updateoriention();
                         this.setCurrentImage(rightNow());
                         stepWise = 0;
-                        System.out.println(stepWise);
-                        PathFinder pf = new PathFinder(Land.getInstance().getCells(),this.getLocationOnMatrix().getX(),this.getLocationOnMatrix().getY(),AttackingTo.getLocationOnMatrix().getX(),AttackingTo.getLocationOnMatrix().getY(),new Citizen(0,0,Oriention.Down),
-                                Land.getInstance().getRows(),Land.getInstance().getCols());
-                        PathfindingRunnable pfr = new PathfindingRunnable(pf);
-                        //  (new Thread(pfr)).start();
-                        currentPath = pf.pathFinder();
-                        currentPath.path.remove(0);
-                        if(currentPath != null && currentPath.path.size() != 0) {
-                            this.Updateoriention();
-                            stepWise = 0;
-                            this.setCurrentImage(rightNow());
-                        }
-                        else {
-                            currentPath = null;
-                            stepWise = 0;
-                        }
+//                        System.out.println(stepWise);
+//                        PathFinder pf = new PathFinder(Land.getInstance().getCells(),this.getLocationOnMatrix().getX(),this.getLocationOnMatrix().getY(),AttackingTo.getLocationOnMatrix().getX(),AttackingTo.getLocationOnMatrix().getY(),new Citizen(0,0,Oriention.Down),
+//                                Land.getInstance().getRows(),Land.getInstance().getCols());
+//                        PathfindingRunnable pfr = new PathfindingRunnable(pf);
+//                        //  (new Thread(pfr)).start();
+//                        currentPath = pf.pathFinder();
+//                        currentPath.path.remove(0);
+//                        if(currentPath != null && currentPath.path.size() != 0) {
+//                            this.Updateoriention();
+//                            stepWise = 0;
+//                            this.setCurrentImage(rightNow());
+//                        }
+//                        else {
+//                            currentPath = null;
+//                            stepWise = 0;
+//                        }
 //                        if(currentPath.ReachedthePath())
 //                            currentTask = CurrentTask.StandingDoinfNothing;
                     }
                 }
                 else{
                     (new Thread(new CAttack(this))).start();
-                    PathFinder pf = new PathFinder(Land.getInstance().getCells(),this.getLocationOnMatrix().getX(),this.getLocationOnMatrix().getY(),AttackingTo.getLocationOnMatrix().getX(),AttackingTo.getLocationOnMatrix().getY(),new Citizen(0,0,Oriention.Down),
-                            Land.getInstance().getRows(),Land.getInstance().getCols());
-                    Path pt = pf.pathFinder();
-                    if(pt.path.size() > 1){
-                        AttackingTo = null;
-                    }
+
+//                    PathFinder pf = new PathFinder(Land.getInstance().getCells(),this.getLocationOnMatrix().getX(),this.getLocationOnMatrix().getY(),AttackingTo.getLocationOnMatrix().getX(),AttackingTo.getLocationOnMatrix().getY(),new Citizen(0,0,Oriention.Down),
+//                            Land.getInstance().getRows(),Land.getInstance().getCols());
+//                    Path pt = pf.pathFinder();
+//                    if(pt.path.size() > 1){
+//                        AttackingTo = null;
+//                    }
                     ////////
                     //
                     //
@@ -401,6 +402,7 @@ class CAttack implements Runnable {
     public void run() {
         while (citizen.AttackingTo != null) {
             citizen.AttackingTo.processEvent(new CitizenAttackEvent(null, null));
+            System.out.println(citizen.AttackingTo.life);
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
