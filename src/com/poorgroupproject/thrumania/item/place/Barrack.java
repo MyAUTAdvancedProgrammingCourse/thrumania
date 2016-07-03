@@ -19,7 +19,6 @@ import java.util.ArrayList;
 public class Barrack extends Place {
 
     private Image[] barrackImages;
-    private ArrayList<Soldier> soldierArrayList;
 
     /**
      * Constructor
@@ -29,11 +28,8 @@ public class Barrack extends Place {
     public Barrack(int x, int y) {
         super(x, y);
         loadResoure();
-        soldierArrayList = new ArrayList<>();
         setToughness(0);
     }
-
-
 
     /**
      * loading images of barracks that first element of array is incompleted barrack and the last one is completed barrack.
