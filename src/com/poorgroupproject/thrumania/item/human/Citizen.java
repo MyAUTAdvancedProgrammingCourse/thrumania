@@ -366,6 +366,9 @@ public class Citizen extends Human {
 //                            currentTask = CurrentTask.StandingDoinfNothing;
                     }
                 }
+                else{
+                    //TODO complete barack building
+                }
                 break;
         }
     }
