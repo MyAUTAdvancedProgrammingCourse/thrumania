@@ -9,7 +9,7 @@ import com.poorgroupproject.thrumania.pathfinder.Pair;
  */
 public class GoandBuildAPlace extends Event{
     public Pair target;
-    Place place;
+    public Place place;
 
     public GoandBuildAPlace(GameObject sender,Pair p,Place place) {
         super(sender);

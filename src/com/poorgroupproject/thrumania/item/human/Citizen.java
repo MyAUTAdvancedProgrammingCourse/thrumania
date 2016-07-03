@@ -125,6 +125,7 @@ public class Citizen extends Human {
             currentMine = null;
             GoandBuildAPlace ga = (GoandBuildAPlace) event;
             currentTask = CurrentTask.BuildingABarrack;
+            currentBuilding = ga.place;
             PathFinder pf = new PathFinder(Land.getInstance().getCells(),
                     this.getLocationOnMatrix().getX(),
                     this.getLocationOnMatrix().getY(),
@@ -375,6 +376,9 @@ public class Citizen extends Human {
                     }
                 }
                 else{
+                    if(currentBuilding == null){
+                        //TODO here
+                    }
                     new Thread(new ConstructBuilding(this)).start();
                 }
                 break;
