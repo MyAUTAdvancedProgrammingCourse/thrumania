@@ -48,7 +48,7 @@
         <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/human/Human.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="380">
-              <caret line="81" column="75" selection-start-line="81" selection-start-column="75" selection-end-line="81" selection-end-column="75" />
+              <caret line="81" column="9" selection-start-line="81" selection-start-column="9" selection-end-line="85" selection-end-column="11" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1008,7 +1008,14 @@
       <option name="project" value="LOCAL" />
       <updated>1467541299068</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Human">
+      <created>1467542111690</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1467542111690</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1087,7 +1094,6 @@
     <MESSAGE value="Making some changes in human classes" />
     <MESSAGE value="Making a pathfider package" />
     <MESSAGE value="in human classes&#10;" />
-    <MESSAGE value="Human" />
     <MESSAGE value="new constructor" />
     <MESSAGE value="override tick method in GameObjects" />
     <MESSAGE value="adding image for ship" />
@@ -1095,7 +1101,8 @@
     <MESSAGE value="Trasnport ship" />
     <MESSAGE value="Adding human standing images" />
     <MESSAGE value="Ships" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ships" />
+    <MESSAGE value="Human" />
+    <option name="LAST_COMMIT_MESSAGE" value="Human" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1538,7 +1545,7 @@
     <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/human/Human.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="380">
-          <caret line="81" column="75" selection-start-line="81" selection-start-column="75" selection-end-line="81" selection-end-column="75" />
+          <caret line="81" column="9" selection-start-line="81" selection-start-column="9" selection-end-line="85" selection-end-column="11" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
