@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class GameObjectMenuPanel {
     private BufferedImage view;
     private ArrayList<String> choices;
-    private final int PANEL_WIDTH = 100;
+    private final int PANEL_WIDTH = 300;
     private final int PANEL_CHOICE_HEIGHT = 30;
     private Rectangle boundry;
 
@@ -30,14 +30,14 @@ public class GameObjectMenuPanel {
     }
 
     private void drawItems(Graphics graphics){
-        graphics.setFont(new Font("Arial", Font.PLAIN, 25));
+        graphics.setFont(new Font("Arial", Font.PLAIN, 15));
         for (int i = 0; i < choices.size(); i++) {
             graphics.setColor(Color.BLUE);
             graphics.drawRect(0,i * PANEL_CHOICE_HEIGHT, PANEL_WIDTH, PANEL_CHOICE_HEIGHT);
             graphics.setColor(Color.RED);
             graphics.fillRect(0 + 1 ,i * PANEL_CHOICE_HEIGHT + 1, PANEL_WIDTH - 1, PANEL_CHOICE_HEIGHT - 1);
             graphics.setColor(Color.WHITE);
-            graphics.drawString(choices.get(i), 0, i * PANEL_CHOICE_HEIGHT);
+            graphics.drawString(choices.get(i), 0, (i + 1) * PANEL_CHOICE_HEIGHT - 10);
             System.out.println(choices.get(i));
         }
     }
