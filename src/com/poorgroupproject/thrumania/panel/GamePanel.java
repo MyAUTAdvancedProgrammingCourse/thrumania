@@ -55,7 +55,7 @@ public class GamePanel extends GameEngine {
 //        gameObjects.add(p);
         gameObjects.add(new Citizen(1020,650, Oriention.Down));
         gameObjects.add(new Citizen(1000,900,Oriention.Right));
-        gameObjects.add(new FishingShip(800,900,Oriention.Down));
+        gameObjects.add(new FishingShip(730,860,Oriention.Down));
 
         ticker = new ThreadTicker(gameObjects);
         ticker.start();

@@ -1,6 +1,7 @@
 package com.poorgroupproject.thrumania.pathfinder;
 import com.poorgroupproject.thrumania.item.GameObject;
 import com.poorgroupproject.thrumania.item.human.Human;
+import com.poorgroupproject.thrumania.item.vehicle.Ship;
 import com.poorgroupproject.thrumania.land.Land;
 
 import java.lang.annotation.Target;
@@ -56,11 +57,11 @@ public class PathFinder implements MatrixMap{
                 }
                 return false;
             }
-            else{
+            else if(mover instanceof Ship){
                 if (Map[x][y].cellType == Cell.WATER) {
                     return false;
                 }
-                return false;
+                return true;
             }
 //            } else {
 //                if (Map[x][y].cellType == Cell.WATER || Map[x][y].cellType == Cell.TREE)
