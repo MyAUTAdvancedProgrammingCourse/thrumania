@@ -73,6 +73,8 @@ public class Citizen extends Human {
         }
         else if(event instanceof GoThePlaceEvent){
             AttackingTo = null;
+            currentBuilding = null;
+            currentMine = null;
             System.out.println("hereeeeeeeeeee");
             GoThePlaceEvent gt = (GoThePlaceEvent) event;
             PathFinder pf = new PathFinder(Land.getInstance().getCells(),this.getLocationOnMatrix().getX(),this.getLocationOnMatrix().getY(),gt.targetX,gt.targetY,new Citizen(0,0,Oriention.Down),
@@ -95,6 +97,9 @@ public class Citizen extends Human {
             }
         }
         else if(event instanceof  GoAndAttack){
+            AttackingTo = null;
+            currentBuilding = null;
+            currentMine = null;
             GoAndAttack ga = (GoAndAttack) event;
             currentTask = CurrentTask.AttackingToAHuman;
             AttackingTo = ga.target;
@@ -115,6 +120,9 @@ public class Citizen extends Human {
             }
         }
         else if(event instanceof GoandBuildAPlace){
+            AttackingTo = null;
+            currentBuilding = null;
+            currentMine = null;
             GoandBuildAPlace ga = (GoandBuildAPlace) event;
             currentTask = CurrentTask.BuildingABarrack;
             PathFinder pf = new PathFinder(Land.getInstance().getCells(),
@@ -367,7 +375,7 @@ public class Citizen extends Human {
                     }
                 }
                 else{
-                    //TODO complete barack building
+                    new Thread(new ConstructBuilding(this)).start();
                 }
                 break;
         }
@@ -378,7 +386,7 @@ public class Citizen extends Human {
 
     }
 }
-class CAttack implements Runnable{
+class CAttack implements Runnable {
     Citizen citizen;
 
     public CAttack(Citizen citizen) {
@@ -387,13 +395,32 @@ class CAttack implements Runnable{
 
     @Override
     public void run() {
-        while(citizen.AttackingTo != null){
-            citizen.AttackingTo.processEvent(new CitizenAttackEvent(null,null));
+        while (citizen.AttackingTo != null) {
+            citizen.AttackingTo.processEvent(new CitizenAttackEvent(null, null));
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+    }
+}
+class ConstructBuilding implements Runnable{
+    Citizen citizen;
+
+    public ConstructBuilding(Citizen citizen) {
+        this.citizen = citizen;
+    }
+
+    @Override
+    public void run() {
+        while(citizen.currentBuilding != null){
+            citizen.currentBuilding.processEvent(new ConstructPlaceEvent(citizen));
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
