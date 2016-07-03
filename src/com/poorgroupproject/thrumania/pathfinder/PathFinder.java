@@ -195,13 +195,7 @@ public class PathFinder implements MatrixMap{
 
     }
 }
-class LinkedListSorted extends LinkedList{
 
-    public void addtoListSorted(Object o){
-        this.add(o);
-        Collections.sort(this);
-    }
-}
 //if(isbloacked(this.mover,targetPlace.x,targetPlace.y))
 //        return null;
 //        Pair current;
