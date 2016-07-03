@@ -8,12 +8,10 @@ import com.poorgroupproject.thrumania.util.ResourcePath;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.awt.image.VolatileImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
-import java.util.StringTokenizer;
 import com.poorgroupproject.thrumania.pathfinder.*;
 
 /**
@@ -282,4 +280,10 @@ public class Land {
     public static Land getInstance(){
         return land;
     }
+
+
+    public void setCellAt(int i, int j,Cell cell){
+        cells[i][j] = cell;
+    }
+
 }
