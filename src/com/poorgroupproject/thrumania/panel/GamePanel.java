@@ -177,6 +177,7 @@ public class GamePanel extends GameEngine {
                                         case ATTACK:
                                             if (g instanceof Human) {
                                                 targetObject.processEvent(new GoAndAttack(null, (Human) g));
+                                                System.out.println(targetObject.getClass() +"   "+ g.getLocationOnMatrix().getX() +"  "+g.getLocationOnMatrix().getY() );
                                             }
                                             break;
 
