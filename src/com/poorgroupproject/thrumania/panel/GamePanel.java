@@ -138,7 +138,8 @@ public class GamePanel extends GameEngine {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
                 Rectangle r = new Rectangle(mouseEvent.getLocationOnScreen(),new Dimension(1, 1));
-                if (mouseEvent.getButton() == 1) {
+                if (mouseEvent.getButton() == 1) {          // Left click
+                    System.out.println("left click");
                     if (gameObjectMenuPanel != null){
                         if (gameObjectMenuPanel.getBoundry().intersects(r)){
                             int j = ((int) (mouseEvent.getY() - gameObjectMenuPanel.getBoundry().getY()));
@@ -155,6 +156,19 @@ public class GamePanel extends GameEngine {
                             }
                             gameObjectMenuPanel = null;
                         }else {
+                            gameObjectMenuPanel = null;
+                        }
+
+                    }else {
+
+                        if (mousePointerClickMode == MousePointerClickMode.NONE) {
+                            for (GameObject go :
+                                    selectedObject) {
+                                go.processEvent(new GoThePlaceEvent(null, GameObject.getLocationOnMatrix(mouseEvent.getX(), mouseEvent.getY())));
+                            }
+
+                            selectedObject = new ArrayList<GameObject>();
+                        }else if (mousePointerClickMode == MousePointerClickMode.ATTACK){
                             int size = gameObjects.size();
                             for (int i = 0; i < size; i++) {
                                 GameObject g = gameObjects.get(i);
@@ -169,17 +183,11 @@ public class GamePanel extends GameEngine {
                                     }
                                 }
                             }
-                            gameObjectMenuPanel = null;
-                        }
-                    }else {
-                        for (GameObject go :
-                                selectedObject) {
-                            go.processEvent(new GoThePlaceEvent(null, GameObject.getLocationOnMatrix(mouseEvent.getX(), mouseEvent.getY())));
                         }
 
-                        selectedObject = new ArrayList<GameObject>();
                     }
-                }else if (mouseEvent.getButton() == 3){
+
+                }else if (mouseEvent.getButton() == 3){         //      Right click
                     int size = gameObjects.size();
                     for (int i = 0; i < size; i++) {
                         GameObject g = gameObjects.get(i);
