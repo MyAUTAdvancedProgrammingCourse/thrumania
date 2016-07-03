@@ -36,7 +36,7 @@ public class FishingShip extends Ship  {
 
 
     public FishingShip(int x, int y,Oriention o) {
-        super(x, y, 256, 256);
+        super(x, y, 100,100 );
         //this.port=port;
         fisherMan =new Human[7];
         shipSpeed = 6;
