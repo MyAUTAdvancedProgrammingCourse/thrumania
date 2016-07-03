@@ -1,5 +1,6 @@
 package com.poorgroupproject.thrumania.item;
 
+import com.poorgroupproject.thrumania.Player.Player;
 import com.poorgroupproject.thrumania.land.Land;
 import com.poorgroupproject.thrumania.pathfinder.Pair;
 
@@ -16,6 +17,16 @@ import java.awt.image.BufferedImage;
 public abstract class GameObject{
     private Rectangle boundry;
     private Image currentImage;
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    Player player;
+
+    public Player getPlayer() {
+        return player;
+    }
 
     public GameObject(int x, int y, int width, int height){
         boundry = new Rectangle(x, y, width, height);
