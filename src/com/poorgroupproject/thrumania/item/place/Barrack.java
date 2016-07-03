@@ -90,11 +90,4 @@ public class Barrack extends Place {
         ms.add(new Soldier(getX(),getY()));
     }
 
-    public ArrayList<Soldier> getSoldierArrayList() {
-        return soldierArrayList;
-    }
-
-    public void setSoldierArrayList(ArrayList<Soldier> soldierArrayList) {
-        this.soldierArrayList = soldierArrayList;
-    }
 }
