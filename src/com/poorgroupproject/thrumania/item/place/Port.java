@@ -60,8 +60,9 @@ public class Port extends Place {
         portImages = new Image[3];
         try {
             portImages[0]= ImageIO.read(new File(ResourcePath.itemImagePath + "port/port_1.png"));
-            portImages[1]= ImageIO.read(new File(ResourcePath.itemImagePath+"port/port_2.png"));
-            portImages[2]= ImageIO.read(new File(ResourcePath.itemImagePath+"port/port_3.png"));
+            portImages[1]= ImageIO.read(new File(ResourcePath.itemImagePath+ "port/port_2.png"));
+            portImages[2]= ImageIO.read(new File(ResourcePath.itemImagePath+ "port/port_3.png"));
+            portImages[3]= ImageIO.read(new File(ResourcePath.itemImagePath+ "port/port_4.png"));
         } catch (IOException e) {
             System.err.println("FILE NOT FOUND");
             e.printStackTrace();
