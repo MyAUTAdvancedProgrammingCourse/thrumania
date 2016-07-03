@@ -9,6 +9,7 @@ import com.poorgroupproject.thrumania.item.human.Oriention;
 import com.poorgroupproject.thrumania.item.place.Palace;
 import com.poorgroupproject.thrumania.item.place.Port;
 import com.poorgroupproject.thrumania.item.vehicle.FishingShip;
+import com.poorgroupproject.thrumania.item.vehicle.TransportShip;
 import com.poorgroupproject.thrumania.land.Land;
 import com.poorgroupproject.thrumania.util.GameConfig;
 import com.poorgroupproject.thrumania.util.GameEngine;
@@ -56,6 +57,7 @@ public class GamePanel extends GameEngine {
         gameObjects.add(new Citizen(1020,650, Oriention.Down));
         gameObjects.add(new Citizen(1000,900,Oriention.Right));
         gameObjects.add(new FishingShip(730,860,Oriention.Down));
+        gameObjects.add(new TransportShip(610,860,Oriention.Down));
 
         ticker = new ThreadTicker(gameObjects);
         ticker.start();

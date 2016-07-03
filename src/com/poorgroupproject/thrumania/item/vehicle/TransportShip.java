@@ -4,6 +4,7 @@ import com.poorgroupproject.thrumania.events.Event;
 import com.poorgroupproject.thrumania.events.GoTargetEvent;
 import com.poorgroupproject.thrumania.events.GoThePlaceEvent;
 import com.poorgroupproject.thrumania.item.human.CurrentTask;
+import com.poorgroupproject.thrumania.item.human.Oriention;
 import com.poorgroupproject.thrumania.land.Land;
 import com.poorgroupproject.thrumania.pathfinder.Pair;
 import com.poorgroupproject.thrumania.pathfinder.PathFinder;
@@ -18,18 +19,21 @@ import java.awt.*;
 public class TransportShip  extends Ship {
     int targetX,targetY;
     Image[] images;
-    public TransportShip(int x, int y) {
-        super(x, y, 256, 256);
-        (new Thread(new Runnable() {
-            @Override
-            public void run() {
-                for(int i=0;i<20;i++){
-                    setX(getX()+1);
-                    setY(getY()+1);
-                }
-
-            }
-        })).start();
+    public TransportShip(int x, int y, Oriention o) {
+        super(x, y, 100, 100);
+        this.oriention = o;
+        this.currentTask = CurrentTask.StandingDoinfNothing;
+        this.setCurrentImage(rightNow());
+//        (new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                for(int i=0;i<20;i++){
+//                    setX(getX()+1);
+//                    setY(getY()+1);
+//                }
+//
+//            }
+//        })).start();
         shipSpeed = 4;
     }
     public Image rightNow() {

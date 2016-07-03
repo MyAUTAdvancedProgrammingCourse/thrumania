@@ -4,6 +4,7 @@ import com.poorgroupproject.thrumania.backgroundprocess.Season;
 import com.poorgroupproject.thrumania.events.*;
 import com.poorgroupproject.thrumania.events.Event;
 import com.poorgroupproject.thrumania.land.Land;
+import com.poorgroupproject.thrumania.panel.GamePanel;
 import com.poorgroupproject.thrumania.pathfinder.Pair;
 import com.poorgroupproject.thrumania.pathfinder.Path;
 import com.poorgroupproject.thrumania.pathfinder.PathFinder;
@@ -60,6 +61,8 @@ public class Citizen extends Human {
         System.out.println("here");
         if(event instanceof CitizenAttackEvent){
             this.life -= 20;
+            if(life < 0){
+            }
         }
         else if(event instanceof  SoldierAttackEvent){
             this.life -= 70;
