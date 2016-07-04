@@ -3,6 +3,7 @@ package com.poorgroupproject.thrumania.item.place;
 import com.poorgroupproject.thrumania.events.ConstructPlaceEvent;
 import com.poorgroupproject.thrumania.events.DestroyPlaceEvent;
 import com.poorgroupproject.thrumania.events.Event;
+import com.poorgroupproject.thrumania.item.human.Oriention;
 import com.poorgroupproject.thrumania.item.human.Soldier;
 import com.poorgroupproject.thrumania.util.ResourcePath;
 
@@ -91,7 +92,7 @@ public class Barrack extends Place {
     }
 
     public void makeSoldier(ArrayList<Soldier> ms){
-        ms.add(new Soldier(getX(),getY()));
+        ms.add(new Soldier(getX(),getY(), Oriention.Down));
     }
 
     public ArrayList<Soldier> getSoldierArrayList() {

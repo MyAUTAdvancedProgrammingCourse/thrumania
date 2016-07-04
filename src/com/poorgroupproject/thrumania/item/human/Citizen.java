@@ -3,6 +3,8 @@ package com.poorgroupproject.thrumania.item.human;
 import com.poorgroupproject.thrumania.backgroundprocess.Season;
 import com.poorgroupproject.thrumania.events.*;
 import com.poorgroupproject.thrumania.events.Event;
+import com.poorgroupproject.thrumania.item.GameObject;
+import com.poorgroupproject.thrumania.item.place.Barrack;
 import com.poorgroupproject.thrumania.land.Land;
 import com.poorgroupproject.thrumania.panel.GamePanel;
 import com.poorgroupproject.thrumania.pathfinder.Pair;
@@ -62,13 +64,14 @@ public class Citizen extends Human {
         if(event instanceof CitizenAttackEvent){
             this.life -= 20;
             if(life <= 0){
-                System.out.println(this.toString() + "   " + "dead");
+                this.getGamePanel().getGameObjects().remove(this);
             }
         }
         else if(event instanceof  SoldierAttackEvent){
             this.life -= 70;
             if(life <= 0){
                 System.out.println(this.toString() + "   " + "dead");
+                this.getGamePanel().getGameObjects().remove(this);
             }
         }
         else if(event instanceof GoThePlaceEvent){
@@ -77,9 +80,12 @@ public class Citizen extends Human {
             currentMine = null;
             System.out.println("hereeeeeeeeeee");
             GoThePlaceEvent gt = (GoThePlaceEvent) event;
-            PathFinder pf = new PathFinder(Land.getInstance().getCells(),this.getLocationOnMatrix().getX(),this.getLocationOnMatrix().getY(),gt.targetX,gt.targetY,new Citizen(0,0,Oriention.Down),
+            PathFinder pf = new PathFinder(Land.getInstance().getCells(),this.getLocationOnMatrix().getX(),
+                    this.getLocationOnMatrix().getY(),gt.targetX,gt.targetY,new Citizen(0,0,Oriention.Down),
                      Land.getInstance().getRows(),Land.getInstance().getCols());
             PathfindingRunnable pfr = new PathfindingRunnable(pf);
+            System.out.println("we"+this.getLocationOnMatrix().getX()+"  "+this.getLocationOnMatrix().getY());
+            System.out.println("their"+"  "+gt.targetX+"  "+gt.targetY);
           //  (new Thread(pfr)).start();
             currentPath = pf.pathFinder();
             if(currentPath != null) {
@@ -103,11 +109,22 @@ public class Citizen extends Human {
             GoAndAttack ga = (GoAndAttack) event;
             currentTask = CurrentTask.AttackingToAHuman;
             AttackingTo = ga.target;
-            PathFinder pf = new PathFinder(Land.getInstance().getCells(),this.getLocationOnMatrix().getX(),this.getLocationOnMatrix().getY(),AttackingTo.getLocationOnMatrix().getX(),AttackingTo.getLocationOnMatrix().getY(),new Citizen(0,0,Oriention.Down),
+
+            System.out.println("Attack"+AttackingTo.getLocationOnMatrix().getX() + "  " + AttackingTo.getLocationOnMatrix().getY());
+            PathFinder pf = new PathFinder(Land.getInstance().getCells(),
+                    this.getLocationOnMatrix().getX()
+                    ,this.getLocationOnMatrix().getY()
+                    ,AttackingTo.getLocationOnMatrix().getX()
+                    ,AttackingTo.getLocationOnMatrix().getY()
+                    ,new Citizen(0,0,Oriention.Down),
                     Land.getInstance().getRows(),Land.getInstance().getCols());
-            PathfindingRunnable pfr = new PathfindingRunnable(pf);
+            System.out.println("we"+this.getLocationOnMatrix().getX()+"  "+this.getLocationOnMatrix().getY());
+            System.out.println("their"+"  "+AttackingTo.getLocationOnMatrix().getX()+"  "+AttackingTo.getLocationOnMatrix().getY());
+          //  PathfindingRunnable pfr = new PathfindingRunnable(pf);
             //  (new Thread(pfr)).start();
             currentPath = pf.pathFinder();
+         //   System.out.println("Sizizizi"+currentPath.path.size());
+            if(currentPath != null)
             currentPath.path.remove(0);
             if(currentPath != null && currentPath.path.size() != 0) {
                 this.Updateoriention();
@@ -135,6 +152,7 @@ public class Citizen extends Human {
             PathfindingRunnable pfr = new PathfindingRunnable(pf);
             //  (new Thread(pfr)).start();
             currentPath = pf.pathFinder();
+            if(currentPath != null)
             currentPath.path.remove(0);
             if(currentPath != null && currentPath.path.size() != 0) {
                 this.Updateoriention();
@@ -171,6 +189,8 @@ public class Citizen extends Human {
                 }
                 break;
             case Moving:
+            case AttackingToAHuman:
+            default:
                 switch(oriention){
                     case Up:
                         return images[0];
@@ -200,8 +220,23 @@ public class Citizen extends Human {
     @Override
     public void tik() {
         switch(currentTask){
+            case StandingDoinfNothing:
+//                for(GameObject go:this.getGamePanel().getGameObjects()){
+//                    if(go instanceof Human && go != this){
+//                        if(Math.abs(go.getX() - this.getX()) + Math.abs(go.getY() - this.getY()) < 160 && ((go.getX() - this.getX()) + (go.getY() - this.getY())) != 0){
+//                            this.processEvent(new GoAndAttack(null,(Human)go));
+//                        }
+//                    }
+//                }
+                break;
             case Moving:
-
+//                for(GameObject go:this.getGamePanel().getGameObjects()){
+//                    if(go instanceof Human && go != this){
+//                        if(Math.abs(go.getX() - this.getX()) + Math.abs(go.getY() - this.getY()) < 160 && ((go.getX() - this.getX()) + (go.getY() - this.getY())) != 0){
+//                            this.processEvent(new GoAndAttack(null,(Human)go));
+//                        }
+//                    }
+//                }
                 switch(oriention){
                     case Up:
                         moveUp();
@@ -250,7 +285,7 @@ public class Citizen extends Human {
 
                 break;
             case AttackingToAHuman:
-                if(currentPath.path.size() != 0) {
+                if(currentPath != null) {
                     switch (oriention) {
                         case Up:
                             moveUp();
@@ -291,22 +326,25 @@ public class Citizen extends Human {
                         this.Updateoriention();
                         this.setCurrentImage(rightNow());
                         stepWise = 0;
-//                        System.out.println(stepWise);
-//                        PathFinder pf = new PathFinder(Land.getInstance().getCells(),this.getLocationOnMatrix().getX(),this.getLocationOnMatrix().getY(),AttackingTo.getLocationOnMatrix().getX(),AttackingTo.getLocationOnMatrix().getY(),new Citizen(0,0,Oriention.Down),
-//                                Land.getInstance().getRows(),Land.getInstance().getCols());
-//                        PathfindingRunnable pfr = new PathfindingRunnable(pf);
-//                        //  (new Thread(pfr)).start();
-//                        currentPath = pf.pathFinder();
-//                        currentPath.path.remove(0);
-//                        if(currentPath != null && currentPath.path.size() != 0) {
-//                            this.Updateoriention();
-//                            stepWise = 0;
-//                            this.setCurrentImage(rightNow());
-//                        }
-//                        else {
-//                            currentPath = null;
-//                            stepWise = 0;
-//                        }
+                        System.out.println(stepWise);
+                        PathFinder pf = new PathFinder(Land.getInstance().getCells(),this.getLocationOnMatrix().getX()
+                                ,this.getLocationOnMatrix().getY(),AttackingTo.getLocationOnMatrix().getX()
+                                ,AttackingTo.getLocationOnMatrix().getY(),new Citizen(0,0,Oriention.Down),
+                                Land.getInstance().getRows(),Land.getInstance().getCols());
+                        PathfindingRunnable pfr = new PathfindingRunnable(pf);
+                        //  (new Thread(pfr)).start();
+                        currentPath = pf.pathFinder();
+                        if(currentPath != null)
+                        currentPath.path.remove(0);
+                        if(currentPath != null && currentPath.path.size() != 0) {
+                            this.Updateoriention();
+                            stepWise = 0;
+                            this.setCurrentImage(rightNow());
+                        }
+                        else {
+                            currentPath = null;
+                            stepWise = 0;
+                        }
 //                        if(currentPath.ReachedthePath())
 //                            currentTask = CurrentTask.StandingDoinfNothing;
                     }
@@ -330,6 +368,7 @@ public class Citizen extends Human {
             case AttackingToABuilding:
                 break;
             case BuildingABarrack:
+                System.out.println("fuck");
                 if(currentPath != null) {
                     switch (oriention) {
                         case Up:
@@ -377,9 +416,9 @@ public class Citizen extends Human {
                     }
                 }
                 else{
-                    if(currentBuilding == null){
-                        //TODO here
-                    }
+                    Barrack b = new Barrack(100,100);
+                    this.currentBuilding = b;
+                    this.getGamePanel().places.add(b);
                     new Thread(new ConstructBuilding(this)).start();
                 }
                 break;
@@ -404,7 +443,7 @@ class CAttack implements Runnable {
             citizen.AttackingTo.processEvent(new CitizenAttackEvent(null, null));
             System.out.println(citizen.AttackingTo.life);
             try {
-                Thread.sleep(1000);
+                Thread.sleep(500000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -421,12 +460,13 @@ class ConstructBuilding implements Runnable{
     @Override
     public void run() {
         while(citizen.currentBuilding != null){
-            citizen.currentBuilding.processEvent(new ConstructPlaceEvent(citizen));
             try {
-                Thread.sleep(500);
+                Thread.sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            citizen.currentBuilding.processEvent(new ConstructPlaceEvent(citizen));
+
         }
     }
 }
