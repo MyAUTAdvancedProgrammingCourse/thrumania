@@ -58,7 +58,7 @@ public class GamePanel extends GameEngine {
         selectedObject = new ArrayList<>();
 
         playerPanel = new PlayerPanel();
-        miniMapPanel = new MiniMapPanel();
+        miniMapPanel = new MiniMapPanel(this);
 
         mouseRectangleSelector = new Rectangle(0,0,0,0);
         mousePosition = new Rectangle(0,0,1,1);
@@ -90,19 +90,19 @@ public class GamePanel extends GameEngine {
         ticker = new ThreadTicker(gameObjects);
         ticker.start();
 
-        (new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (true){
-                    repaint();
-                    try {
-                        Thread.sleep(GameConfig.frameDelayTime);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        })).start();
+//        (new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                while (true){
+//                    repaint();
+//                    try {
+//                        Thread.sleep(GameConfig.frameDelayTime);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//        })).start();
 
         addEventListener();
 
@@ -128,6 +128,9 @@ public class GamePanel extends GameEngine {
                 }
                 if (keyEvent.getKeyCode() == KeyEvent.VK_ESCAPE)
                     System.exit(0);
+
+                if (keyEvent.getKeyCode() == KeyEvent.VK_J)
+                    System.out.println("hello world");
 
             }
 
@@ -280,7 +283,7 @@ public class GamePanel extends GameEngine {
     }
 
     @Override
-    public void render() {
+    public synchronized void render() {
         Rectangle r = new Rectangle(0,0, ((int) getScreenDimension().getWidth()), ((int) getScreenDimension().getHeight()));
         drawOnFrame(Land.getInstance().getMapInBoundry(r),r);
         for (GameObject gameObj :
@@ -309,5 +312,9 @@ public class GamePanel extends GameEngine {
 
     public void setGameObjects(ArrayList<GameObject> gameObjects){
         this.gameObjects = gameObjects;
+    }
+
+    public synchronized void addGameObject(GameObject gameObject){
+        gameObjects.add(gameObject);
     }
 }
