@@ -15,7 +15,7 @@ import java.io.IOException;
  */
 public class GoldMine extends Mine {
 
-    private Image[] goldMineImages;
+    private Image goldMineImages;
 
     /**
      * Constructor
@@ -33,12 +33,9 @@ public class GoldMine extends Mine {
      */
     @Override
     public void loadResoure() {
-        goldMineImages = new Image[4];
+        goldMineImages = new Image;
         try {
-            goldMineImages[0]= ImageIO.read(new File(ResourcePath.itemImagePath + "mine\\goldMine\\goldMine_1.png"));
-            goldMineImages[1]= ImageIO.read(new File(ResourcePath.itemImagePath + "mine\\goldMine\\goldMine_2.png"));
-            goldMineImages[2]= ImageIO.read(new File(ResourcePath.itemImagePath + "mine\\goldMine\\goldMine_3.png"));
-            goldMineImages[3]= ImageIO.read(new File(ResourcePath.itemImagePath + "mine\\goldMine\\goldMine_4.png"));
+            goldMineImages= ImageIO.read(new File(ResourcePath.itemImagePath + "mine\\goldmine\\goldmine.png"));
         } catch (IOException e) {
             System.err.println("FILE NOT FOUND");
             e.printStackTrace();

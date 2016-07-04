@@ -14,7 +14,7 @@ import java.io.IOException;
  */
 public class IronMine extends Mine {
 
-    private Image[] ironMineImages;
+    private Image ironMineImages;
     private int ironMineAvailabeIron;
 
     /**
@@ -34,12 +34,9 @@ public class IronMine extends Mine {
      */
     @Override
     public void loadResoure() {
-        ironMineImages = new Image[4];
+        ironMineImages = new Image;
         try {
-            ironMineImages[0]= ImageIO.read(new File(ResourcePath.itemImagePath + "mine\\ironMine\\ironMine_1.png"));
-            ironMineImages[1]= ImageIO.read(new File(ResourcePath.itemImagePath + "mine\\ironMine\\ironMine_2.png"));
-            ironMineImages[2]= ImageIO.read(new File(ResourcePath.itemImagePath + "mine\\ironMine\\ironMine_3.png"));
-            ironMineImages[3]= ImageIO.read(new File(ResourcePath.itemImagePath + "mine\\ironMine\\ironMine_4.png"));
+            ironMineImages = ImageIO.read(new File(ResourcePath.itemImagePath + "mine\\ironmine\\ironmine.png"));
         } catch (IOException e) {
             System.err.println("FILE NOT FOUND");
             e.printStackTrace();
