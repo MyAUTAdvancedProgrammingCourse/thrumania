@@ -22,7 +22,7 @@ public class GoldMine extends Mine {
      * @param x
      * @param y
      */
-    GoldMine(int x, int y) {
+    public GoldMine(int x, int y) {
         super(x, y);
         loadResoure();
         setToughness(100);
