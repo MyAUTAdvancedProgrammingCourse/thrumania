@@ -18,7 +18,7 @@ public class ThreadTicker extends Thread {
     }
 
     @Override
-    public void run() {
+    public void run() throws java.util.ConcurrentModificationException{
         while (true){
             for (GameObject go :
                     gameObjects) {

@@ -1,13 +1,12 @@
 package com.poorgroupproject.thrumania.item.vehicle;
 
-import com.poorgroupproject.thrumania.events.ClickEvent;
+import com.poorgroupproject.thrumania.events.*;
 import com.poorgroupproject.thrumania.events.Event;
-import com.poorgroupproject.thrumania.events.GoThePlaceEvent;
-import com.poorgroupproject.thrumania.events.StopFishingEvent;
 import com.poorgroupproject.thrumania.item.GameObject;
 import com.poorgroupproject.thrumania.item.human.*;
 import com.poorgroupproject.thrumania.item.place.Port;
 import com.poorgroupproject.thrumania.land.Land;
+import com.poorgroupproject.thrumania.pathfinder.Cell;
 import com.poorgroupproject.thrumania.pathfinder.Pair;
 import com.poorgroupproject.thrumania.pathfinder.PathFinder;
 import com.poorgroupproject.thrumania.util.ResourcePath;
@@ -128,11 +127,38 @@ public class FishingShip extends Ship  {
                this.setCurrentImage(rightNow());
             }
         }
+        else if (event instanceof GoAndCollectResourceEvent){
+
+            GoAndCollectResourceEvent ga = (GoAndCollectResourceEvent) event;
+            currentTask = CurrentTask.ResourceCollecting;
+            //currentBuilding = ga.place;
+            PathFinder pf = new PathFinder(Land.getInstance().getCells(),
+                    this.getLocationOnMatrix().getX(),
+                    this.getLocationOnMatrix().getY(),
+                    ga.target.getX(),ga.target.getY(),
+                    new Citizen(0,0,Oriention.Down),
+                    Land.getInstance().getRows(),Land.getInstance().getCols());
+            currentPath = pf.pathFinder();
+            if(currentPath != null)
+                currentPath.path.remove(0);
+            if(currentPath != null && currentPath.path.size() != 0) {
+                this.Updateoriention();
+                stepWise = 0;
+                this.setCurrentImage(rightNow());
+            }
+            else {
+                currentPath = null;
+                stepWise = 0;
+            }
+        }
 
     }
 
     @Override
     public void tik() {
+        lifeCounter += 3;
+        if(lifeCounter >= 1000)
+            getPlayer().setFood(getPlayer().getFood()-1);
         switch(currentTask) {
             case Moving:
 
@@ -182,6 +208,71 @@ public class FishingShip extends Ship  {
 //                            currentTask = CurrentTask.StandingDoinfNothing;
                 }
 
+                break;
+            case ResourceCollecting:
+                if(currentPath != null) {
+                    switch (oriention) {
+                        case Up:
+                            moveUp();
+                            stepWise += getSpeed();
+                            break;
+                        case UpRight:
+                            moveUpRight();
+                            stepWise += getSpeed();
+                            break;
+                        case Right:
+                            moveRight();
+                            stepWise += getSpeed();
+                            break;
+                        case DownRight:
+                            moveDownRight();
+                            stepWise += getSpeed();
+                            break;
+                        case Down:
+                            moveDown();
+                            stepWise += getSpeed();
+                            break;
+                        case DownLeft:
+                            moveDownLeft();
+                            stepWise += getSpeed();
+                            break;
+                        case Left:
+                            moveLeft();
+                            stepWise += getSpeed();
+                            break;
+                        case UpLeft:
+                            moveUpLeft();
+                            stepWise += getSpeed();
+                            break;
+                    }
+
+                    if (stepWise >= 120) {
+                        System.out.println(currentPath.path.size());
+                        this.Updateoriention();
+                        this.setCurrentImage(rightNow());
+                        stepWise = 0;
+                        System.out.println(stepWise);
+//                        if(currentPath.ReachedthePath())
+//                            currentTask = CurrentTask.StandingDoinfNothing;
+                    }
+                }
+                else{
+                    Cell[][] map = Land.getInstance().getCells();
+                    Pair temp = getLocationOnMatrix();
+                    counter = 4;
+                    counter = counter % 1000;
+                    if(counter > 400){
+                        switch(map[temp.getX()][temp.getY()]){
+                            case FISH:
+                                this.amount_of_food += 50;
+                                this.Capacity += 50;
+                        }
+                    }
+                    System.out.println(this.Capacity);
+                    if(Capacity > 1200){
+                        this.processEvent(new GoBacktoYourPalace(null));
+                    }
+                }
                 break;
         }
     }

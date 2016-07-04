@@ -15,11 +15,19 @@ import com.poorgroupproject.thrumania.pathfinder.Path;
 public abstract class Ship extends GameObject {
     int shipSpeed;
     Path currentPath;
+    int counter;
+    int amount_of_food;
+    int lifeCounter;
+    int Capacity;
     int stepWise;
     Oriention oriention;
     CurrentTask currentTask;
     public Ship(int x, int y, int width, int height) {
         super(x, y, width, height);
+        counter = 0;
+        lifeCounter = 0;
+        Capacity = 0;
+        amount_of_food = 0;
     }
     public int  getSpeed(){
         switch(Season.getInstance().getCurrentSeason()){

@@ -222,16 +222,17 @@ public class Soldier extends Human {
     ////
     @Override
     public void tik() {
+        lifeCounter += 3;
+        if(lifeCounter >= 1000)
+            getPlayer().setFood(getPlayer().getFood()-2);
+        for(GameObject go:this.getGamePanel().getGameObjects()){
+            if(go instanceof Human && go != this){
+                if(Math.abs(go.getX() - this.getX()) + Math.abs(go.getY() - this.getY()) < 160 && ((go.getX() - this.getX()) + (go.getY() - this.getY())) != 0){
+                    this.processEvent(new GoAndAttack(null,(Human)go));
+                }
+            }
+        }
         switch(currentTask){
-            case StandingDoinfNothing:
-//                for(GameObject go:this.getGamePanel().getGameObjects()){
-//                    if(go instanceof Human && go != this){
-//                        if(Math.abs(go.getX() - this.getX()) + Math.abs(go.getY() - this.getY()) < 160 && ((go.getX() - this.getX()) + (go.getY() - this.getY())) != 0){
-//                            this.processEvent(new GoAndAttack(null,(Human)go));
-//                        }
-//                    }
-//                }
-                break;
             case Moving:
                 for(GameObject go:this.getGamePanel().getGameObjects()){
                     if(go instanceof Human && go != this){

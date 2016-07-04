@@ -42,7 +42,7 @@ public class Citizen extends Human {
 
     @Override
     public void loadResoure() {
-        images = new Image[16];
+        images = new Image[24];
         images[0] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "human/top.gif");
         images[1] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "human/top_right.gif");
         images[2] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "human/right.gif");
@@ -59,6 +59,15 @@ public class Citizen extends Human {
         images[13] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "human/down_leftStand.gif");
         images[14] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "human/leftStand.gif");
         images[15] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "human/top_leftStand.gif");
+        images[16] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "beaten/beaten_up.gif");
+        images[17] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "beaten/beaten_upright.gif");
+        images[18] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "beaten/beaten_right.gif");
+        images[19] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "beaten/beaten_downright.gif");
+        images[20] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "beaten/beaten_down.gif");
+        images[21] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "beaten/beaten_downleft.gif");
+        images[22] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "beaten/beaten_left.gif");
+        images[23] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "beaten/beaten_upleft.gif");
+
     }
 
     @Override
@@ -293,8 +302,27 @@ public class Citizen extends Human {
                         return images[15];
                 }
                 break;
-            case Moving:
             case AttackingToAHuman:
+                switch(oriention){
+                    case Up:
+                        return images[16];
+                    case UpRight:
+                        return images[17];
+                    case Right:
+                        return images[18];
+                    case DownRight:
+                        return images[19];
+                    case Down:
+                        return images[20];
+                    case DownLeft:
+                        return images[21];
+                    case Left:
+                        return images[22];
+                    case UpLeft:
+                        return images[23];
+                }
+                break;
+            case Moving:
             default:
                 switch(oriention){
                     case Up:
@@ -324,6 +352,9 @@ public class Citizen extends Human {
     ////
     @Override
     public void tik() {
+        lifeCounter += 3;
+        if(lifeCounter >= 1000)
+            getPlayer().setFood(getPlayer().getFood()-1);
         for(GameObject go:this.getGamePanel().getGameObjects()){
             if(go instanceof Human && go != this){
                 if(Math.abs(go.getX() - this.getX()) + Math.abs(go.getY() - this.getY()) < 160 && ((go.getX() - this.getX()) + (go.getY() - this.getY())) != 0){
@@ -446,13 +477,17 @@ public class Citizen extends Human {
                     }
                 }
                 else{
+//                    this.setX(AttackingTo.getX() );
+//                    this.setY(AttackingTo.getY() );
                     if(!alreadyStarted) {
                         (new Thread(new CAttack(this))).start();
                         alreadyStarted = true;
                     }
-                    if(AttackingTo.getLife() < 0){
+                    if(this.AttackingTo.getLife() <= 0){
                         alreadyStarted = false;
-                        this.currentTask = null;
+                        AttackingTo = null;
+                        this.currentTask = CurrentTask.StandingDoinfNothing;
+                        this.setCurrentImage(rightNow());
                     }
 
 //                    PathFinder pf = new PathFinder(Land.getInstance().getCells(),this.getLocationOnMatrix().getX(),this.getLocationOnMatrix().getY(),AttackingTo.getLocationOnMatrix().getX(),AttackingTo.getLocationOnMatrix().getY(),new Citizen(0,0,Oriention.Down),
@@ -545,7 +580,7 @@ public class Citizen extends Human {
                         }
                     }
                     System.out.println(this.Capacity);
-                    if(Capacity > 1000){
+                    if(Capacity > 300){
                         this.processEvent(new GoBacktoYourPalace(null));
                     }
                 }
@@ -663,6 +698,11 @@ public class Citizen extends Human {
                     this.getPlayer().setIron(getPlayer().getIron() + this.amount_of_iron);
                     this.getPlayer().setWood(getPlayer().getWood() + this.amount_of_wood);
                     this.currentTask = CurrentTask.StandingDoinfNothing;
+                    this.amount_of_gold = 0;
+                    this.amount_of_wood = 0;
+                    this.amount_of_iron = 0;
+                    this.amount_of_food = 0;
+                    this.Capacity = 0;
                 }
                 break;
         }
@@ -684,7 +724,7 @@ class CAttack implements Runnable {
     public void run() {
         while (citizen.AttackingTo != null) {
             citizen.AttackingTo.processEvent(new CitizenAttackEvent(null, null));
-            System.out.println(citizen.AttackingTo.life);
+         //   System.out.println(citizen.AttackingTo.life);
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
