@@ -3,13 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="027286b7-9283-4dfe-8cd1-b3c7ef3fd4b3" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/backgroundprocess/ThreadTicker.java" afterPath="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/backgroundprocess/ThreadTicker.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/human/Citizen.java" afterPath="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/human/Citizen.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/human/Human.java" afterPath="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/human/Human.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/human/Soldier.java" afterPath="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/human/Soldier.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/vehicle/FishingShip.java" afterPath="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/vehicle/FishingShip.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/vehicle/Ship.java" afterPath="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/vehicle/Ship.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/pathfinder/Cell.java" afterPath="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/pathfinder/Cell.java" />
     </list>
     <ignored path="Thrumania.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -62,11 +55,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Citizen.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Citizen.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/human/Citizen.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
-              <caret line="354" column="8" selection-start-line="354" selection-start-column="8" selection-end-line="356" selection-end-column="57" />
+            <state relative-caret-position="462">
+              <caret line="246" column="9" selection-start-line="246" selection-start-column="9" selection-end-line="246" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -114,7 +107,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FishingShip.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FishingShip.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/vehicle/FishingShip.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="352">
@@ -850,7 +843,14 @@
       <option name="project" value="LOCAL" />
       <updated>1467634249831</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="blkkn;lknlonlibdsnbkrsfhgkfdngbkjfdbvjlkdbflkj">
+      <created>1467657864071</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1467657864071</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -947,7 +947,8 @@
     <MESSAGE value="Ships" />
     <MESSAGE value="Player class" />
     <MESSAGE value="Human" />
-    <option name="LAST_COMMIT_MESSAGE" value="Human" />
+    <MESSAGE value="blkkn;lknlonlibdsnbkrsfhgkfdngbkjfdbvjlkdbflkj" />
+    <option name="LAST_COMMIT_MESSAGE" value="blkkn;lknlonlibdsnbkrsfhgkfdngbkjfdbvjlkdbflkj" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1352,14 +1353,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/human/Citizen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="354" column="8" selection-start-line="354" selection-start-column="8" selection-end-line="356" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/vehicle/Ship.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="440">
@@ -1372,6 +1365,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="352">
           <caret line="160" column="57" selection-start-line="160" selection-start-column="57" selection-end-line="160" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/human/Citizen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="246" column="9" selection-start-line="246" selection-start-column="9" selection-end-line="246" selection-end-column="9" />
           <folding />
         </state>
       </provider>
