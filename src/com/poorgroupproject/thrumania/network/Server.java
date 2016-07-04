@@ -1,5 +1,7 @@
 package com.poorgroupproject.thrumania.network;
 
+import com.poorgroupproject.thrumania.land.Land;
+
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.ServerSocket;
@@ -17,6 +19,7 @@ public class Server {
     private int clientsNum;
     private ServerSocket serverSocket;
 
+    private final int MAX_CLIENT_NUM = 4;
     public static String[] getLocalIPAddress(){
         InetAddress address = null;
         try {
@@ -41,6 +44,7 @@ public class Server {
     }
 
     private Server(int port){
+        cliets = new ClientInstanceOnServer[MAX_CLIENT_NUM];
         try {
             serverSocket = new ServerSocket(port);
         } catch (IOException e) {
@@ -56,6 +60,12 @@ public class Server {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public void sendMapToClients(){
+        for (int i = 0; i < clientsNum; i++) {
+            cliets[i].sendMap(Land.getInstance());
         }
     }
 }
