@@ -16,7 +16,6 @@ public class Mine extends Place {
      */
     public Mine(int x, int y) {
         super(x, y);
-
     }
 
     @Override

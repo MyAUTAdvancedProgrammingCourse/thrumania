@@ -5,6 +5,7 @@ import com.poorgroupproject.thrumania.form.*;
 import com.poorgroupproject.thrumania.form.Frame;
 import com.poorgroupproject.thrumania.land.Land;
 import com.poorgroupproject.thrumania.panel.GamePanel;
+import com.poorgroupproject.thrumania.panel.NetworkSettingPanel;
 import com.poorgroupproject.thrumania.panel.PlayerPanel;
 import com.poorgroupproject.thrumania.util.GameConfig;
 import com.poorgroupproject.thrumania.util.ScreenRepainter;
@@ -35,6 +36,7 @@ public class Thrumania {
                 f.showFrame();
                 Thread screenRepainter = new ScreenRepainter(g);
                 screenRepainter.start();
+                Land.getInstance().setGamePanel(g);
             }
         });
 

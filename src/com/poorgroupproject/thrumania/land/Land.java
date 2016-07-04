@@ -2,6 +2,9 @@ package com.poorgroupproject.thrumania.land;
 
 
 import com.poorgroupproject.thrumania.backgroundprocess.Season;
+import com.poorgroupproject.thrumania.item.place.mine.GoldMine;
+import com.poorgroupproject.thrumania.item.place.mine.IronMine;
+import com.poorgroupproject.thrumania.panel.GamePanel;
 import com.poorgroupproject.thrumania.util.GameEngine;
 import com.poorgroupproject.thrumania.util.ResourcePath;
 
@@ -21,6 +24,8 @@ import com.poorgroupproject.thrumania.pathfinder.*;
 public class Land {
     private static Land land = new Land();
     private BufferedImage mapImage;
+
+    private GamePanel gamePanel;
 
     private int rows;
     private int cols;
@@ -43,11 +48,10 @@ public class Land {
     private Image fallFishImage;
     private Image winterFishImage;
 
-
-
-//    public enum Cell {
-//        WATER, LAND, MOUNTAIN, TREE, FARM,  GOLD_MINE, IRON_MINE,
-//    };
+    private Image springMountImage;
+    private Image summerMountImage;
+    private Image fallMountImage;
+    private Image winterMountImage;
 
     public Cell[][] getCells() {
         return cells;
@@ -72,6 +76,11 @@ public class Land {
         this.cols = cols;
         cells = new Cell[rows][cols];
     }
+
+    public void setGamePanel(GamePanel gamePanel) {
+        this.gamePanel = gamePanel;
+    }
+
     public void loadMap(File file) throws FileNotFoundException {
         Scanner scanner = new Scanner(file);
         rows = scanner.nextInt();
@@ -92,11 +101,13 @@ public class Land {
                     cells[i][j] = Cell.TREE;
                 else if ("FARM".equals(cellContent))
                     cells[i][j] = Cell.FARM;
-                else if ("GOLD_MINE".equals(cellContent))
-                    cells[i][j] = Cell.GOLD_MINE;
-                else if ("IRON_MINE".equals(cellContent))
-                    cells[i][j] = Cell.IRON_MINE;
-                else{
+                else if ("GOLD_MINE".equals(cellContent)) {
+                    gamePanel.addGameObject(new GoldMine(j * CELL_WIDTH, i * CELL_HEIGHT));
+                    cells[i][j] = Cell.MOUNTAIN;
+                }else if ("IRON_MINE".equals(cellContent)) {
+                    gamePanel.addGameObject(new IronMine(j * CELL_WIDTH, i * CELL_HEIGHT));
+                    cells[i][j] = Cell.MOUNTAIN;
+                }else{
                     System.err.println("UNKNOWN CELL CONTENT LOADED FROM THE MAP");
                     System.exit(-1);
                 }
@@ -125,6 +136,7 @@ public class Land {
             springLandImages[15] = ImageIO.read(new File(path + "cntr.png"));
             springWaterImage     = ImageIO.read(new File(path + "water.png"));
             springFishImage      = ImageIO.read(new File(path + "fish.png"));
+            springMountImage     = ImageIO.read(new File(path + "mountain.png"));
 
             path = ResourcePath.imagePath + "/tile/summer/";
             summerLandImages[0] = ImageIO.read(new File(path + "no.png"));
@@ -145,6 +157,7 @@ public class Land {
             summerLandImages[15] = ImageIO.read(new File(path + "cntr.png"));
             summerWaterImage     = ImageIO.read(new File(path + "water.png"));
             summerFishImage      = ImageIO.read(new File(path + "fish.png"));
+            summerMountImage     = ImageIO.read(new File(path + "mountain.png"));
 
             path = ResourcePath.imagePath + "/tile/fall/";
             fallLandImages[0] = ImageIO.read(new File(path + "no.png"));
@@ -165,6 +178,7 @@ public class Land {
             fallLandImages[15] = ImageIO.read(new File(path + "cntr.png"));
             fallWaterImage     = ImageIO.read(new File(path + "water.png"));
             fallFishImage      = ImageIO.read(new File(path + "fish.png"));
+            fallMountImage     = ImageIO.read(new File(path + "mountain.png"));
 
             path = ResourcePath.imagePath + "/tile/winter/";
             winterLandImages[0]  = ImageIO.read(new File(path + "no.png"));
@@ -184,13 +198,33 @@ public class Land {
             winterLandImages[14] = ImageIO.read(new File(path + "su.png"));
             winterLandImages[15] = ImageIO.read(new File(path + "cntr.png"));
             winterWaterImage     = ImageIO.read(new File(path + "water.png"));
-            winterFishImage     = ImageIO.read(new File(path + "fish.png"));
+            winterFishImage      = ImageIO.read(new File(path + "fish.png"));
+            winterMountImage     = ImageIO.read(new File(path + "mount.png"));
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
+
+    public int landAutomata(int i, int j){
+        int counter = 0;
+        if (j > 0)
+            if ((cells[i][j - 1] == Cell.LAND) || (cells[i][j - 1] == Cell.MOUNTAIN))
+                counter += 8;
+        if (i > 0)
+            if ((cells[i - 1][j] == Cell.LAND) || (cells[i - 1][j] == Cell.MOUNTAIN))
+                counter += 1;
+        if (i < rows - 1)
+            if ((cells[i + 1][j] == Cell.LAND) || (cells[i + 1][j] == Cell.MOUNTAIN))
+                counter += 4;
+        if (j < cols - 1)
+            if ((cells[i][j + 1] == Cell.LAND) ||  (cells[i][j + 1] == Cell.MOUNTAIN))
+                counter += 2;
+
+        return counter;
+    }
+
     public void redrawMap(){
         BufferedImage tempMapImage = new BufferedImage(cols * CELL_WIDTH,rows * CELL_HEIGHT,BufferedImage.TYPE_INT_ARGB);
         Graphics mapGraphic = tempMapImage.getGraphics();
@@ -201,20 +235,7 @@ public class Land {
 
                 switch (cells[i][j]){
                     case LAND:
-                        int counter = 0;
-                        if (j > 0)
-                            if (cells[i][j - 1] == Cell.LAND)
-                                counter += 8;
-                        if (i > 0)
-                            if (cells[i - 1][j] == Cell.LAND)
-                                counter += 1;
-                        if (i < rows - 1)
-                            if (cells[i + 1][j] == Cell.LAND)
-                                counter += 4;
-                        if (j < cols - 1)
-                            if (cells[i][j + 1] == Cell.LAND)
-                                counter += 2;
-
+                        int counter = landAutomata(i,j);
                         switch (s){
                             case Spring:
                                 mapGraphic.drawImage(springLandImages[counter],j * CELL_WIDTH, i * CELL_HEIGHT,CELL_WIDTH,CELL_HEIGHT,null);
@@ -249,7 +270,35 @@ public class Land {
                         }
                         break;
                     case MOUNTAIN:
-                        // Todo add the needed code
+                        counter = landAutomata(i,j);
+                        switch (s){
+                            case Spring:
+                                mapGraphic.drawImage(springLandImages[counter],j * CELL_WIDTH, i * CELL_HEIGHT,CELL_WIDTH,CELL_HEIGHT,null);
+                                break;
+                            case Summer:
+                                mapGraphic.drawImage(summerLandImages[counter],j * CELL_WIDTH, i * CELL_HEIGHT,CELL_WIDTH,CELL_HEIGHT,null);
+                                break;
+                            case Fall:
+                                mapGraphic.drawImage(fallLandImages[counter],j * CELL_WIDTH, i * CELL_HEIGHT,CELL_WIDTH,CELL_HEIGHT,null);
+                                break;
+                            case Winter:
+                                mapGraphic.drawImage(winterLandImages[counter],j * CELL_WIDTH, i * CELL_HEIGHT,CELL_WIDTH,CELL_HEIGHT,null);
+                                break;
+                        }
+                        switch (s){
+                            case Spring:
+                                mapGraphic.drawImage(springMountImage,j * CELL_WIDTH, i * CELL_HEIGHT,CELL_WIDTH,CELL_HEIGHT,null);
+                                break;
+                            case Summer:
+                                mapGraphic.drawImage(summerMountImage,j * CELL_WIDTH, i * CELL_HEIGHT,CELL_WIDTH,CELL_HEIGHT,null);
+                                break;
+                            case Fall:
+                                mapGraphic.drawImage(fallMountImage,j * CELL_WIDTH, i * CELL_HEIGHT,CELL_WIDTH,CELL_HEIGHT,null);
+                                break;
+                            case Winter:
+                                mapGraphic.drawImage(winterMountImage,j * CELL_WIDTH, i * CELL_HEIGHT,CELL_WIDTH,CELL_HEIGHT,null);
+                                break;
+                        }
                         break;
 
                     case GOLD_MINE:
