@@ -14,7 +14,7 @@ public class Mine extends Place {
      * @param x
      * @param y
      */
-    Mine(int x, int y) {
+    public Mine(int x, int y) {
         super(x, y);
 
     }

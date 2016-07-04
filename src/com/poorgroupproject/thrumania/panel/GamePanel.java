@@ -1,5 +1,6 @@
 package com.poorgroupproject.thrumania.panel;
 
+import com.poorgroupproject.thrumania.Player.Player;
 import com.poorgroupproject.thrumania.backgroundprocess.ThreadTicker;
 import com.poorgroupproject.thrumania.events.*;
 import com.poorgroupproject.thrumania.item.GameObject;
@@ -67,15 +68,21 @@ public class GamePanel extends GameEngine {
 
 //        Port p = new Port(100,100);
 //        gameObjects.add(p);
+        Player player = new Player("Yes");
         Citizen c = new Citizen(1000,900,Oriention.Right);
         Citizen d = new Citizen(1600,650, Oriention.Down);
         Soldier s = new Soldier(1600,900,Oriention.UpRight);
+        Palace palace = new Palace(1680,850);
+        player.setPlayerPalace(palace);
         gameObjects.add(d);
         gameObjects.add(c);
         gameObjects.add(new FishingShip(730,860,Oriention.Down));
         gameObjects.add(new TransportShip(610,860,Oriention.Down));
-        gameObjects.add(new Palace(1680,850));
+        gameObjects.add(palace);
        // gameObjects.add(s);
+        for(GameObject go:gameObjects){
+            go.setPlayer(player);
+        }
         for(GameObject go: gameObjects){
             go.setGamePanel(this);
         }
@@ -117,7 +124,7 @@ public class GamePanel extends GameEngine {
             public void keyPressed(KeyEvent keyEvent) {
                 if(keyEvent.getKeyCode() == KeyEvent.VK_D) {
                     System.out.println(gameObjects.size());
-                    gameObjects.get(1).processEvent(new GoAndAttack(null,(Human)gameObjects.get(0)));
+                    gameObjects.get(1).processEvent(new GoAndCollectResourceEvent(null,new Pair(7,10)));
                 }
                 if (keyEvent.getKeyCode() == KeyEvent.VK_ESCAPE)
                     System.exit(0);

@@ -2,6 +2,7 @@ package com.poorgroupproject.thrumania.item.human;
 import com.poorgroupproject.thrumania.backgroundprocess.Season;
 import com.poorgroupproject.thrumania.events.GoThePlaceEvent;
 import com.poorgroupproject.thrumania.item.place.Place;
+import com.poorgroupproject.thrumania.item.vehicle.TransportShip;
 import com.poorgroupproject.thrumania.pathfinder.Pair;
 import com.poorgroupproject.thrumania.item.GameObject;
 import com.poorgroupproject.thrumania.land.Land;
@@ -18,6 +19,7 @@ public abstract class Human extends GameObject implements Runnable,Constants{
     private final int HUMAN_HEIGHT = 250;
     CurrentTask currentTask;
     Path currentPath;
+    TransportShip currentRidingShip;
     Oriention upcomingOriention;
     public int life;
     Pair save;
@@ -29,6 +31,7 @@ public abstract class Human extends GameObject implements Runnable,Constants{
     int amount_of_gold;
     int amount_of_iron;
     int amount_of_wood;
+    int amount_of_food;
     public boolean isMoving;
     public enum MovingSyle{
         WALKING, RUNNING

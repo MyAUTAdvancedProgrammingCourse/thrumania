@@ -7,6 +7,7 @@ import com.poorgroupproject.thrumania.item.GameObject;
 import com.poorgroupproject.thrumania.item.place.Barrack;
 import com.poorgroupproject.thrumania.land.Land;
 import com.poorgroupproject.thrumania.panel.GamePanel;
+import com.poorgroupproject.thrumania.pathfinder.Cell;
 import com.poorgroupproject.thrumania.pathfinder.Pair;
 import com.poorgroupproject.thrumania.pathfinder.Path;
 import com.poorgroupproject.thrumania.pathfinder.PathFinder;
@@ -27,10 +28,13 @@ public class Citizen extends Human {
     public Image[] images;
  //   public int life;
     private int speed;
+    boolean alreadyStarted;
+    int counter = 0;
     public boolean isCollectingResource;
     public Citizen(int x, int y,Oriention oriention) {
         super(x, y);
         this.life = 500;
+        this.alreadyStarted = false;
         this.Capacity = 0;
         this.oriention = oriention;
         this.setCurrentImage(rightNow());
@@ -75,9 +79,11 @@ public class Citizen extends Human {
             }
         }
         else if(event instanceof GoThePlaceEvent){
+            alreadyStarted = false;
             AttackingTo = null;
             currentBuilding = null;
             currentMine = null;
+            currentRidingShip = null;
             System.out.println("hereeeeeeeeeee");
             GoThePlaceEvent gt = (GoThePlaceEvent) event;
             PathFinder pf = new PathFinder(Land.getInstance().getCells(),this.getLocationOnMatrix().getX(),
@@ -103,9 +109,11 @@ public class Citizen extends Human {
             }
         }
         else if(event instanceof  GoAndAttack){
+            alreadyStarted = false;
             AttackingTo = null;
             currentBuilding = null;
             currentMine = null;
+            currentRidingShip = null;
             GoAndAttack ga = (GoAndAttack) event;
             currentTask = CurrentTask.AttackingToAHuman;
             AttackingTo = ga.target;
@@ -137,9 +145,11 @@ public class Citizen extends Human {
             }
         }
         else if(event instanceof GoandBuildAPlace){
+            alreadyStarted = false;
             AttackingTo = null;
             currentBuilding = null;
             currentMine = null;
+            currentRidingShip = null;
             GoandBuildAPlace ga = (GoandBuildAPlace) event;
             currentTask = CurrentTask.BuildingABarrack;
             currentBuilding = ga.place;
@@ -164,10 +174,105 @@ public class Citizen extends Human {
                 stepWise = 0;
             }
         }
+        else if(event instanceof GoandRidetheShip){
+            alreadyStarted = false;
+            AttackingTo = null;
+            currentBuilding = null;
+            currentMine = null;
+            currentRidingShip = null;
+            GoandRidetheShip gr = (GoandRidetheShip) event;
+            currentTask = CurrentTask.RidingAShip;
+            currentRidingShip = gr.getShip();
+        }
+        else if(event instanceof GetofTheship){
+            alreadyStarted = false;
+            AttackingTo = null;
+            currentBuilding = null;
+            currentMine = null;
+            currentRidingShip = null;
+            GetofTheship go = (GetofTheship) event;
+            for(int i = -1;i < 2;i++){
+                for(int j = -1;j < 2;j++){
+                    if(i == 0 && j == 0)
+                        continue;
+                    if(Land.getInstance().getCells()[this.getLocationOnMatrix().getX()+i][this.getLocationOnMatrix().getY()+j] == Cell.PORT){
+                        Pair temp = new Pair(this.getLocationOnMatrix().getX()+i,this.getLocationOnMatrix().getY()+j);
+                        Pair temper = this.getCenterPosition(temp);
+                        this.setX(temper.getX());
+                        this.setY(temper.getY());
+                    }
+                }
+            }
+            currentTask = CurrentTask.StandingDoinfNothing;
+
+        }
+        else if (event instanceof GoAndCollectResourceEvent){
+            alreadyStarted = false;
+            AttackingTo = null;
+            currentBuilding = null;
+            currentMine = null;
+            currentRidingShip = null;
+             GoAndCollectResourceEvent ga = (GoAndCollectResourceEvent) event;
+            currentTask = CurrentTask.ResourceCollecting;
+            //currentBuilding = ga.place;
+            PathFinder pf = new PathFinder(Land.getInstance().getCells(),
+                    this.getLocationOnMatrix().getX(),
+                    this.getLocationOnMatrix().getY(),
+                    ga.target.getX(),ga.target.getY(),
+                    new Citizen(0,0,Oriention.Down),
+                    Land.getInstance().getRows(),Land.getInstance().getCols());
+            PathfindingRunnable pfr = new PathfindingRunnable(pf);
+            //  (new Thread(pfr)).start();
+            currentPath = pf.pathFinder();
+            if(currentPath != null)
+                currentPath.path.remove(0);
+            if(currentPath != null && currentPath.path.size() != 0) {
+                this.Updateoriention();
+                stepWise = 0;
+                this.setCurrentImage(rightNow());
+            }
+            else {
+                currentPath = null;
+                stepWise = 0;
+            }
+        }
+        else if(event instanceof GoBacktoYourPalace){
+            alreadyStarted = false;
+            AttackingTo = null;
+            currentBuilding = null;
+            currentMine = null;
+            currentRidingShip = null;
+            GoBacktoYourPalace ga = (GoBacktoYourPalace) event;
+            currentTask = CurrentTask.GoingBacktoPalace;
+            //currentBuilding = ga.place;
+            PathFinder pf = new PathFinder(Land.getInstance().getCells(),
+                    this.getLocationOnMatrix().getX(),
+                    this.getLocationOnMatrix().getY(),
+                    getPlayer().getPlayerPalace().getLocationOnMatrix().getX(),
+                    getPlayer().getPlayerPalace().getLocationOnMatrix().getY(),
+                    new Citizen(0,0,Oriention.Down),
+                    Land.getInstance().getRows(),Land.getInstance().getCols());
+            PathfindingRunnable pfr = new PathfindingRunnable(pf);
+            //  (new Thread(pfr)).start();
+            currentPath = pf.pathFinder();
+            if(currentPath != null)
+                currentPath.path.remove(0);
+            if(currentPath != null && currentPath.path.size() != 0) {
+                this.Updateoriention();
+                stepWise = 0;
+                this.setCurrentImage(rightNow());
+            }
+            else {
+                currentPath = null;
+                stepWise = 0;
+            }
+        }
     }
     @Override
     public Image rightNow(){
         switch(currentTask){
+            case RidingAShip:
+                return null;
             case StandingDoinfNothing:
                 switch(oriention){
                     case Up:
@@ -219,24 +324,15 @@ public class Citizen extends Human {
     ////
     @Override
     public void tik() {
+        for(GameObject go:this.getGamePanel().getGameObjects()){
+            if(go instanceof Human && go != this){
+                if(Math.abs(go.getX() - this.getX()) + Math.abs(go.getY() - this.getY()) < 160 && ((go.getX() - this.getX()) + (go.getY() - this.getY())) != 0){
+                    this.processEvent(new GoAndAttack(null,(Human)go));
+                }
+            }
+        }
         switch(currentTask){
-            case StandingDoinfNothing:
-//                for(GameObject go:this.getGamePanel().getGameObjects()){
-//                    if(go instanceof Human && go != this){
-//                        if(Math.abs(go.getX() - this.getX()) + Math.abs(go.getY() - this.getY()) < 160 && ((go.getX() - this.getX()) + (go.getY() - this.getY())) != 0){
-//                            this.processEvent(new GoAndAttack(null,(Human)go));
-//                        }
-//                    }
-//                }
-                break;
             case Moving:
-//                for(GameObject go:this.getGamePanel().getGameObjects()){
-//                    if(go instanceof Human && go != this){
-//                        if(Math.abs(go.getX() - this.getX()) + Math.abs(go.getY() - this.getY()) < 160 && ((go.getX() - this.getX()) + (go.getY() - this.getY())) != 0){
-//                            this.processEvent(new GoAndAttack(null,(Human)go));
-//                        }
-//                    }
-//                }
                 switch(oriention){
                     case Up:
                         moveUp();
@@ -350,7 +446,14 @@ public class Citizen extends Human {
                     }
                 }
                 else{
-                    (new Thread(new CAttack(this))).start();
+                    if(!alreadyStarted) {
+                        (new Thread(new CAttack(this))).start();
+                        alreadyStarted = true;
+                    }
+                    if(AttackingTo.getLife() < 0){
+                        alreadyStarted = false;
+                        this.currentTask = null;
+                    }
 
 //                    PathFinder pf = new PathFinder(Land.getInstance().getCells(),this.getLocationOnMatrix().getX(),this.getLocationOnMatrix().getY(),AttackingTo.getLocationOnMatrix().getX(),AttackingTo.getLocationOnMatrix().getY(),new Citizen(0,0,Oriention.Down),
 //                            Land.getInstance().getRows(),Land.getInstance().getCols());
@@ -366,6 +469,86 @@ public class Citizen extends Human {
                 }
                 break;
             case AttackingToABuilding:
+                break;
+            case ResourceCollecting:
+                if(currentPath != null) {
+                    switch (oriention) {
+                        case Up:
+                            moveUp();
+                            stepWise += getSpeed();
+                            break;
+                        case UpRight:
+                            moveUpRight();
+                            stepWise += getSpeed();
+                            break;
+                        case Right:
+                            moveRight();
+                            stepWise += getSpeed();
+                            break;
+                        case DownRight:
+                            moveDownRight();
+                            stepWise += getSpeed();
+                            break;
+                        case Down:
+                            moveDown();
+                            stepWise += getSpeed();
+                            break;
+                        case DownLeft:
+                            moveDownLeft();
+                            stepWise += getSpeed();
+                            break;
+                        case Left:
+                            moveLeft();
+                            stepWise += getSpeed();
+                            break;
+                        case UpLeft:
+                            moveUpLeft();
+                            stepWise += getSpeed();
+                            break;
+                    }
+
+                    if (stepWise >= 120) {
+                        System.out.println(currentPath.path.size());
+                        this.Updateoriention();
+                        this.setCurrentImage(rightNow());
+                        stepWise = 0;
+                        System.out.println(stepWise);
+//                        if(currentPath.ReachedthePath())
+//                            currentTask = CurrentTask.StandingDoinfNothing;
+                    }
+                }
+                else{
+                    Cell[][] map = Land.getInstance().getCells();
+                    Pair temp = getLocationOnMatrix();
+                    counter += 4;
+                    counter = counter % 500;
+                    if(counter > 400){
+                        switch(map[temp.getX()][temp.getY()]){
+                            case GOLD_MINE:
+                                amount_of_gold += 1;
+                                Capacity += 5;
+                                break;
+                            case IRON_MINE:
+                                amount_of_iron += 1;
+                                Capacity += 4;
+                                break;
+                            case FARM:
+                                amount_of_food += 1;
+                                break;
+                            case TREE:
+                                amount_of_wood +=1;
+                                Capacity += 3;
+                                break;
+                            default:
+                                currentTask = CurrentTask.StandingDoinfNothing;
+                                break;
+                        }
+                    }
+                    System.out.println(this.Capacity);
+                    if(Capacity > 1000){
+                        this.processEvent(new GoBacktoYourPalace(null));
+                    }
+                }
                 break;
             case BuildingABarrack:
                 System.out.println("fuck");
@@ -422,6 +605,66 @@ public class Citizen extends Human {
                     new Thread(new ConstructBuilding(this)).start();
                 }
                 break;
+            case RidingAShip:
+                this.setCurrentImage(rightNow());
+                this.setX(currentRidingShip.getX());
+                this.setY(currentRidingShip.getY());
+                break;
+            case GoingBacktoPalace:
+                if(currentPath != null) {
+                    switch (oriention) {
+                        case Up:
+                            moveUp();
+                            stepWise += getSpeed();
+                            break;
+                        case UpRight:
+                            moveUpRight();
+                            stepWise += getSpeed();
+                            break;
+                        case Right:
+                            moveRight();
+                            stepWise += getSpeed();
+                            break;
+                        case DownRight:
+                            moveDownRight();
+                            stepWise += getSpeed();
+                            break;
+                        case Down:
+                            moveDown();
+                            stepWise += getSpeed();
+                            break;
+                        case DownLeft:
+                            moveDownLeft();
+                            stepWise += getSpeed();
+                            break;
+                        case Left:
+                            moveLeft();
+                            stepWise += getSpeed();
+                            break;
+                        case UpLeft:
+                            moveUpLeft();
+                            stepWise += getSpeed();
+                            break;
+                    }
+
+                    if (stepWise >= 120) {
+                        System.out.println(currentPath.path.size());
+                        this.Updateoriention();
+                        this.setCurrentImage(rightNow());
+                        stepWise = 0;
+                        System.out.println(stepWise);
+//                        if(currentPath.ReachedthePath())
+//                            currentTask = CurrentTask.StandingDoinfNothing;
+                    }
+                }
+                else{
+                    this.getPlayer().setFood(getPlayer().getFood() + this.amount_of_food);
+                    this.getPlayer().setGold(getPlayer().getGold() + this.amount_of_gold);
+                    this.getPlayer().setIron(getPlayer().getIron() + this.amount_of_iron);
+                    this.getPlayer().setWood(getPlayer().getWood() + this.amount_of_wood);
+                    this.currentTask = CurrentTask.StandingDoinfNothing;
+                }
+                break;
         }
     }
 
@@ -443,11 +686,12 @@ class CAttack implements Runnable {
             citizen.AttackingTo.processEvent(new CitizenAttackEvent(null, null));
             System.out.println(citizen.AttackingTo.life);
             try {
-                Thread.sleep(500000);
+                Thread.sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
+
     }
 }
 class ConstructBuilding implements Runnable{

@@ -1,6 +1,7 @@
 package com.poorgroupproject.thrumania.Player;
 
 import com.poorgroupproject.thrumania.item.GameObject;
+import com.poorgroupproject.thrumania.item.place.Palace;
 
 import java.util.ArrayList;
 
@@ -9,6 +10,16 @@ import java.util.ArrayList;
  */
 public class Player {
 
+    Palace playerPalace;
+
+    public void setPlayerPalace(Palace playerPalace) {
+        this.playerPalace = playerPalace;
+    }
+
+    public Palace getPlayerPalace() {
+
+        return playerPalace;
+    }
 
     int wood;
     int iron;
