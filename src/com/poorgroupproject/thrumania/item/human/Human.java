@@ -74,18 +74,22 @@ public abstract class Human extends GameObject implements Runnable,Constants{
     public abstract Image rightNow();
     public void Updateoriention(){
         System.out.println("path size   " + currentPath.path.size());
-        if(currentPath.path.size()== 0 &&  currentTask == CurrentTask.Moving){
-            this.currentTask = CurrentTask.StandingDoinfNothing;
-            this.setCurrentImage(rightNow());
-            currentPath = null;
+        if(currentTask == CurrentTask.Moving) {
+            if (currentPath.path.size() == 0) {
+                this.currentTask = CurrentTask.StandingDoinfNothing;
+                this.setCurrentImage(rightNow());
+                currentPath = null;
+            } else
+                oriention = DefineOreintion(this.getLocationOnMatrix(), currentPath.getNextMove());
         }
-        if(currentPath.path.size()== 0 && currentTask != CurrentTask.Moving && currentTask != CurrentTask.StandingDoinfNothing){
-//            this.currentTask = CurrentTask.StandingDoinfNothing;
-            this.setCurrentImage(rightNow());
-            currentPath = null;
+        else {
+            if (currentPath.path.size() == 0) {
+//                this.currentTask = CurrentTask.StandingDoinfNothing;
+                this.setCurrentImage(rightNow());
+                currentPath = null;
+            } else
+                oriention = DefineOreintion(this.getLocationOnMatrix(), currentPath.getNextMove());
         }
-        else
-        oriention = DefineOreintion(this.getLocationOnMatrix(),currentPath.getNextMove());
     }
     public int getSpeed(){
         switch(Season.getInstance().getCurrentSeason()){

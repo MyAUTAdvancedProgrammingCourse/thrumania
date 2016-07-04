@@ -6,12 +6,15 @@ import com.poorgroupproject.thrumania.item.GameObject;
 import com.poorgroupproject.thrumania.item.human.Citizen;
 import com.poorgroupproject.thrumania.item.human.Human;
 import com.poorgroupproject.thrumania.item.human.Oriention;
+import com.poorgroupproject.thrumania.item.human.Soldier;
+import com.poorgroupproject.thrumania.item.place.Barrack;
 import com.poorgroupproject.thrumania.item.place.Palace;
 import com.poorgroupproject.thrumania.item.place.Place;
 import com.poorgroupproject.thrumania.item.vehicle.FishingShip;
 import com.poorgroupproject.thrumania.item.vehicle.Ship;
 import com.poorgroupproject.thrumania.item.vehicle.TransportShip;
 import com.poorgroupproject.thrumania.land.Land;
+import com.poorgroupproject.thrumania.pathfinder.Pair;
 import com.poorgroupproject.thrumania.util.GameConfig;
 import com.poorgroupproject.thrumania.util.GameEngine;
 
@@ -40,7 +43,7 @@ public class GamePanel extends GameEngine {
     private MousePointerMode mousePointerMode;
     private Point deltaMousePointerPositionToPanelForDragging;
     private Rectangle mousePosition;
-
+    public ArrayList<Place> places = new ArrayList<Place>();
     private GameObjectMenuPanel gameObjectMenuPanel;
 
     private GameObject targetObject;
@@ -64,12 +67,19 @@ public class GamePanel extends GameEngine {
 
 //        Port p = new Port(100,100);
 //        gameObjects.add(p);
-        gameObjects.add(new Citizen(1020,650, Oriention.Down));
-        gameObjects.add(new Citizen(1000,900,Oriention.Right));
+        Citizen c = new Citizen(1000,900,Oriention.Right);
+        Citizen d = new Citizen(1600,650, Oriention.Down);
+        Soldier s = new Soldier(1600,900,Oriention.UpRight);
+        gameObjects.add(d);
+        gameObjects.add(c);
         gameObjects.add(new FishingShip(730,860,Oriention.Down));
         gameObjects.add(new TransportShip(610,860,Oriention.Down));
         gameObjects.add(new Palace(1680,850));
-
+       // gameObjects.add(s);
+        for(GameObject go: gameObjects){
+            go.setGamePanel(this);
+        }
+//        c.processEvent(new GoThePlaceEvent(null,new Pair(5,8)));
         ticker = new ThreadTicker(gameObjects);
         ticker.start();
 
@@ -100,10 +110,15 @@ public class GamePanel extends GameEngine {
         addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent keyEvent) {
+
             }
 
             @Override
             public void keyPressed(KeyEvent keyEvent) {
+                if(keyEvent.getKeyCode() == KeyEvent.VK_D) {
+                    System.out.println(gameObjects.size());
+                    gameObjects.get(1).processEvent(new GoAndAttack(null,(Human)gameObjects.get(0)));
+                }
                 if (keyEvent.getKeyCode() == KeyEvent.VK_ESCAPE)
                     System.exit(0);
 
@@ -264,6 +279,14 @@ public class GamePanel extends GameEngine {
         for (GameObject gameObj :
                 gameObjects) {
             drawOnFrame(gameObj.getCurrentImage(), gameObj.getBoundry());
+        }
+        for(Place p:this.places){
+            try {
+                drawOnFrame(p.getCurrentImage(), p.getBoundry());
+            }
+            catch(java.util.ConcurrentModificationException e){
+
+            }
         }
         drawOnFrame(playerPanel.getView(),playerPanel.getBoundry());
         drawOnFrame(miniMapPanel.getView(),miniMapPanel.getBoundry());

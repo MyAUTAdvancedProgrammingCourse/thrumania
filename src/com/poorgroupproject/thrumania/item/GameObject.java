@@ -2,6 +2,7 @@ package com.poorgroupproject.thrumania.item;
 
 import com.poorgroupproject.thrumania.Player.Player;
 import com.poorgroupproject.thrumania.land.Land;
+import com.poorgroupproject.thrumania.panel.GamePanel;
 import com.poorgroupproject.thrumania.pathfinder.Pair;
 
 import javax.swing.*;
@@ -18,6 +19,16 @@ public abstract class GameObject{
     private Rectangle boundry;
     private Image currentImage;
 
+    public GamePanel getGamePanel() {
+        return gamePanel;
+    }
+
+    public void setGamePanel(GamePanel gamePanel) {
+
+        this.gamePanel = gamePanel;
+    }
+
+    GamePanel gamePanel;
     public void setPlayer(Player player) {
         this.player = player;
     }
