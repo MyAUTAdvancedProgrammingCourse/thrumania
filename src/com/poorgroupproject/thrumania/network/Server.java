@@ -35,11 +35,11 @@ public class Server {
         return result;
     }
 
-    public void setUpServer(int port){
+    public static void setUpServer(int port){
         serverClass = new Server(port);
     }
 
-    public Server getInstance(){
+    public static Server getInstance(){
         return serverClass;
     }
 
@@ -68,4 +68,5 @@ public class Server {
             cliets[i].sendMap(Land.getInstance());
         }
     }
+
 }
