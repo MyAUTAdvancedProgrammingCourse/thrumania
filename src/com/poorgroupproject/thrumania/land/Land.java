@@ -38,6 +38,11 @@ public class Land {
     private Image fallWaterImage;
     private Image winterWaterImage;
 
+    private Image springFishImage;
+    private Image summerFishImage;
+    private Image fallFishImage;
+    private Image winterFishImage;
+
 
 
 //    public enum Cell {
@@ -51,17 +56,22 @@ public class Land {
     private Cell [][]cells;
 
     public int getRows(){
-        return rows;
+        return land.rows;
     }
 
     public int getCols(){
-        return cols;
+        return land.cols;
     }
 
     public Cell getCellContent(int row,int col){
-        return cells[row][col];
+        return land.cells[row][col];
     }
 
+    public void newMap(int rows, int cols){
+        this.rows = rows;
+        this.cols = cols;
+        cells = new Cell[rows][cols];
+    }
     public void loadMap(File file) throws FileNotFoundException {
         Scanner scanner = new Scanner(file);
         rows = scanner.nextInt();
@@ -114,6 +124,7 @@ public class Land {
             springLandImages[14] = ImageIO.read(new File(path + "su.png"));
             springLandImages[15] = ImageIO.read(new File(path + "cntr.png"));
             springWaterImage     = ImageIO.read(new File(path + "water.png"));
+            springFishImage      = ImageIO.read(new File(path + "fish.png"));
 
             path = ResourcePath.imagePath + "/tile/summer/";
             summerLandImages[0] = ImageIO.read(new File(path + "no.png"));
@@ -133,6 +144,7 @@ public class Land {
             summerLandImages[14] = ImageIO.read(new File(path + "su.png"));
             summerLandImages[15] = ImageIO.read(new File(path + "cntr.png"));
             summerWaterImage     = ImageIO.read(new File(path + "water.png"));
+            summerFishImage      = ImageIO.read(new File(path + "fish.png"));
 
             path = ResourcePath.imagePath + "/tile/fall/";
             fallLandImages[0] = ImageIO.read(new File(path + "no.png"));
@@ -152,18 +164,19 @@ public class Land {
             fallLandImages[14] = ImageIO.read(new File(path + "su.png"));
             fallLandImages[15] = ImageIO.read(new File(path + "cntr.png"));
             fallWaterImage     = ImageIO.read(new File(path + "water.png"));
+            fallFishImage      = ImageIO.read(new File(path + "fish.png"));
 
             path = ResourcePath.imagePath + "/tile/winter/";
-            winterLandImages[0] = ImageIO.read(new File(path + "no.png"));
-            winterLandImages[1] = ImageIO.read(new File(path + "od.png"));
-            winterLandImages[2] = ImageIO.read(new File(path + "or.png"));
-            winterLandImages[3] = ImageIO.read(new File(path + "sld.png"));
-            winterLandImages[4] = ImageIO.read(new File(path + "ou.png"));
-            winterLandImages[5] = ImageIO.read(new File(path + "ocntrud.png"));
-            winterLandImages[6] = ImageIO.read(new File(path + "slu.png"));
-            winterLandImages[7] = ImageIO.read(new File(path + "sl.png"));
-            winterLandImages[8] = ImageIO.read(new File(path + "ol.png"));
-            winterLandImages[9] = ImageIO.read(new File(path + "srd.png"));
+            winterLandImages[0]  = ImageIO.read(new File(path + "no.png"));
+            winterLandImages[1]  = ImageIO.read(new File(path + "od.png"));
+            winterLandImages[2]  = ImageIO.read(new File(path + "or.png"));
+            winterLandImages[3]  = ImageIO.read(new File(path + "sld.png"));
+            winterLandImages[4]  = ImageIO.read(new File(path + "ou.png"));
+            winterLandImages[5]  = ImageIO.read(new File(path + "ocntrud.png"));
+            winterLandImages[6]  = ImageIO.read(new File(path + "slu.png"));
+            winterLandImages[7]  = ImageIO.read(new File(path + "sl.png"));
+            winterLandImages[8]  = ImageIO.read(new File(path + "ol.png"));
+            winterLandImages[9]  = ImageIO.read(new File(path + "srd.png"));
             winterLandImages[10] = ImageIO.read(new File(path + "ocntrlr.png"));
             winterLandImages[11] = ImageIO.read(new File(path + "sd.png"));
             winterLandImages[12] = ImageIO.read(new File(path + "sru.png"));
@@ -171,6 +184,7 @@ public class Land {
             winterLandImages[14] = ImageIO.read(new File(path + "su.png"));
             winterLandImages[15] = ImageIO.read(new File(path + "cntr.png"));
             winterWaterImage     = ImageIO.read(new File(path + "water.png"));
+            winterFishImage     = ImageIO.read(new File(path + "fish.png"));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -238,6 +252,12 @@ public class Land {
                         // Todo add the needed code
                         break;
 
+                    case GOLD_MINE:
+
+                        break;
+                    case IRON_MINE:
+                        break;
+
                     default:
                         System.out.println("some error");
                 }
@@ -286,4 +306,7 @@ public class Land {
         cells[i][j] = cell;
     }
 
+    public Cell getCellAt(int i, int j){
+        return cells[i][j];
+    }
 }
