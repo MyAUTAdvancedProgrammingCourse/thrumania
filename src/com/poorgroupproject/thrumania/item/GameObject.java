@@ -94,6 +94,9 @@ public abstract class GameObject{
         Pair pair = new Pair(y / Land.CELL_HEIGHT, x / Land.CELL_WIDTH);
         return pair;
     }
+    public Pair getCenterPosition(Pair pair){
+        return new Pair(pair.getX() * Land.CELL_HEIGHT + (Land.CELL_HEIGHT/2),pair.getY() * Land.CELL_HEIGHT + (Land.CELL_HEIGHT/2));
+    }
     public boolean readyforReOriention(Pair p){
 //        int x = p.getX() * Land.CELL_WIDTH + (Land.CELL_WIDTH/2);
 //        int y = p.getY() * Land.CELL_HEIGHT + (Land.CELL_HEIGHT/2);
