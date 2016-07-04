@@ -18,12 +18,11 @@ public class Tree extends Place {
 
     private int treeAvailabeWood;
     private Image[] treeImage;
-    private int toughness;
 
     public Tree(int x, int y) {
         super(x, y);
         treeAvailabeWood = 10000;
-        toughness = 100;
+        setToughness(100);
     }
 
     @Override

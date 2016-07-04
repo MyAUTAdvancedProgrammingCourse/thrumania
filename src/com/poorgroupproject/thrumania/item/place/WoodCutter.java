@@ -17,8 +17,6 @@ import java.io.IOException;
 public class WoodCutter extends Place {
 
     private Image[] woodCutterImage;
-    private int toughness; // the toughness of place and the rang is 0 to 100
-
     /**
      * Constructor
      * @param x
@@ -27,9 +25,8 @@ public class WoodCutter extends Place {
     public WoodCutter(int x, int y) {
         super(x, y);
         loadResoure();
-        toughness = 0;
+        setToughness(0);
     }
-
 
     /**
      * loading images of woodcutter that first element of array is incompleted woodcutter and the last one is completed woodcutter.
@@ -50,7 +47,7 @@ public class WoodCutter extends Place {
 
     @Override
     public void processEvent(Event event) {
-        if (event instanceof ConstructPlaceEvent && getToughness() <= 100) contruct();
+        if (event instanceof ConstructPlaceEvent && getToughness() <= 40) contruct();
         else if(event instanceof DestroyPlaceEvent && getToughness() >= 0) destroy();
     }
 
@@ -80,18 +77,10 @@ public class WoodCutter extends Place {
      * @param toughness the amount of toughness that range is 0 to 100.
      */
     private void imageChooser(int toughness){
-        if(toughness < 33) {
-            setCurrentImage(woodCutterImage[0]);
-        }
-        else if(toughness > 33 && toughness < 66){
-                setCurrentImage(woodCutterImage[1]);
-        }
-        else if(toughness > 66 && toughness < 99){
-                setCurrentImage(woodCutterImage[2]);
-        }
-        else{
-            setCurrentImage(woodCutterImage[3]);
-        }
+        if(toughness < 13) setCurrentImage(woodCutterImage[0]);
+        else if(toughness >= 13 && toughness < 26) setCurrentImage(woodCutterImage[1]);
+        else if(toughness >= 26 && toughness < 39) setCurrentImage(woodCutterImage[2]);
+        else setCurrentImage(woodCutterImage[3]);
     }
 
 }

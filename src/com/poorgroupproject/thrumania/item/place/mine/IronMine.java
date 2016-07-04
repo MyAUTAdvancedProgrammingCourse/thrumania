@@ -16,7 +16,6 @@ public class IronMine extends Mine {
 
     private Image[] ironMineImages;
     private int ironMineAvailabeIron;
-    private int toughness; // the toughness of place and the rang is 0 to 100
 
     /**
      * Constructor
@@ -27,7 +26,7 @@ public class IronMine extends Mine {
         super(x, y);
         loadResoure();
         ironMineAvailabeIron = 20000;
-        toughness = 100;
+        setToughness(100);
     }
 
     /**
@@ -40,6 +39,7 @@ public class IronMine extends Mine {
             ironMineImages[0]= ImageIO.read(new File(ResourcePath.itemImagePath + "mine\\ironMine\\ironMine_1.png"));
             ironMineImages[1]= ImageIO.read(new File(ResourcePath.itemImagePath + "mine\\ironMine\\ironMine_2.png"));
             ironMineImages[2]= ImageIO.read(new File(ResourcePath.itemImagePath + "mine\\ironMine\\ironMine_3.png"));
+            ironMineImages[3]= ImageIO.read(new File(ResourcePath.itemImagePath + "mine\\ironMine\\ironMine_4.png"));
         } catch (IOException e) {
             System.err.println("FILE NOT FOUND");
             e.printStackTrace();
