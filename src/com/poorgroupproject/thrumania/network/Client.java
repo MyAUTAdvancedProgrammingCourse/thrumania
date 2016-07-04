@@ -32,6 +32,10 @@ public class Client {
     public void setUpConnection(byte []address, int port){
         try {
             this.address = InetAddress.getByAddress(address);
+            System.out.println(this.address.getHostAddress());
+            for (int i = 0; i < 4; i++) {
+                System.out.println(address[i]);
+            }
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
