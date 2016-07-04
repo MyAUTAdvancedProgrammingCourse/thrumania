@@ -137,15 +137,15 @@ public class NetworkSettingPanel extends JFrame {
         for (int i = 0; i < 4; i++)
             serverAddress[i] = ((byte) Integer.parseInt(ipClientTextField[i].getText()));
         int port = Integer.parseInt(portTextField.getText());
-//        Client.getInstance().setUpConnection(serverAddress,port);
-//        jLabel1.setText("Sending client name ...");
-//        Client.getInstance().sendClientName(clientNameTextField.getText());
-//        jLabel1.setText("Getting map from the server...");
-//        if (Client.getInstance().getMapFromServer()){
-//            jLabel1.setText("Map loaded from the server successfully...");
-//        }else {
-//            jLabel1.setText("Cannot load the map form the server...");
-//        }
+        Client.getInstance().setUpConnection(serverAddress,port);
+        jLabel1.setText("Sending client name ...");
+        Client.getInstance().sendClientName(clientNameTextField.getText());
+        jLabel1.setText("Getting map from the server...");
+        if (Client.getInstance().getMapFromServer()){
+            jLabel1.setText("Map loaded from the server successfully...");
+        }else {
+            jLabel1.setText("Cannot load the map form the server...");
+        }
 
         add(clientToConnectPanel);
     }
@@ -181,7 +181,7 @@ public class NetworkSettingPanel extends JFrame {
                     }
 
                     Land.getInstance().redrawMap();
-                    Server.setUpServer(Integer.parseInt(portTextField.getText()));
+                    Server.setUpServer(6066);
                     Server.getInstance().sendMapToClients();
                 }else{
                     setUpClientComponent();
