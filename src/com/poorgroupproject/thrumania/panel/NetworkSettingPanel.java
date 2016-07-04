@@ -134,8 +134,11 @@ public class NetworkSettingPanel extends JFrame {
         jLabel1.setLocation(100,100);
         clientToConnectPanel.add(jLabel1);
         byte[]serverAddress = new byte[4];
-        for (int i = 0; i < 4; i++)
-            serverAddress[i] = ((byte) Integer.parseInt(ipClientTextField[i].getText()));
+        for (int i = 0; i < 4; i++) {
+            //serverAddress[i] = ((byte) Integer.parseInt(ipClientTextField[i].getText()));
+            //sout
+        }
+        serverAddress = new byte[]{(byte)192,(byte)168,(byte)169,(byte)173};
         int port = Integer.parseInt(portTextField.getText());
         Client.getInstance().setUpConnection(serverAddress,port);
         jLabel1.setText("Sending client name ...");
@@ -181,11 +184,12 @@ public class NetworkSettingPanel extends JFrame {
                     }
 
                     Land.getInstance().redrawMap();
-                    Server.setUpServer(6066);
+                    Server.setUpServer(Integer.parseInt(portTextField.getText()));
                     Server.getInstance().sendMapToClients();
                 }else{
                     setUpClientComponent();
                     getContentPane().remove(hostOrClientPanel);
+                    System.out.println("this line");
                     repaint();
                 }
             }
