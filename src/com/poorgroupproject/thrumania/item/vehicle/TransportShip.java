@@ -4,6 +4,7 @@ import com.poorgroupproject.thrumania.events.Event;
 import com.poorgroupproject.thrumania.events.GoTargetEvent;
 import com.poorgroupproject.thrumania.events.GoThePlaceEvent;
 import com.poorgroupproject.thrumania.item.human.CurrentTask;
+import com.poorgroupproject.thrumania.item.human.Human;
 import com.poorgroupproject.thrumania.item.human.Oriention;
 import com.poorgroupproject.thrumania.land.Land;
 import com.poorgroupproject.thrumania.pathfinder.Pair;
@@ -11,6 +12,7 @@ import com.poorgroupproject.thrumania.pathfinder.PathFinder;
 import com.poorgroupproject.thrumania.util.ResourcePath;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * @author yahay
@@ -19,9 +21,11 @@ import java.awt.*;
 public class TransportShip  extends Ship {
     int targetX,targetY;
     Image[] images;
+    ArrayList <Human> humans;
     public TransportShip(int x, int y, Oriention o) {
         super(x, y, 100, 100);
         this.oriention = o;
+        humans = new ArrayList<Human>();
         this.currentTask = CurrentTask.StandingDoinfNothing;
         this.setCurrentImage(rightNow());
 //        (new Thread(new Runnable() {
