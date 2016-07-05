@@ -33,6 +33,7 @@ public class GamePanel extends GameEngine {
     private ArrayList<GameObject> gameObjects;
     private PlayerPanel playerPanel;
     private MiniMapPanel miniMapPanel;
+    Ai a = new Ai();
 
     private Rectangle mouseRectangleSelector;
 
@@ -57,7 +58,7 @@ public class GamePanel extends GameEngine {
         gameObjectMenuPanel = null;
         gameObjects = new ArrayList<>();
         selectedObject = new ArrayList<>();
-
+        a.setGp(this);
         playerPanel = new PlayerPanel();
         miniMapPanel = new MiniMapPanel(this);
 
@@ -70,18 +71,26 @@ public class GamePanel extends GameEngine {
 //        Port p = new Port(100,100);
 //        gameObjects.add(p);
         Player player = new Player("Yes");
+        Player player1 = new Player("lol");
         Citizen c = new Citizen(1000,900,Oriention.Right);
         Citizen d = new Citizen(1600,800, Oriention.Down);
+        Citizen h = new Citizen(1600,540,Oriention.UpRight);
+        Citizen j = new Citizen(1400,540,Oriention.Right);
         Soldier s = new Soldier(1600,900,Oriention.UpRight);
+        h.setPlayer(player1);
+        j.setPlayer(player1);
         Palace palace = new Palace(1680,850);
         player.setPlayerPalace(palace);
         gameObjects.add(d);
         gameObjects.add(c);
+        gameObjects.add(h);
+        gameObjects.add(j);
         gameObjects.add(new FishingShip(730,860,Oriention.Down));
         gameObjects.add(new TransportShip(610,860,Oriention.Down));
         gameObjects.add(palace);
-        gameObjects.add(new Citizen(1440,630,Oriention.Down));
-        gameObjects.add(new Citizen(1700,630,Oriention.Up));
+//        gameObjects.add(new Citizen(1080,800,Oriention.Down));
+//        gameObjects.add(new Citizen(1700,630,Oriention.Up));
+//        gameObjects.add(new Citizen(1700,700,Oriention.Up));
 //        gameObjects.add(new Citizen(1600,650,Oriention.Up));
 //        gameObjects.add(new Citizen(1500,800,Oriention.Up));
 //        gameObjects.add(new Citizen(1400,950,Oriention.Up));
@@ -136,7 +145,7 @@ public class GamePanel extends GameEngine {
                     gameObjects.get(1).processEvent(new GoandBuildAPlace(null,new Pair(7,9),new Barrack(0,0)));
                 }
                 if(keyEvent.getKeyCode() == KeyEvent.VK_R){
-                    (new Thread(new Ai())).start();
+                    (new Thread(a)).start();
                 }
                 if (keyEvent.getKeyCode() == KeyEvent.VK_ESCAPE)
                     System.exit(0);

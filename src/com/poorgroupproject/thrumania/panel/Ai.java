@@ -1,5 +1,6 @@
 package com.poorgroupproject.thrumania.panel;
 
+import com.poorgroupproject.thrumania.events.GoAndAttack;
 import com.poorgroupproject.thrumania.events.GoAndCollectResourceEvent;
 import com.poorgroupproject.thrumania.item.GameObject;
 import com.poorgroupproject.thrumania.item.human.Human;
@@ -13,7 +14,11 @@ import java.util.Vector;
  * Created by Saman A.Mirhoseini on 05/07/2016.
  */
 public class Ai implements Runnable {
-    GamePanel gp;
+    public void setGp(GamePanel gp) {
+        this.gp = gp;
+    }
+
+    public GamePanel gp;
     Cell[][] map;
     Vector<Pair> resources = new Vector<Pair>();
     public Ai() {
@@ -29,12 +34,8 @@ public class Ai implements Runnable {
 
     @Override
     public void run() {
-        while(true){
-            for(GameObject g : gp.getGameObjects()){
-                if(g instanceof Human){
-                    g.processEvent(new GoAndCollectResourceEvent(null,resources.get(0)));
-                }
-            }
-        }
+        //while(true){
+        gp.getGameObjects().get(0).processEvent(new GoAndAttack(null,(Human)gp.getGameObjects().get(6)));
+
     }
 }
