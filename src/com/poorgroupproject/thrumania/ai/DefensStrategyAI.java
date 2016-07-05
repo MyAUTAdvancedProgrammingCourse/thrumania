@@ -1,5 +1,7 @@
 package com.poorgroupproject.thrumania.ai;
 
+import com.poorgroupproject.thrumania.panel.GamePanel;
+
 /**
  * Created by Asus on 7/4/2016.
  */
@@ -7,8 +9,8 @@ public class DefensStrategyAI extends ThrumaniaAI {
 
     int actionNum;
 
-    public DefensStrategyAI(Player player) {
-        super(player);
+    public DefensStrategyAI(Player player, GamePanel gamePanel) {
+        super(player,gamePanel);
         start();
     }
 

@@ -1,23 +1,25 @@
 package com.poorgroupproject.thrumania.ai;
 
+import com.poorgroupproject.thrumania.panel.GamePanel;
+
 /**
  * Created by Asus on 7/3/2016.
  */
 public abstract class ThrumaniaAI extends Thread{
 
     Player player;
+    GamePanel gamePanel;
 
-    public ThrumaniaAI(Player player){
-
+    public ThrumaniaAI(Player player, GamePanel gamePanel){
         this.player=player;
-
+        this.gamePanel = gamePanel;
     }
 
 
 
     public void makeHuman(){
         //send event to make human
-        System.out.println("make human");
+
     }
     public void makeSoldier(){
         //send event to make soldier
