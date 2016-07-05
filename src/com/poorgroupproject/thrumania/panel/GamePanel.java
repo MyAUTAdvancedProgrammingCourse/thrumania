@@ -71,7 +71,7 @@ public class GamePanel extends GameEngine {
 //        gameObjects.add(p);
         Player player = new Player("Yes");
         Citizen c = new Citizen(1000,900,Oriention.Right);
-        Citizen d = new Citizen(1600,650, Oriention.Down);
+        Citizen d = new Citizen(1600,800, Oriention.Down);
         Soldier s = new Soldier(1600,900,Oriention.UpRight);
         Palace palace = new Palace(1680,850);
         player.setPlayerPalace(palace);
@@ -80,6 +80,13 @@ public class GamePanel extends GameEngine {
         gameObjects.add(new FishingShip(730,860,Oriention.Down));
         gameObjects.add(new TransportShip(610,860,Oriention.Down));
         gameObjects.add(palace);
+        gameObjects.add(new Citizen(1440,630,Oriention.Down));
+        gameObjects.add(new Citizen(1700,630,Oriention.Up));
+//        gameObjects.add(new Citizen(1600,650,Oriention.Up));
+//        gameObjects.add(new Citizen(1500,800,Oriention.Up));
+//        gameObjects.add(new Citizen(1400,950,Oriention.Up));
+//        gameObjects.add(new Citizen(1600,800,Oriention.Up));
+//        gameObjects.add(new Citizen(1200,650,Oriention.Up));
        // gameObjects.add(s);
         for(GameObject go:gameObjects){
             go.setPlayer(player);
@@ -112,6 +119,7 @@ public class GamePanel extends GameEngine {
     private void initialize(int width, int height){
         setSize(width,height);
         setLocation(0,0);
+
     }
 
     private void addEventListener(){
@@ -125,7 +133,10 @@ public class GamePanel extends GameEngine {
             public void keyPressed(KeyEvent keyEvent) {
                 if(keyEvent.getKeyCode() == KeyEvent.VK_D) {
                     System.out.println(gameObjects.size());
-                    gameObjects.get(1).processEvent(new GoAndCollectResourceEvent(null,new Pair(5,10)));
+                    gameObjects.get(1).processEvent(new GoandBuildAPlace(null,new Pair(7,9),new Barrack(0,0)));
+                }
+                if(keyEvent.getKeyCode() == KeyEvent.VK_R){
+                    (new Thread(new Ai())).start();
                 }
                 if (keyEvent.getKeyCode() == KeyEvent.VK_ESCAPE)
                     System.exit(0);

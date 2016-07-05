@@ -1,0 +1,40 @@
+package com.poorgroupproject.thrumania.panel;
+
+import com.poorgroupproject.thrumania.events.GoAndCollectResourceEvent;
+import com.poorgroupproject.thrumania.item.GameObject;
+import com.poorgroupproject.thrumania.item.human.Human;
+import com.poorgroupproject.thrumania.land.Land;
+import com.poorgroupproject.thrumania.pathfinder.Cell;
+import com.poorgroupproject.thrumania.pathfinder.Pair;
+
+import java.util.Vector;
+
+/**
+ * Created by Saman A.Mirhoseini on 05/07/2016.
+ */
+public class Ai implements Runnable {
+    GamePanel gp;
+    Cell[][] map;
+    Vector<Pair> resources = new Vector<Pair>();
+    public Ai() {
+    map = Land.getInstance().getCells();
+        for(int i = 0;i < Land.getInstance().getRows();i++){
+            for(int j = 0;j < Land.getInstance().getCols() ;j++){
+                if(map[i][j] == Cell.GOLD_MINE || map[i][j] == Cell.IRON_MINE ){
+                    resources.add(new Pair(i,j));
+                }
+            }
+        }
+    }
+
+    @Override
+    public void run() {
+        while(true){
+            for(GameObject g : gp.getGameObjects()){
+                if(g instanceof Human){
+                    g.processEvent(new GoAndCollectResourceEvent(null,resources.get(0)));
+                }
+            }
+        }
+    }
+}

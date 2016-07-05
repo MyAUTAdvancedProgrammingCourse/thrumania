@@ -47,7 +47,7 @@ public class Citizen extends Human {
 
     @Override
     public void loadResoure() {
-        images = new Image[24];
+        images = new Image[32];
         images[0] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "human/top.gif");
         images[1] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "human/top_right.gif");
         images[2] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "human/right.gif");
@@ -72,6 +72,14 @@ public class Citizen extends Human {
         images[21] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "beaten/beaten_downleft.gif");
         images[22] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "beaten/beaten_left.gif");
         images[23] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "beaten/beaten_upleft.gif");
+        images[24] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "climber/climber_up.gif");
+        images[25] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "beaten/beaten_upleft.gif");
+        images[26] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "beaten/beaten_upleft.gif");
+        images[27] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "beaten/beaten_upleft.gif");
+        images[28] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "beaten/beaten_upleft.gif");
+        images[29] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "beaten/beaten_upleft.gif");
+        images[30] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "beaten/beaten_upleft.gif");
+        images[31] = Toolkit.getDefaultToolkit().getImage(ResourcePath.itemImagePath + "beaten/beaten_upleft.gif");
 
     }
 
@@ -664,7 +672,7 @@ public class Citizen extends Human {
                         }
                         alreadyStarted = true;
                         this.currentBuilding = place;
-                        this.getGamePanel().places.add(place);
+                        this.getGamePanel().addGameObject(place);
                     }
 
                     counter += 3;

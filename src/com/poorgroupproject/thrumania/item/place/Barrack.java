@@ -5,6 +5,7 @@ import com.poorgroupproject.thrumania.events.DestroyPlaceEvent;
 import com.poorgroupproject.thrumania.events.Event;
 import com.poorgroupproject.thrumania.item.human.Oriention;
 import com.poorgroupproject.thrumania.item.human.Soldier;
+import com.poorgroupproject.thrumania.pathfinder.Pair;
 import com.poorgroupproject.thrumania.util.ResourcePath;
 
 import javax.imageio.ImageIO;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
  * @version 1.0.0
  */
 public class Barrack extends Place {
-
+    int counter = 0;
     private Image[] barrackImages;
 
     /**
@@ -57,6 +58,10 @@ public class Barrack extends Place {
 
     @Override
     public void tik() {
+        //counter = counter + 10;
+        //if(counter > 200){
+        System.out.println("makesoldier");
+            makeSoldier();
 
     }
 
@@ -87,8 +92,9 @@ public class Barrack extends Place {
         else setCurrentImage(barrackImages[3]);
     }
 
-    public void makeSoldier(ArrayList<Soldier> ms){
-        ms.add(new Soldier(getX(),getY(), Oriention.Down));
+    public void makeSoldier(){
+        Pair temp = this.getLocationOnMatrix();
+        getGamePanel().addGameObject(new Soldier(getCenterPosition(temp).getX()+40,this.getCenterPosition(temp).getY()+40,Oriention.Left));
     }
 
 }

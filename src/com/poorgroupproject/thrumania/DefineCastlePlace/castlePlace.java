@@ -30,7 +30,9 @@ public class castlePlace{
             System.out.println(p.getX()+ "  " + p.getY());
         }
         for(int i = 0;i < answer.size();i++){
-            for(int j = i;j )
+            for(int j = i + 1;j < answer.size();j++ ){
+                
+            }
         }
     }
     public float getDist(Point a,Point b){
