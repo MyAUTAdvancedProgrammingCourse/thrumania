@@ -1,5 +1,6 @@
 package com.poorgroupproject.thrumania.backgroundprocess;
 
+import com.poorgroupproject.thrumania.DefineCastlePlace.castlePlace;
 import com.poorgroupproject.thrumania.item.GameObject;
 
 import java.util.ArrayList;

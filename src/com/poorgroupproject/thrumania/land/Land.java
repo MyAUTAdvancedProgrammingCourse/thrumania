@@ -103,10 +103,10 @@ public class Land {
                     cells[i][j] = Cell.FARM;
                 else if ("GOLD_MINE".equals(cellContent)) {
                     gamePanel.addGameObject(new GoldMine(j * CELL_WIDTH, i * CELL_HEIGHT));
-                    cells[i][j] = Cell.MOUNTAIN;
+                    cells[i][j] = Cell.GOLD_MINE;
                 }else if ("IRON_MINE".equals(cellContent)) {
                     gamePanel.addGameObject(new IronMine(j * CELL_WIDTH, i * CELL_HEIGHT));
-                    cells[i][j] = Cell.MOUNTAIN;
+                    cells[i][j] = Cell.IRON_MINE;
                 }else{
                     System.err.println("UNKNOWN CELL CONTENT LOADED FROM THE MAP");
                     System.exit(-1);

@@ -1,10 +1,14 @@
 package com.poorgroupproject.thrumania.item.human;
 
+import com.poorgroupproject.thrumania.DefineCastlePlace.castlePlace;
 import com.poorgroupproject.thrumania.backgroundprocess.Season;
 import com.poorgroupproject.thrumania.events.*;
 import com.poorgroupproject.thrumania.events.Event;
 import com.poorgroupproject.thrumania.item.GameObject;
 import com.poorgroupproject.thrumania.item.place.Barrack;
+import com.poorgroupproject.thrumania.item.place.Place;
+import com.poorgroupproject.thrumania.item.place.WoodCutter;
+import com.poorgroupproject.thrumania.item.place.mine.Quarry;
 import com.poorgroupproject.thrumania.land.Land;
 import com.poorgroupproject.thrumania.panel.GamePanel;
 import com.poorgroupproject.thrumania.pathfinder.Cell;
@@ -33,6 +37,7 @@ public class Citizen extends Human {
     public boolean isCollectingResource;
     public Citizen(int x, int y,Oriention oriention) {
         super(x, y);
+
         this.life = 500;
         this.alreadyStarted = false;
         this.Capacity = 0;
@@ -88,6 +93,7 @@ public class Citizen extends Human {
             }
         }
         else if(event instanceof GoThePlaceEvent){
+            new castlePlace();
             alreadyStarted = false;
             AttackingTo = null;
             currentBuilding = null;
@@ -160,8 +166,13 @@ public class Citizen extends Human {
             currentMine = null;
             currentRidingShip = null;
             GoandBuildAPlace ga = (GoandBuildAPlace) event;
+            if(ga.place instanceof Barrack)
             currentTask = CurrentTask.BuildingABarrack;
-            currentBuilding = ga.place;
+            if(ga.place instanceof Quarry)
+                currentTask = CurrentTask.BuildingAQuarry;
+            if(ga.place instanceof WoodCutter)
+                currentTask = CurrentTask.BuildingAWoodcutter;
+      //      currentBuilding = ga.place;
             PathFinder pf = new PathFinder(Land.getInstance().getCells(),
                     this.getLocationOnMatrix().getX(),
                     this.getLocationOnMatrix().getY(),
@@ -558,8 +569,10 @@ public class Citizen extends Human {
                     counter += 4;
                     counter = counter % 500;
                     if(counter > 400){
+                        System.out.println(";;;;;;;;;;;");
                         switch(map[temp.getX()][temp.getY()]){
                             case GOLD_MINE:
+                                System.out.println("goldgoldgold");
                                 amount_of_gold += 1;
                                 Capacity += 5;
                                 break;
@@ -579,13 +592,15 @@ public class Citizen extends Human {
                                 break;
                         }
                     }
-                    System.out.println(this.Capacity);
+                    System.out.println(map[temp.getX()][temp.getY()]);
                     if(Capacity > 300){
                         this.processEvent(new GoBacktoYourPalace(null));
                     }
                 }
                 break;
             case BuildingABarrack:
+            case BuildingAQuarry:
+            case BuildingAWoodcutter:
                 System.out.println("fuck");
                 if(currentPath != null) {
                     switch (oriention) {
@@ -634,10 +649,29 @@ public class Citizen extends Human {
                     }
                 }
                 else{
-                    Barrack b = new Barrack(100,100);
-                    this.currentBuilding = b;
-                    this.getGamePanel().places.add(b);
-                    new Thread(new ConstructBuilding(this)).start();
+                    Place place = null;
+                    if(!alreadyStarted) {
+                        switch (currentTask) {
+                            case BuildingABarrack:
+                                place = new Barrack(this.getX() + 3, this.getY() + 3);
+                                break;
+                            case BuildingAQuarry:
+                                place = new Quarry(this.getX() + 3, this.getY() + 3);
+                                break;
+                            case BuildingAWoodcutter:
+                                place = new WoodCutter(this.getX() + 3, this.getY() + 3);
+                                break;
+                        }
+                        alreadyStarted = true;
+                        this.currentBuilding = place;
+                        this.getGamePanel().places.add(place);
+                    }
+
+                    counter += 3;
+                    if(counter > 100){
+                        currentBuilding.processEvent(new ConstructPlaceEvent(null));
+                        counter = 0;
+                    }
                 }
                 break;
             case RidingAShip:
