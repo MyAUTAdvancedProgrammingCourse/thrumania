@@ -29,7 +29,6 @@ import java.util.ArrayList;
  * @version 1.0.0
  */
 public class GamePanel extends GameEngine {
-
     private ArrayList<GameObject> gameObjects;
     private PlayerPanel playerPanel;
     private MiniMapPanel miniMapPanel;
@@ -51,10 +50,17 @@ public class GamePanel extends GameEngine {
 
     private GameObject targetObject;
 
+    private Point viewPortPosition;
+
     private ThreadTicker ticker;
+
+    private double zoomScale;
+
+
     public GamePanel(int width, int height){
         initialize(width,height);
-
+        
+        viewPortPosition = new Point(0,0);
         gameObjectMenuPanel = null;
         gameObjects = new ArrayList<>();
         selectedObject = new ArrayList<>();
@@ -147,11 +153,28 @@ public class GamePanel extends GameEngine {
                 if(keyEvent.getKeyCode() == KeyEvent.VK_R){
                     (new Thread(a)).start();
                 }
+                if(keyEvent.getKeyCode() == KeyEvent.VK_E) {
+                    System.out.println(gameObjects.size());
+                    gameObjects.get(1).processEvent(new GoandBuildAPlace(null,new Pair(5,10),new Barrack(0,0)));
+                }
                 if (keyEvent.getKeyCode() == KeyEvent.VK_ESCAPE)
                     System.exit(0);
 
-                if (keyEvent.getKeyCode() == KeyEvent.VK_J)
-                    System.out.println("hello world");
+                if (keyEvent.getKeyCode() == KeyEvent.VK_UP){
+                    moveUp();
+                }
+
+                if (keyEvent.getKeyCode() == KeyEvent.VK_DOWN){
+                    moveDown();
+                }
+
+                if (keyEvent.getKeyCode() == KeyEvent.VK_LEFT){
+                    moveLeft();
+                }
+
+                if (keyEvent.getKeyCode() == KeyEvent.VK_RIGHT){
+                    moveRight();
+                }
 
             }
 
@@ -166,6 +189,7 @@ public class GamePanel extends GameEngine {
                 if (mousePointerMode == MousePointerMode.NONE) {
                     mouseRectangleSelector.setSize(e.getX() - ((int) mouseRectangleSelector.getX()),
                             e.getY() - ((int) mouseRectangleSelector.getY()));
+
                 }else if (mousePointerMode == MousePointerMode.MINIMAP_PANEL_DRAGGING){
                     miniMapPanel.setLocation(new Point(((int) (e.getX() - deltaMousePointerPositionToPanelForDragging.getX())),
                             ((int) (e.getY() - deltaMousePointerPositionToPanelForDragging.getY()))));
@@ -303,10 +327,49 @@ public class GamePanel extends GameEngine {
         });
     }
 
+    private void moveDown() {
+        if (viewPortPosition.getY() + GameEngine.getScreenDimension().getHeight() < Land.getInstance().getMapHeight() - 10){
+            viewPortPosition.setLocation(viewPortPosition.getX(),viewPortPosition.getY()  + 10);
+            for (GameObject g : gameObjects) {
+                g.translate(0, -10);
+            }
+        }
+    }
+
+    private void moveUp() {
+        if (viewPortPosition.getY() > 0){
+            viewPortPosition.setLocation(viewPortPosition.getX(),viewPortPosition.getY() - 10);
+            for (GameObject g : gameObjects) {
+                g.translate((0), 10);
+            }
+        }
+    }
+
+    private void moveRight() {
+        System.out.println(Land.getInstance().getMapWidth());
+
+        if (viewPortPosition.getX() + GameEngine.getScreenDimension().getWidth() < Land.getInstance().getMapWidth() - 10){
+            viewPortPosition.setLocation(viewPortPosition.getX() + 10,viewPortPosition.getY());
+            for (GameObject g : gameObjects) {
+                g.translate(-10, 0);
+            }
+        }
+    }
+    private void moveLeft() {
+        System.out.println(viewPortPosition);
+        if (viewPortPosition.getX() > 0){
+            System.out.println("kharrrrrrrrrrrrr");
+            viewPortPosition.setLocation(viewPortPosition.getX() - 10,viewPortPosition.getY());
+            for (GameObject g : gameObjects) {
+                g.translate(10, 0);
+            }
+        }
+    }
     @Override
     public synchronized void render() {
-        Rectangle r = new Rectangle(0,0, ((int) getScreenDimension().getWidth()), ((int) getScreenDimension().getHeight()));
-        drawOnFrame(Land.getInstance().getMapInBoundry(r),r);
+        Rectangle r = new Rectangle(((int) viewPortPosition.getX()), ((int) viewPortPosition.getY()), ((int) getScreenDimension().getWidth()), ((int) getScreenDimension().getHeight()));
+        Rectangle khar = new Rectangle(0,0, ((int) GameEngine.getScreenDimension().getWidth()), ((int) GameEngine.getScreenDimension().getHeight()));
+        drawOnFrame(Land.getInstance().getMapInBoundry(r),khar);
         for (GameObject gameObj :
                 gameObjects) {
             drawOnFrame(gameObj.getCurrentImage(), gameObj.getBoundry());
