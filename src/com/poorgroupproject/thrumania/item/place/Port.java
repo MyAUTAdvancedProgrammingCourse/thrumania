@@ -29,6 +29,7 @@ public class Port extends Place {
         super(x, y);
         loadResoure();
         humanQueue = new LinkedList<>();
+        setCurrentImage(portImages[3]);
     }
 
     /**
@@ -55,7 +56,7 @@ public class Port extends Place {
      */
     @Override
     public void loadResoure() {
-        portImages = new Image[3];
+        portImages = new Image[4];
         try {
             portImages[0]= ImageIO.read(new File(ResourcePath.itemImagePath + "port/port_1.png"));
             portImages[1]= ImageIO.read(new File(ResourcePath.itemImagePath+ "port/port_2.png"));

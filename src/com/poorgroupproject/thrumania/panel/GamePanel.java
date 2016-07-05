@@ -8,10 +8,7 @@ import com.poorgroupproject.thrumania.item.human.Citizen;
 import com.poorgroupproject.thrumania.item.human.Human;
 import com.poorgroupproject.thrumania.item.human.Oriention;
 import com.poorgroupproject.thrumania.item.human.Soldier;
-import com.poorgroupproject.thrumania.item.place.Barrack;
-import com.poorgroupproject.thrumania.item.place.Palace;
-import com.poorgroupproject.thrumania.item.place.Place;
-import com.poorgroupproject.thrumania.item.place.WoodCutter;
+import com.poorgroupproject.thrumania.item.place.*;
 import com.poorgroupproject.thrumania.item.vehicle.FishingShip;
 import com.poorgroupproject.thrumania.item.vehicle.Ship;
 import com.poorgroupproject.thrumania.item.vehicle.TransportShip;
@@ -80,6 +77,7 @@ public class GamePanel extends GameEngine {
         gameObjects.add(new FishingShip(730,860,Oriention.Down));
         gameObjects.add(new TransportShip(610,860,Oriention.Down));
         gameObjects.add(palace);
+        gameObjects.add(new Port(1400,400));
        // gameObjects.add(s);
         for(GameObject go:gameObjects){
             go.setPlayer(player);
