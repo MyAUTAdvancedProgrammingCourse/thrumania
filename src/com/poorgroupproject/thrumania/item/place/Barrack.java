@@ -1,5 +1,6 @@
 package com.poorgroupproject.thrumania.item.place;
 
+import com.poorgroupproject.thrumania.events.ClickEvent;
 import com.poorgroupproject.thrumania.events.ConstructPlaceEvent;
 import com.poorgroupproject.thrumania.events.DestroyPlaceEvent;
 import com.poorgroupproject.thrumania.events.Event;
@@ -10,6 +11,7 @@ import com.poorgroupproject.thrumania.util.ResourcePath;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,6 +33,8 @@ public class Barrack extends Place {
         super(x, y);
         loadResoure();
         setToughness(0);
+        setCurrentImage(barrackImages[3]);
+
     }
 
     /**
@@ -54,6 +58,7 @@ public class Barrack extends Place {
     public void processEvent(Event event) {
         if (event instanceof ConstructPlaceEvent && getToughness() <= 100) contruct();
         else if(event instanceof DestroyPlaceEvent && getToughness() >= 0) destroy();
+        else if(event instanceof ClickEvent) makeSoldier();
     }
 
     @Override
