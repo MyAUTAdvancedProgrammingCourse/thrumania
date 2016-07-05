@@ -87,9 +87,9 @@ public class Land {
     public void loadMap(File file) throws FileNotFoundException {
         Scanner scanner = new Scanner(file);
         rows = scanner.nextInt();
+        cols = scanner.nextInt();
         mapWidth = cols * CELL_WIDTH;
         mapHeight = rows * CELL_HEIGHT;
-        cols = scanner.nextInt();
         cells = new Cell[rows][cols];
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
@@ -439,5 +439,13 @@ public class Land {
 
     public Cell getCellAt(int i, int j){
         return cells[i][j];
+    }
+
+    public int getMapWidth(){
+        return mapWidth;
+    }
+
+    public int getMapHeight(){
+        return mapHeight;
     }
 }

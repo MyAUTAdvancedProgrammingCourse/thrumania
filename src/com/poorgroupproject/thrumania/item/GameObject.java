@@ -114,4 +114,7 @@ public abstract class GameObject{
     }
     public abstract void tik();
 
+    public void translate(int dx, int dy){
+        boundry.setLocation(((int) boundry.getX()) + dx, ((int) boundry.getY()) + dy);
+    }
 }
