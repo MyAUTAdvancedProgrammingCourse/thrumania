@@ -20,6 +20,7 @@ import com.poorgroupproject.thrumania.util.GameEngine;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 
 /**
  * @author ahmad
@@ -29,6 +30,10 @@ public class GamePanel extends GameEngine {
     private ArrayList<GameObject> gameObjects;
     private PlayerPanel playerPanel;
     private MiniMapPanel miniMapPanel;
+
+    private int tps = 30;
+    private double delayTickInterval;
+
     Ai a = new Ai();
 
     private Rectangle mouseRectangleSelector;
@@ -55,6 +60,7 @@ public class GamePanel extends GameEngine {
 
     public GamePanel(int width, int height){
         initialize(width,height);
+        delayTickInterval = 1000/tps;
         zoomScale = 1;
         viewPortPosition = new Point(0,0);
         gameObjectMenuPanel = null;
@@ -62,7 +68,7 @@ public class GamePanel extends GameEngine {
         selectedObject = new ArrayList<>();
         a.setGp(this);
         playerPanel = new PlayerPanel();
-        miniMapPanel = new MiniMapPanel(this);
+        miniMapPanel = new MiniMapPanel(gameObjects);
 
         mouseRectangleSelector = new Rectangle(0,0,0,0);
         mousePosition = new Rectangle(0,0,1,1);
@@ -108,7 +114,7 @@ public class GamePanel extends GameEngine {
             go.setGamePanel(this);
         }
 //        c.processEvent(new GoThePlaceEvent(null,new Pair(5,8)));
-        ticker = new ThreadTicker(gameObjects);
+        ticker = new ThreadTicker(this);
         ticker.start();
 
         (new Thread(new Runnable() {
@@ -174,6 +180,13 @@ public class GamePanel extends GameEngine {
                     moveRight();
                 }
 
+                if (keyEvent.getKeyCode() == KeyEvent.VK_Z){
+                    zoomIn();
+                }
+
+                if (keyEvent.getKeyCode() == KeyEvent.VK_X){
+                    zoomOut();
+                }
             }
 
             @Override
@@ -207,7 +220,6 @@ public class GamePanel extends GameEngine {
             public void mouseClicked(MouseEvent mouseEvent) {
                 Rectangle r = new Rectangle(mouseEvent.getLocationOnScreen(),new Dimension(1, 1));
                 if (mouseEvent.getButton() == 1) {          // Left click
-                    System.out.println("left click");
                     if (gameObjectMenuPanel != null){
                         if (gameObjectMenuPanel.getBoundry().intersects(r)){
                             int j = ((int) (mouseEvent.getY() - gameObjectMenuPanel.getBoundry().getY()));
@@ -234,7 +246,6 @@ public class GamePanel extends GameEngine {
                                     selectedObject) {
                                 go.processEvent(new GoThePlaceEvent(null, GameObject.getLocationOnMatrix(mouseEvent.getX(), mouseEvent.getY())));
                             }
-
                             selectedObject = new ArrayList<GameObject>();
                         }else if (mousePointerClickMode == MousePointerClickMode.ATTACK){
                             int size = gameObjects.size();
@@ -325,6 +336,23 @@ public class GamePanel extends GameEngine {
         });
     }
 
+    private void zoomOut() {
+        zoomScale -= 0.25;
+        for (GameObject go :
+                gameObjects) {
+            go.setScale(zoomScale);
+        }
+    }
+
+
+    private void zoomIn() {
+        zoomScale += 0.25;
+        for (GameObject go :
+                gameObjects) {
+            go.setScale(zoomScale);
+        }
+    }
+
     private void moveDown() {
         if (viewPortPosition.getY() + GameEngine.getScreenDimension().getHeight() < Land.getInstance().getMapHeight() - 10){
             viewPortPosition.setLocation(viewPortPosition.getX(),viewPortPosition.getY()  + 10);
@@ -344,8 +372,6 @@ public class GamePanel extends GameEngine {
     }
 
     private void moveRight() {
-        System.out.println(Land.getInstance().getMapWidth());
-
         if (viewPortPosition.getX() + GameEngine.getScreenDimension().getWidth() < Land.getInstance().getMapWidth() - 10){
             viewPortPosition.setLocation(viewPortPosition.getX() + 10,viewPortPosition.getY());
             for (GameObject g : gameObjects) {
@@ -356,7 +382,6 @@ public class GamePanel extends GameEngine {
     private void moveLeft() {
         System.out.println(viewPortPosition);
         if (viewPortPosition.getX() > 0){
-            System.out.println("kharrrrrrrrrrrrr");
             viewPortPosition.setLocation(viewPortPosition.getX() - 10,viewPortPosition.getY());
             for (GameObject g : gameObjects) {
                 g.translate(10, 0);
@@ -365,38 +390,57 @@ public class GamePanel extends GameEngine {
     }
     @Override
     public synchronized void render() {
-        Rectangle r = new Rectangle(((int) viewPortPosition.getX()), ((int) viewPortPosition.getY()), ((int) getScreenDimension().getWidth()), ((int) getScreenDimension().getHeight()));
-        Rectangle khar = new Rectangle(0,0, ((int) GameEngine.getScreenDimension().getWidth()), ((int) GameEngine.getScreenDimension().getHeight()));
-        drawOnFrame(Land.getInstance().getMapInBoundry(r),khar);
-        for (GameObject gameObj :
-                gameObjects) {
-            drawOnFrame(gameObj.getCurrentImage(), gameObj.getBoundry());
-        }
-        for(Place p:this.places){
-            try {
-                drawOnFrame(p.getCurrentImage(), p.getBoundry());
+        synchronized (this) {
+            Rectangle r = new Rectangle(((int) viewPortPosition.getX()), ((int) viewPortPosition.getY()), ((int) (getScreenDimension().getWidth() / zoomScale)), ((int) (getScreenDimension().getHeight() / zoomScale)));
+            Rectangle khar = new Rectangle(0, 0, ((int) GameEngine.getScreenDimension().getWidth()), ((int) GameEngine.getScreenDimension().getHeight()));
+            drawOnFrame(Land.getInstance().getMapInBoundry(r), khar);
+            for (GameObject gameObj :
+                    gameObjects) {
+                drawOnFrame(gameObj.getCurrentImage(), gameObj.getBoundry());
             }
-            catch(java.util.ConcurrentModificationException e){
+            for (Place p : this.places) {
+                try {
+                    drawOnFrame(p.getCurrentImage(), p.getBoundry());
+                } catch (java.util.ConcurrentModificationException e) {
 
+                }
             }
-        }
-        drawOnFrame(playerPanel.getView(),playerPanel.getBoundry());
-        drawOnFrame(miniMapPanel.getView(),miniMapPanel.getBoundry());
-        drawRectOnFrame(mouseRectangleSelector);
-        if (gameObjectMenuPanel != null){
-            drawOnFrame(gameObjectMenuPanel.getView(),gameObjectMenuPanel.getBoundry());
+            drawOnFrame(playerPanel.getView(), playerPanel.getBoundry());
+            drawOnFrame(miniMapPanel.getView(), miniMapPanel.getBoundry());
+            drawRectOnFrame(mouseRectangleSelector);
+            if (gameObjectMenuPanel != null) {
+                drawOnFrame(gameObjectMenuPanel.getView(), gameObjectMenuPanel.getBoundry());
+            }
+            miniMapPanel.tick();
         }
     }
 
     public ArrayList<GameObject> getGameObjects(){
-        return gameObjects;
+        synchronized (this) {
+            return gameObjects;
+        }
+
     }
 
     public void setGameObjects(ArrayList<GameObject> gameObjects){
-        this.gameObjects = gameObjects;
+        synchronized (this) {
+            this.gameObjects = gameObjects;
+        }
     }
 
-    public synchronized void addGameObject(GameObject gameObject){
-        gameObjects.add(gameObject);
+    public void addGameObject(GameObject gameObject){
+        synchronized (this) {
+            gameObjects.add(gameObject);
+        }
+    }
+
+    public void tickAllObjects(){
+        synchronized (this){
+
+            for (GameObject go :
+                    gameObjects) {
+                    go.tik();
+            }
+        }
     }
 }
