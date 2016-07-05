@@ -1,5 +1,6 @@
 package com.poorgroupproject.thrumainamenu;
 
+import com.poorgroupproject.thrumania.Thrumania;
 import sun.audio.AudioData;
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
@@ -50,6 +51,7 @@ public class Menu extends JFrame {
     private boolean into6 = false;
     private boolean isFirstBeep = true;
     private boolean isTheFirstPaint= true;
+    private boolean once = false;
 
     public Menu() {
         setSize(Toolkit.getDefaultToolkit().getScreenSize());
@@ -82,13 +84,72 @@ public class Menu extends JFrame {
                 Rectangle mouseRect = new Rectangle(mouseEvent.getX(),mouseEvent.getY(), 1, 1);
 
                 if (mouseRect.intersects(singleplayerRect)) {
-                    isOnSingleplayer = true;
+                    isOnSingleplayer = true;once = false;
+                    addMouseListener(new MouseListener() {
+                        @Override
+                        public void mouseClicked(MouseEvent mouseEvent) {
+                            if(!once){
+                                new Thrumania();
+                                once = true;
+                            }
+                        }
+
+                        @Override
+                        public void mousePressed(MouseEvent mouseEvent) {
+
+                        }
+
+                        @Override
+                        public void mouseReleased(MouseEvent mouseEvent) {
+
+                        }
+
+                        @Override
+                        public void mouseEntered(MouseEvent mouseEvent) {
+
+                        }
+
+                        @Override
+                        public void mouseExited(MouseEvent mouseEvent) {
+
+                        }
+                    });
                 } else{
                     isOnSingleplayer = false;
                 }
 
                 if (mouseRect.intersects(multiplayerRect)) {
                     isOnMultiplayer = true;
+                    once = false;
+                    addMouseListener(new MouseListener() {
+                        @Override
+                        public void mouseClicked(MouseEvent mouseEvent) {
+                            if(!once){
+                                new Thrumania();
+                                once = true;
+                            }
+                        }
+
+                        @Override
+                        public void mousePressed(MouseEvent mouseEvent) {
+
+                        }
+
+                        @Override
+                        public void mouseReleased(MouseEvent mouseEvent) {
+
+                        }
+
+                        @Override
+                        public void mouseEntered(MouseEvent mouseEvent) {
+
+                        }
+
+                        @Override
+                        public void mouseExited(MouseEvent mouseEvent) {
+
+                        }
+                    });
                 } else{
                     isOnMultiplayer= false;
                 }
