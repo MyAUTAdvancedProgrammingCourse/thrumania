@@ -23,7 +23,8 @@ import java.util.*;
  * @version 1.0.0
  */
 public class Thrumania {
-    public static void main(String[] args) {
+
+    public Thrumania(){
         GameConfig.setFrameDelayTime();
         EventQueue.invokeLater(new Runnable() {
             @Override
