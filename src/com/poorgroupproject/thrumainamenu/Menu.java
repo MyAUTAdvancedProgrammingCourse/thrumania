@@ -1,5 +1,7 @@
 package com.poorgroupproject.thrumainamenu;
 
+import com.mlc.client.ChatForm;
+import com.mlc.client.SocketListener;
 import com.poorgroupproject.thrumania.Thrumania;
 import sun.audio.AudioData;
 import sun.audio.AudioPlayer;
@@ -126,6 +128,12 @@ public class Menu extends JFrame {
                         public void mouseClicked(MouseEvent mouseEvent) {
                             if(!once){
                                 new Thrumania();
+                                ChatForm chatForm = new ChatForm();
+                                chatForm.setVisible(true);
+                                chatForm.setAlwaysOnTop(true);
+                                SocketListener socketListener = new SocketListener();
+                                chatForm.setSocketListener(socketListener);
+                                socketListener.setChatForm(chatForm);
                                 once = true;
                             }
                         }
