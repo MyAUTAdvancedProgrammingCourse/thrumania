@@ -6,5 +6,5 @@ package com.poorgroupproject.thrumania.item.human;
 public enum CurrentTask {
     Moving,StandingDoinfNothing,ResourceCollecting,AttackingToAHuman,
     AttackingToABuilding,BuildingABarrack,BuildingAQuarry,BuildingAport,BuildingAship,
-    RidingAShip,GoingBacktoPalace
+    RidingAShip,GoingBacktoPalace,BuildingAWoodcutter
 }

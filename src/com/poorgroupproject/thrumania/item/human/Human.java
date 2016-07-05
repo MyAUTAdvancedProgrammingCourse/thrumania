@@ -32,6 +32,7 @@ public abstract class Human extends GameObject implements Runnable,Constants{
     int amount_of_iron;
     int amount_of_wood;
     int amount_of_food;
+    int lifeCounter;
     public boolean isMoving;
     public enum MovingSyle{
         WALKING, RUNNING
@@ -42,6 +43,7 @@ public abstract class Human extends GameObject implements Runnable,Constants{
     public Human(int x, int y){
         super(x, y, 30, 30);
         isMoving = false;
+        lifeCounter = 0;
         movingSyle = MovingSyle.WALKING;
         currentPath = null;
         this.currentTask = CurrentTask.StandingDoinfNothing;

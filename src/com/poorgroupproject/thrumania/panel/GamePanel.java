@@ -11,6 +11,7 @@ import com.poorgroupproject.thrumania.item.human.Soldier;
 import com.poorgroupproject.thrumania.item.place.Barrack;
 import com.poorgroupproject.thrumania.item.place.Palace;
 import com.poorgroupproject.thrumania.item.place.Place;
+import com.poorgroupproject.thrumania.item.place.WoodCutter;
 import com.poorgroupproject.thrumania.item.vehicle.FishingShip;
 import com.poorgroupproject.thrumania.item.vehicle.Ship;
 import com.poorgroupproject.thrumania.item.vehicle.TransportShip;
@@ -36,9 +37,9 @@ public class GamePanel extends GameEngine {
     private Rectangle mouseRectangleSelector;
 
     private ArrayList<GameObject> selectedObject;
-    private enum MousePointerMode{NONE, PLAYER_PANEL_DRAGGING, MINIMAP_PANEL_DRAGGING}
+    private enum MousePointerMode{NONE, PLAYER_PANEL_DRAGGING, MINIMAP_PANEL_DRAGGING};
 
-    private enum MousePointerClickMode{NONE,ATTACK,BUILD_FARM}
+    private enum MousePointerClickMode{NONE,ATTACK,BUILD_FARM};
 
     private MousePointerClickMode mousePointerClickMode;
     private MousePointerMode mousePointerMode;
@@ -90,19 +91,19 @@ public class GamePanel extends GameEngine {
         ticker = new ThreadTicker(gameObjects);
         ticker.start();
 
-//        (new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                while (true){
-//                    repaint();
-//                    try {
-//                        Thread.sleep(GameConfig.frameDelayTime);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//        })).start();
+        (new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true){
+                    repaint();
+                    try {
+                        Thread.sleep(GameConfig.frameDelayTime);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        })).start();
 
         addEventListener();
 
@@ -124,7 +125,7 @@ public class GamePanel extends GameEngine {
             public void keyPressed(KeyEvent keyEvent) {
                 if(keyEvent.getKeyCode() == KeyEvent.VK_D) {
                     System.out.println(gameObjects.size());
-                    gameObjects.get(1).processEvent(new GoAndCollectResourceEvent(null,new Pair(7,10)));
+                    gameObjects.get(1).processEvent(new GoAndCollectResourceEvent(null,new Pair(5,10)));
                 }
                 if (keyEvent.getKeyCode() == KeyEvent.VK_ESCAPE)
                     System.exit(0);

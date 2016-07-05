@@ -1,5 +1,6 @@
 package com.poorgroupproject.thrumania.backgroundprocess;
 
+import com.poorgroupproject.thrumania.DefineCastlePlace.castlePlace;
 import com.poorgroupproject.thrumania.item.GameObject;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ public class ThreadTicker extends Thread {
     }
 
     @Override
-    public void run() {
+    public void run() throws java.util.ConcurrentModificationException{
         while (true){
             for (GameObject go :
                     gameObjects) {
