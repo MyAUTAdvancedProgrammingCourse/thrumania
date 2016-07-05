@@ -52,10 +52,9 @@ public class GamePanel extends GameEngine {
 
     private double zoomScale;
 
-
     public GamePanel(int width, int height){
         initialize(width,height);
-        
+        zoomScale = 1;
         viewPortPosition = new Point(0,0);
         gameObjectMenuPanel = null;
         gameObjects = new ArrayList<>();
