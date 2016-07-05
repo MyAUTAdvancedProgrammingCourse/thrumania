@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="027286b7-9283-4dfe-8cd1-b3c7ef3fd4b3" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/panel/Ai.java" afterPath="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/panel/Ai.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/panel/GamePanel.java" afterPath="$PROJECT_DIR$/src/com/poorgroupproject/thrumania/panel/GamePanel.java" />
     </list>
     <ignored path="Thrumania.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,9 +28,14 @@
       <file leaf-file-name="GamePanel.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/panel/GamePanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="57" column="27" selection-start-line="57" selection-start-column="27" selection-end-line="57" selection-end-column="27" />
-              <folding />
+            <state relative-caret-position="154">
+              <caret line="34" column="16" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="16" />
+              <folding>
+                <element signature="e#1949#1956#0" expanded="true" />
+                <element signature="e#7709#7710#0" expanded="true" />
+                <element signature="e#7791#7792#0" expanded="true" />
+                <element signature="e#11013#11021#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -41,7 +44,7 @@
         <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumainamenu/Menu.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="578">
-              <caret line="348" column="0" selection-start-line="348" selection-start-column="0" selection-end-line="348" selection-end-column="0" />
+              <caret line="356" column="0" selection-start-line="356" selection-start-column="0" selection-end-line="356" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -128,7 +131,7 @@
         <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/GameObject.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="549">
-              <caret line="97" column="89" selection-start-line="97" selection-start-column="89" selection-end-line="97" selection-end-column="89" />
+              <caret line="100" column="67" selection-start-line="100" selection-start-column="67" selection-end-line="100" selection-end-column="67" />
               <folding />
             </state>
           </provider>
@@ -432,8 +435,7 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/poorgroupproject/thrumania/Thrumania.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/poorgroupproject/thrumania/ThrumaniaNetwork.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/com/poorgroupproject/thrumania/panel/GamePanel.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -1099,7 +1101,14 @@
       <option name="project" value="LOCAL" />
       <updated>1467712676601</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="sd">
+      <created>1467715116920</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1467715116920</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1124,8 +1133,8 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32239157" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27667058" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32239157" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27667058" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1590,7 +1599,7 @@
         <state relative-caret-position="534">
           <caret line="84" column="0" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
           <folding>
-            <marker date="1467710371994" expanded="false" signature="54:149" placeholder="..." />
+            <marker date="1467715127737" expanded="false" signature="54:149" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1606,7 +1615,7 @@
     <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/item/GameObject.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="549">
-          <caret line="97" column="89" selection-start-line="97" selection-start-column="89" selection-end-line="97" selection-end-column="89" />
+          <caret line="100" column="67" selection-start-line="100" selection-start-column="67" selection-end-line="100" selection-end-column="67" />
           <folding />
         </state>
       </provider>
@@ -1634,7 +1643,7 @@
     <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumainamenu/Menu.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
-          <caret line="348" column="0" selection-start-line="348" selection-start-column="0" selection-end-line="348" selection-end-column="0" />
+          <caret line="356" column="0" selection-start-line="356" selection-start-column="0" selection-end-line="356" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1686,9 +1695,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/poorgroupproject/thrumania/panel/GamePanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="57" column="27" selection-start-line="57" selection-start-column="27" selection-end-line="57" selection-end-column="27" />
-          <folding />
+        <state relative-caret-position="154">
+          <caret line="34" column="16" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="16" />
+          <folding>
+            <element signature="e#1949#1956#0" expanded="true" />
+            <element signature="e#7709#7710#0" expanded="true" />
+            <element signature="e#7791#7792#0" expanded="true" />
+            <element signature="e#11013#11021#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
