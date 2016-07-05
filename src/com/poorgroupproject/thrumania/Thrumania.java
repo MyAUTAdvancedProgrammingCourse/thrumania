@@ -38,17 +38,18 @@ public class Thrumania {
                 Thread screenRepainter = new ScreenRepainter(g);
                 screenRepainter.start();
                 Land.getInstance().setGamePanel(g);
+                Land.getInstance().loadMapImageFile();
+                try {
+                    Land.getInstance().loadMap(new File("resource/map/map1.tmf"));
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+                Land.getInstance().redrawMap();
             }
         });
 
-        Land.getInstance().loadMapImageFile();
-        try {
-            Land.getInstance().loadMap(new File("resource/map/map1.tmf"));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
 
-        Land.getInstance().redrawMap();
 
     }
 }
