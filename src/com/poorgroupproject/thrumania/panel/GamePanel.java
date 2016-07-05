@@ -29,6 +29,7 @@ public class GamePanel extends GameEngine {
     private ArrayList<GameObject> gameObjects;
     private PlayerPanel playerPanel;
     private MiniMapPanel miniMapPanel;
+    Ai a = new Ai();
 
     private Rectangle mouseRectangleSelector;
 
@@ -59,7 +60,7 @@ public class GamePanel extends GameEngine {
         gameObjectMenuPanel = null;
         gameObjects = new ArrayList<>();
         selectedObject = new ArrayList<>();
-
+        a.setGp(this);
         playerPanel = new PlayerPanel();
         miniMapPanel = new MiniMapPanel(this);
 
@@ -72,17 +73,33 @@ public class GamePanel extends GameEngine {
 //        Port p = new Port(100,100);
 //        gameObjects.add(p);
         Player player = new Player("Yes");
+        Player player1 = new Player("lol");
         Citizen c = new Citizen(1000,900,Oriention.Right);
-        Citizen d = new Citizen(1600,650, Oriention.Down);
+        Citizen d = new Citizen(1600,800, Oriention.Down);
+        Citizen h = new Citizen(1600,540,Oriention.UpRight);
+        Citizen j = new Citizen(1400,540,Oriention.Right);
         Soldier s = new Soldier(1600,900,Oriention.UpRight);
+        h.setPlayer(player1);
+        j.setPlayer(player1);
         Palace palace = new Palace(1680,850);
         player.setPlayerPalace(palace);
         gameObjects.add(d);
         gameObjects.add(c);
+        gameObjects.add(h);
+        gameObjects.add(j);
         gameObjects.add(new FishingShip(730,860,Oriention.Down));
         gameObjects.add(new TransportShip(610,860,Oriention.Down));
+        gameObjects.add(new Port(1400, 400));
+        gameObjects.add(new Barrack(1400, 500));
         gameObjects.add(palace);
-        gameObjects.add(new Port(1400,400));
+//        gameObjects.add(new Citizen(1080,800,Oriention.Down));
+//        gameObjects.add(new Citizen(1700,630,Oriention.Up));
+//        gameObjects.add(new Citizen(1700,700,Oriention.Up));
+//        gameObjects.add(new Citizen(1600,650,Oriention.Up));
+//        gameObjects.add(new Citizen(1500,800,Oriention.Up));
+//        gameObjects.add(new Citizen(1400,950,Oriention.Up));
+//        gameObjects.add(new Citizen(1600,800,Oriention.Up));
+//        gameObjects.add(new Citizen(1200,650,Oriention.Up));
        // gameObjects.add(s);
         for(GameObject go:gameObjects){
             go.setPlayer(player);
@@ -115,6 +132,7 @@ public class GamePanel extends GameEngine {
     private void initialize(int width, int height){
         setSize(width,height);
         setLocation(0,0);
+
     }
 
     private void addEventListener(){
@@ -128,7 +146,10 @@ public class GamePanel extends GameEngine {
             public void keyPressed(KeyEvent keyEvent) {
                 if(keyEvent.getKeyCode() == KeyEvent.VK_D) {
                     System.out.println(gameObjects.size());
-                    gameObjects.get(1).processEvent(new GoAndCollectResourceEvent(null,new Pair(5,10)));
+                    gameObjects.get(1).processEvent(new GoandBuildAPlace(null,new Pair(7,9),new Barrack(0,0)));
+                }
+                if(keyEvent.getKeyCode() == KeyEvent.VK_R){
+                    (new Thread(a)).start();
                 }
                 if(keyEvent.getKeyCode() == KeyEvent.VK_E) {
                     System.out.println(gameObjects.size());
